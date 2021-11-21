@@ -6,6 +6,6 @@ public class ControladorComer implements IControlerStrategy{
 
     public void satisfacer(){
 
-        Jugador.getInstance().controladorSalud.
+//        Jugador.getInstance().controladorSalud
     }
 }
