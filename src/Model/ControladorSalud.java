@@ -114,12 +114,20 @@ public class ControladorSalud {
         this.liquidosConsumidos = liquidosConsumidos;
     }
 
+    public void modLiquidosConsumidos(int liquidosConsumidos) {
+        this.liquidosConsumidos = this.liquidosConsumidos + liquidosConsumidos;
+    }
+
     public int getSolidosConsumidos() {
         return solidosConsumidos;
     }
 
     public void setSolidosConsumidos(int solidosConsumidos) {
         this.solidosConsumidos = solidosConsumidos;
+    }
+
+    public void modSolidosConsumidos(int solidosConsumidos) {
+        this.solidosConsumidos = this.solidosConsumidos + solidosConsumidos;
     }
 
     public boolean isEnfermo() {
