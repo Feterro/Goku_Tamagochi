@@ -11,5 +11,7 @@ public class ControladorComer implements IControlerStrategy{
         Jugador.getInstance().controladorSalud.modSatisfaccionHambre(mejora);
         Jugador.getInstance().controladorSalud.modSatisfaccionSuenno(mejora/2);
         Jugador.getInstance().controladorSalud.modSatisfaccionBano(-mejora);
+        Jugador.getInstance().controladorSalud.modSaludSocial(-10);
+        Jugador.getInstance().controladorSalud.modSaludFisica(-15);
     }
 }
