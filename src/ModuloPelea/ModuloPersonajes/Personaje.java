@@ -1,11 +1,12 @@
-package ModuloPersonajes;
-import java.util.ArrayList;
+package ModuloPelea.ModuloPersonajes;
+
+import ModuloPelea.ModuloComida.Comida;
+import ModuloPelea.ModuloControladores.Controlador;
+
 import java.util.HashMap;
 
-import ModuloComida.Comida;
-import ModuloControladores.Controlador;
 
-public class Personaje extends PersonajeBase{
+public class Personaje extends PersonajeBase {
 
     //El nivel es la edad del personaje.
     //Las habilidades son las armas
@@ -13,7 +14,7 @@ public class Personaje extends PersonajeBase{
     boolean muertePorEnfermedad;
     int cantidadDeDiasEnfermo;
     //ArrayList de estados. Es una lista el boton de la pantalla setea el estado actual que es el que se satisface o se niega.
-    HashMap<String,Controlador> controladores;
+    HashMap<String, Controlador> controladores;
     Controlador estadoActual;
 
     public Personaje(String name,int vida){
@@ -90,7 +91,7 @@ public class Personaje extends PersonajeBase{
     }
 
 
-    public void restarAtributos(){
+    public void restarAtributos(){//Esto creo que no se usaria.
         for(Controlador controlador:controladores.values()){
             controlador.negar();    
         }

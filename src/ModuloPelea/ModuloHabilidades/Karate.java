@@ -1,6 +1,6 @@
-package ModuloHabilidades;
+package ModuloPelea.ModuloHabilidades;
 
-import ModuloPersonajes.Habilidad;
+import ModuloPelea.ModuloPersonajes.Habilidad;
 
 public class Karate extends Habilidad{
     public Karate(){

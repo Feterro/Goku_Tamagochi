@@ -1,4 +1,4 @@
-package ModuloPersonajes;
+package ModuloPelea.ModuloPersonajes;
 
 import java.util.ArrayList;
 
@@ -25,18 +25,24 @@ public class Pelea {
     }
 
     private void crearEnemigo(){
-        this.enemigo = EnemyFactory.createNewEnemy();//Se crea un nuevo enemigo del factory de enemigos
+        this.enemigo = EnemigoFactory.createNewEnemy();//Se crea un nuevo enemigo del factory de enemigos
     }
 
     public void atacar(){
+
         //Ataque propio
         System.out.print("Ataca: ");
         System.out.println(personaje.getName());
         doCombo();
         //Ataque enemigo
-        System.out.print("Ataca: ");
-        System.out.println(enemigo.getName());
-        enemigo.doCombo(personaje);
+        if(enemigo.isAlive()){
+            System.out.print("Ataca: ");
+            System.out.println(enemigo.getName());
+            enemigo.doCombo(personaje);
+        }
+        else {
+            personaje.robarHabilidad(enemigo);
+        }
     }
 
 

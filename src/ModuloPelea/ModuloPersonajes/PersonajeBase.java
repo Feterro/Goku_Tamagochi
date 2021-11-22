@@ -1,4 +1,4 @@
-package ModuloPersonajes;
+package ModuloPelea.ModuloPersonajes;
 
 import java.util.ArrayList;
 

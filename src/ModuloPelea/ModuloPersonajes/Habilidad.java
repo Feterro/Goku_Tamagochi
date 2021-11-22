@@ -1,4 +1,4 @@
-package ModuloPersonajes;
+package ModuloPelea.ModuloPersonajes;
 
 public class Habilidad {//Es el arma
     

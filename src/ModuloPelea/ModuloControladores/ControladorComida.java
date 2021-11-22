@@ -1,6 +1,6 @@
-package ModuloControladores;
+package ModuloPelea.ModuloControladores;
 
-import ModuloComida.Comida;
+import ModuloPelea.ModuloComida.Comida;
 
 public class ControladorComida extends Controlador{
 

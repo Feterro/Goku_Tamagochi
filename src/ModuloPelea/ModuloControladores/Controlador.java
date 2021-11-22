@@ -1,4 +1,4 @@
-package ModuloControladores;
+package ModuloPelea.ModuloControladores;
 
 public abstract class Controlador {
 

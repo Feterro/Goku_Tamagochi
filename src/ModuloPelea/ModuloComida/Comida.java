@@ -1,4 +1,4 @@
-package ModuloComida;
+package ModuloPelea.ModuloComida;
 
 public class Comida {
     

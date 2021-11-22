@@ -1,27 +1,21 @@
-package ModuloPersonajes;
+package ModuloPelea.ModuloPersonajes;
+
+import ModuloPelea.ModuloHabilidades.*;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-import ModuloHabilidades.*;
-
-public class EnemyFactory {
+public class EnemigoFactory {
     
     static ArrayList<Enemigo> enemigos;
-    static ArrayList<Habilidad> habilidades;
 
-    public EnemyFactory(){
+    public EnemigoFactory(){
         enemigos = new ArrayList();
-        habilidades = new ArrayList<>();
         cargaTemporal();
     }
 
     private void loadEnemies(){//Carga los enemigos serializadas de la progra 1
             //TODO: Load file
-    }
-
-    private void loadHabilidades(){//Carga las armas serializadas de la progra 1
-        //TODO: Load File
     }
 
     public static Enemigo createNewEnemy(){
@@ -30,17 +24,14 @@ public class EnemyFactory {
 
         //Asignacion de las armas aleatorias al enemigo
         for(int i = 0; i < 3;i++){
-            enemy.agregarHabilidad(habilidades.get(ThreadLocalRandom.current().nextInt(0, habilidades.size())));
+            enemy.agregarHabilidad(HabilidadFactory.getRandomHabilidad());
         }
         return (Enemigo)enemy;
     }
 
     public void cargaTemporal(){
         //Carga de armas manual
-        habilidades.add(new Karate());
-        habilidades.add(new Kamehameha());
-        habilidades.add(new Bazooka());
-        habilidades.add(new JiuJitsu());
+
 
         //Carga de personajes
         enemigos.add(new Enemigo("Saibaman","Saibaman.jpg",30));
