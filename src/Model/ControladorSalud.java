@@ -4,16 +4,16 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class ControladorSalud {
 
-    public int satisfaccionHambre = 100;
-    public int satisfaccionSuenno = 100;
-    public int satisfaccionBano = 100;
-    public int saludSocial = 100;
-    public int saludFisica = 100;
+    private int satisfaccionHambre = 100;
+    private int satisfaccionSuenno = 100;
+    private int satisfaccionBano = 100;
+    private int saludSocial = 100;
+    private int saludFisica = 100;
 
-    public int probabilidadEnfermedad = 100;
-    public int liquidosConsumidos = 0;
-    public int solidosConsumidos = 0;
-    public boolean enfermo = false;
+    private int probabilidadEnfermedad = 100;
+    private int liquidosConsumidos = 0;
+    private int solidosConsumidos = 0;
+    private boolean enfermo = false;
     //public Enfermedad enfermedad; TODO Cambiar a la clase Abstracta
 
 
@@ -28,6 +28,7 @@ public class ControladorSalud {
         this.solidosConsumidos = solidosConsumidos;
         this.enfermo = enfermo;
     } //TODO Puede que sea innecesario este constructor entonces se borra
+
 
     public ControladorSalud() {
 
