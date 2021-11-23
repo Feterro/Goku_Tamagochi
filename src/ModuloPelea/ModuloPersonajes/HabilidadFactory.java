@@ -24,6 +24,14 @@ public class HabilidadFactory {
     }
 
     public static Arma getHabilidad(String name){
-        return habilidades.get(name);
+        for (Arma habilidad:habilidades){
+            if(habilidad.getNombre().equals(name))
+                return habilidad;
+        }
+        return null;
+    }
+
+    public static Arma getHabilidad(int index){
+        return habilidades.get(index);
     }
 }
