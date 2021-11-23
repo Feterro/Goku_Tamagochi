@@ -3,40 +3,48 @@ package TimeChecker;
 import java.util.ArrayList;
 
 public class Partida {
-    private ArrayList<Personaje> personajes = new ArrayList<Personaje>();
-    private Casa casa;
-    private int diaMaximo;
-    private Logger logger = new Logger();
+//    private ArrayList<Personaje> personajes = new ArrayList<Personaje>();
+//    private Casa casa;
     private TimeChecker timeChecker;
+    public String tex = "PRUEBA";
 
-    public ArrayList<Personaje> getPersonajes() {
-        return personajes;
+    public Partida(int segundo, int segundosMaximo, int minutosMaximo, int horasMaximo, int diasMaximo){
+        timeChecker = new TimeChecker(this, segundo, segundosMaximo, minutosMaximo, horasMaximo, diasMaximo);
     }
 
-    public void setPersonajes(ArrayList<Personaje> personajes) {
-        this.personajes = personajes;
+    public Partida(int segundo){
+        timeChecker = new TimeChecker(this, segundo);
     }
 
-    public Casa getCasa() {
-        return casa;
+    public Partida getPartida(){
+        if (this != null){
+            return this;
+        }
+        return null;
     }
 
-    public void setCasa(Casa casa) {
-        this.casa = casa;
+    public TimeChecker getTimeChecker(){
+        return timeChecker;
     }
 
-    public int getDiaMaximo() {
-        return diaMaximo;
+//    public ArrayList<Personaje> getPersonajes() {
+//        return personajes;
+//    }
+//
+//    public void setPersonajes(ArrayList<Personaje> personajes) {
+//        this.personajes = personajes;
+//    }
+//
+//    public Casa getCasa() {
+//        return casa;
+//    }
+//
+//    public void setCasa(Casa casa) {
+//        this.casa = casa;
+//    }
+
+    public Partida volverDia(String dia){
+        return timeChecker.getReloj().getLogger().buscarPartida(dia);
     }
-
-    public void setDiaMaximo(int diaMaximo) {
-        this.diaMaximo = diaMaximo;
-    }
-
-    public void volverDia(String dia){
-        logger.buscarPartida(dia);
-    }
-
-
 
 }
