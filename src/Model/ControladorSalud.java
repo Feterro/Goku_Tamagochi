@@ -1,13 +1,16 @@
 package Model;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class ControladorSalud {
 
-    public int probabilidadEnfermedad = 100;
     public int satisfaccionHambre = 100;
     public int satisfaccionSuenno = 100;
     public int satisfaccionBano = 100;
     public int saludSocial = 100;
     public int saludFisica = 100;
+
+    public int probabilidadEnfermedad = 100;
     public int liquidosConsumidos = 0;
     public int solidosConsumidos = 0;
     public boolean enfermo = false;
@@ -31,7 +34,25 @@ public class ControladorSalud {
     }
 
     public void verificar(){
-
+        if(satisfaccionHambre < 0 || satisfaccionHambre >100 ){
+            this.probabilidadEnfermedad += 20;
+        }
+        if(satisfaccionBano < 0){
+            this.probabilidadEnfermedad += 20;
+        }
+        if(saludSocial < 0 || saludSocial > 100){
+            this.probabilidadEnfermedad += 20;
+        }
+        if(saludFisica < 0) {
+            this.probabilidadEnfermedad += 20;
+        }
+        if(satisfaccionSuenno < 0) {
+            this.probabilidadEnfermedad += 20;
+        }
+        int rand_enfermedad = ThreadLocalRandom.current().nextInt(0, 100);
+        if (rand_enfermedad < this.probabilidadEnfermedad){
+            System.out.println("Se enferma"); //TODO setear enfermedad
+        }
     }
 
     public int getProbabilidadEnfermedad() {
@@ -44,6 +65,10 @@ public class ControladorSalud {
 
     public void modProbabilidadEnfermedad(int probabilidadEnfermedad) {
         this.probabilidadEnfermedad = this.probabilidadEnfermedad + probabilidadEnfermedad;
+        if(this.probabilidadEnfermedad > 100)
+            this.probabilidadEnfermedad = 100;
+        else if(this.probabilidadEnfermedad < 0)
+            this.probabilidadEnfermedad = 0;
     }
 
     public int getSatisfaccionHambre() {
@@ -56,6 +81,10 @@ public class ControladorSalud {
 
     public void modSatisfaccionHambre(int satisfaccionHambre) {
         this.satisfaccionHambre = this.satisfaccionHambre + satisfaccionHambre;
+        if(this.satisfaccionHambre > 100)
+            this.satisfaccionHambre = 110;
+        else if(this.satisfaccionHambre < 0)
+            this.satisfaccionHambre = -10;
     }
 
     public int getSatisfaccionSuenno() {
@@ -68,6 +97,10 @@ public class ControladorSalud {
 
     public void modSatisfaccionSuenno(int satisfaccionSuenno) {
         this.satisfaccionSuenno = this.satisfaccionSuenno + satisfaccionSuenno;
+        if(this.satisfaccionSuenno > 100)
+            this.satisfaccionSuenno = 100;
+        else if(this.satisfaccionSuenno < 0)
+            this.satisfaccionSuenno = -10;
     }
 
     public int getSatisfaccionBano() {
@@ -80,6 +113,10 @@ public class ControladorSalud {
 
     public void modSatisfaccionBano(int satisfaccionBano) {
         this.satisfaccionBano = this.satisfaccionBano + satisfaccionBano;
+        if(this.satisfaccionBano < 0)
+            this.satisfaccionBano = -10;
+        else if(this.satisfaccionBano > 100)
+            this.satisfaccionBano = 100;
     }
 
     public int getSaludSocial() {
@@ -92,6 +129,10 @@ public class ControladorSalud {
 
     public void modSaludSocial(int saludSocial) {
         this.saludSocial = this.saludSocial + saludSocial;
+        if(this.saludSocial > 100)
+            this.saludSocial = 110;
+        else if(this.saludSocial < 0)
+            this.saludSocial = -10;
     }
 
     public int getSaludFisica() {
@@ -104,6 +145,10 @@ public class ControladorSalud {
 
     public void modSaludFisica(int saludFisica) {
         this.saludFisica = this.saludFisica + saludFisica;
+        if(this.saludFisica > 100)
+            this.saludFisica = 100;
+        else if(this.saludFisica < 0)
+            this.saludFisica = -10;
     }
 
     public int getLiquidosConsumidos() {
@@ -114,12 +159,20 @@ public class ControladorSalud {
         this.liquidosConsumidos = liquidosConsumidos;
     }
 
+    public void modLiquidosConsumidos(int liquidosConsumidos) {
+        this.liquidosConsumidos = this.liquidosConsumidos + liquidosConsumidos;
+    }
+
     public int getSolidosConsumidos() {
         return solidosConsumidos;
     }
 
     public void setSolidosConsumidos(int solidosConsumidos) {
         this.solidosConsumidos = solidosConsumidos;
+    }
+
+    public void modSolidosConsumidos(int solidosConsumidos) {
+        this.solidosConsumidos = this.solidosConsumidos + solidosConsumidos;
     }
 
     public boolean isEnfermo() {
