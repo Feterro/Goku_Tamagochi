@@ -1,7 +1,7 @@
 package ModuloPelea.ModuloPersonajes;
 
 import LibreriaPersonajes.TDA.Arma;
-
+import ModuloPelea.CreadorDeHabilidades.AbilityMaker;
 
 
 import java.util.ArrayList;
@@ -12,19 +12,18 @@ public class HabilidadFactory {
     static ArrayList<Arma> habilidades;
 
     public HabilidadFactory(){
-        habilidades = new ArrayList<>();
+        loadArmas();
     }
 
-    public void loadArmas(){
-        //Implementar con la carga de las armas serializables
-    }
-
-    public void cargaTemporal(){
-        habilidades.add(new Arma.BuilderArma().setNombre("Karate").addApariencia("Karate.jpg").setDano(10).build());
-        
+    private void loadArmas(){
+        habilidades = AbilityMaker.loadAbilityList();
     }
 
     public static Arma getRandomHabilidad(){
         return habilidades.get(ThreadLocalRandom.current().nextInt(0, habilidades.size()));
+    }
+
+    public static Arma getHabilidad(String name){
+        return habilidades.get(name);
     }
 }

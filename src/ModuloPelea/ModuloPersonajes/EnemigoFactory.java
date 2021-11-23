@@ -2,6 +2,8 @@ package ModuloPelea.ModuloPersonajes;
 
 import LibreriaPersonajes.Apariencia.LvlImages;
 import LibreriaPersonajes.TDA.Personaje;
+import ModuloPelea.CreadorDeEnemigos.EnemyMaker;
+import ModuloPelea.CreadorDeHabilidades.AbilityMaker;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
@@ -11,12 +13,11 @@ public class EnemigoFactory {
     static ArrayList<Enemigo> enemigos;
 
     public EnemigoFactory(){
-        enemigos = new ArrayList();
-        cargaTemporal();
+        loadEnemies();
     }
 
     private void loadEnemies(){//Carga los enemigos serializadas de la progra 1
-            //TODO: Load file
+        enemigos = EnemyMaker.loadAbilityList();
     }
 
     public static Enemigo createNewEnemy(){
@@ -30,11 +31,5 @@ public class EnemigoFactory {
         return (Enemigo)enemy;
     }
 
-    public void cargaTemporal(){
-        //Carga de personajes
-        enemigos.add(new Enemigo(new Personaje.BuilderPersonaje().setVida(150).setNombre("Bu").addApariencia("Bu.jpg").build()));
-        enemigos.add(new Enemigo(new Personaje.BuilderPersonaje().setVida(75).setNombre("Saibamalo").addApariencia("Saibamalo.jpg").build()));
-        enemigos.add(new Enemigo(new Personaje.BuilderPersonaje().setVida(200).setNombre("Broly").addApariencia("Broly.jpg").build()));
-    }
 
 }

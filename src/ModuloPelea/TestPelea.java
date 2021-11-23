@@ -12,7 +12,7 @@ public class TestPelea {
 
         new EnemigoFactory();//Fabrica de personajes
         new HabilidadFactory();//Fabrica de armas
-        Goku personaje = new Goku(new Personaje.BuilderPersonaje().setNombre("Goku").addApariencia("Goku.jpg").setVida(500).addArma(new Arma.BuilderArma().setNombre("Karate").setDano(10).build()).build());
+        Goku personaje = new Goku(new Personaje.BuilderPersonaje().setNombre("Goku").addApariencia("Goku.jpg").setVida(500).addArma(HabilidadFactory.getRandomHabilidad()).build());
         Pelea pelea = new Pelea(personaje);
         pelea.addToCombo(personaje.getHabilidad("Karate"));
         pelea.addToCombo(personaje.getHabilidad("Karate"));
