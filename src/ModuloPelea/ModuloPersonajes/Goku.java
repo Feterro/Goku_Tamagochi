@@ -1,12 +1,16 @@
 package ModuloPelea.ModuloPersonajes;
 
+import LibreriaPersonajes.TDA.Arma;
+import LibreriaPersonajes.TDA.Personaje;
 import ModuloPelea.ModuloComida.Comida;
 import ModuloPelea.ModuloControladores.Controlador;
 
 import java.util.HashMap;
 
 
-public class Personaje extends PersonajeBase {
+public class Goku extends Personaje {
+
+    private static final long serialVersionUID = 8L;
 
     //El nivel es la edad del personaje.
     //Las habilidades son las armas
@@ -17,28 +21,27 @@ public class Personaje extends PersonajeBase {
     HashMap<String, Controlador> controladores;
     Controlador estadoActual;
 
-    public Personaje(String name,int vida){
-        this.name = name;
-        this.vida = vida;
+    public Goku(Personaje personaje){
+        super(personaje);
         controladores = new HashMap<>();
     }
 
     //Metodos de pelea.
-    public void agregarHabilidad(Habilidad habilidad){//Usaddo por ejercicio para dar nuevas habilidades al personaje.
+    public void agregarHabilidad(Arma habilidad){//Usaddo por ejercicio para dar nuevas habilidades al personaje.
         //Usa el metodo de agregar arma
-        habilidades.add(habilidad);
+        armas.addArma(habilidad);
     }
 
-    public Habilidad getHabilidad(int index){
-        return habilidades.get(index);
+    public Arma getHabilidad(String nombreHabilidad){
+        return armas.getArma(nombreHabilidad);
     }
 
     //Intenta robar una habilidad
     public void robarHabilidad(Enemigo enemigo){
-        for(Habilidad miHabilidad:habilidades){
-            for(Habilidad habilidad:enemigo.getHabilidades()){
-                if(miHabilidad.getName().equals(habilidad.getName())){
-                    habilidades.add(habilidad);
+        for(Arma miHabilidad:armas.getArmas().values()){
+            for(Arma habilidad:enemigo.getHabilidades()){
+                if(miHabilidad.getNombre().equals(habilidad.getNombre())){
+                    armas.addArma(habilidad);
                     return;
                 }
             }
@@ -96,4 +99,5 @@ public class Personaje extends PersonajeBase {
             controlador.negar();    
         }
     }
+
 }

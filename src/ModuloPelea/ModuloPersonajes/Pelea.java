@@ -1,27 +1,30 @@
 package ModuloPelea.ModuloPersonajes;
 
+import LibreriaPersonajes.TDA.Arma;
+import LibreriaPersonajes.TDA.Personaje;
+
 import java.util.ArrayList;
 
 public class Pelea {
     
-    Personaje personaje;
+    Goku personaje;
     Enemigo enemigo;
-    ArrayList<Habilidad> combo;
+    ArrayList<Arma> combo;
     
-    public Pelea(Personaje personaje){
+    public Pelea(Goku personaje){
         this.personaje = personaje;
         crearEnemigo();
         combo = new ArrayList<>();
     }
 
-    public void addToCombo(Habilidad habilidad){
+    public void addToCombo(Arma habilidad){
         this.combo.add(habilidad);
     }
 
     public void doCombo(){
-        for (Habilidad habilidad : combo) {
-            habilidad.doSomething(enemigo);
-        }
+        ArrayList<Personaje> objetivos = new ArrayList<>();
+        objetivos.add(enemigo);
+        personaje.atacar(objetivos,combo);
     }
 
     private void crearEnemigo(){
@@ -32,12 +35,12 @@ public class Pelea {
 
         //Ataque propio
         System.out.print("Ataca: ");
-        System.out.println(personaje.getName());
+        System.out.println(personaje.getNombre());
         doCombo();
         //Ataque enemigo
         if(enemigo.isAlive()){
             System.out.print("Ataca: ");
-            System.out.println(enemigo.getName());
+            System.out.println(enemigo.getNombre());
             enemigo.doCombo(personaje);
         }
         else {

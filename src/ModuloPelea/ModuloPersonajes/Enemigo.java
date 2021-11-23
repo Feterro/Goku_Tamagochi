@@ -1,38 +1,43 @@
 package ModuloPelea.ModuloPersonajes;
 
+import LibreriaPersonajes.TDA.Arma;
+import LibreriaPersonajes.TDA.Personaje;
+
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Enemigo extends PersonajeBase{
+public class Enemigo extends Personaje {
 
-    public Enemigo(String name,String imagen,int vida){//El nivel de los enemigos tiene que estar cerca del nivel de goku
-        this.name = name;
-        this.vida = vida;
-        this.imagen = imagen;
+    private static final long serialVersionUID = 7L;
+
+
+    public Enemigo(Personaje personaje){//El nivel de los enemigos tiene que estar cerca del nivel de goku
+        super(personaje);
     }
 
     
 
-    private ArrayList<Habilidad> crearCombo(){
-        ArrayList<Habilidad> combo = new ArrayList<>();
+    private ArrayList<Arma> crearCombo(){
+        ArrayList<Arma> combo = new ArrayList<>();
+        String key = (String) armas.getArmas().keySet().stream().toArray()[ThreadLocalRandom.current().nextInt(0, armas.getArmas().size())];
         for(int i = 0;i<3;i++){
-            combo.add(habilidades.get(ThreadLocalRandom.current().nextInt(0, habilidades.size())));
+            combo.add(armas.getArmas().get(key));
         }
         return combo;
     }
 
-    public void doCombo(Personaje personaje){
-        for(Habilidad habilidad:crearCombo()){
-            habilidad.doSomething(personaje);
-        }
+    public void doCombo(Goku personaje){
+        ArrayList<Personaje> objetivos = new ArrayList<>();
+        objetivos.add(personaje);
+        atacar(objetivos,crearCombo());
     }
 
-    public ArrayList<Habilidad> getHabilidades(){
-        return habilidades;
+    public ArrayList<Arma> getHabilidades(){
+        return new ArrayList<>(armas.getArmas().values());
     }
 
     public Enemigo deepClone(){
-        return new Enemigo(this.name,this.imagen,this.vida);
+        return  new Enemigo(new BuilderPersonaje().setNombre(this.nombre).setApariencia(this.apariencia).setVida(this.vida).build());
     }
     
 }

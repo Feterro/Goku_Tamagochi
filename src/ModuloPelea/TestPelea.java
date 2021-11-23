@@ -1,25 +1,25 @@
 package ModuloPelea;
 
-import ModuloPelea.ModuloHabilidades.Karate;
+import LibreriaPersonajes.TDA.Arma;
+import LibreriaPersonajes.TDA.Personaje;
 import ModuloPelea.ModuloPersonajes.EnemigoFactory;
 import ModuloPelea.ModuloPersonajes.HabilidadFactory;
 import ModuloPelea.ModuloPersonajes.Pelea;
-import ModuloPelea.ModuloPersonajes.Personaje;
+import ModuloPelea.ModuloPersonajes.Goku;
 
 public class TestPelea {
     public static void main(String[] args) throws Exception {
 
         new EnemigoFactory();//Fabrica de personajes
         new HabilidadFactory();//Fabrica de armas
-        Personaje personaje = new Personaje("Goku",500);
-        personaje.agregarHabilidad(new Karate());//Esto podria hacerse desde una fabrica de habilidades. Se obtineen del ejercicio
+        Goku personaje = new Goku(new Personaje.BuilderPersonaje().setNombre("Goku").addApariencia("Goku.jpg").setVida(500).addArma(new Arma.BuilderArma().setNombre("Karate").setDano(10).build()).build());
         Pelea pelea = new Pelea(personaje);
-        pelea.addToCombo(personaje.getHabilidad(0));
-        pelea.addToCombo(personaje.getHabilidad(0));
-        pelea.addToCombo(personaje.getHabilidad(0));
+        pelea.addToCombo(personaje.getHabilidad("Karate"));
+        pelea.addToCombo(personaje.getHabilidad("Karate"));
+        pelea.addToCombo(personaje.getHabilidad("Karate"));
         pelea.atacar();
-        pelea.addToCombo(personaje.getHabilidad(0));
-        pelea.addToCombo(personaje.getHabilidad(0));
+        pelea.addToCombo(personaje.getHabilidad("Karate"));
+        pelea.addToCombo(personaje.getHabilidad("Karate"));
         pelea.atacar();
     }
 }
