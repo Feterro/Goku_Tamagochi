@@ -144,8 +144,7 @@ public class Juego implements Initializable {
 
     @FXML
     private ComboBox<Deporte> deportesPeleas;
-
-
+    
 
     public void cambiarAmbiente(Ambiente ambiente) throws FileNotFoundException {
         switch (ambiente){
