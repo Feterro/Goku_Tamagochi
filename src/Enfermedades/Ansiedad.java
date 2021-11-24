@@ -14,8 +14,14 @@ public class Ansiedad extends AbstractEnfermedad{
         this.saludSocialMenor = 45;
     }
 
-    public Ansiedad(ArrayList<Medicamento> posiblesMedicamentos, boolean accepted, double duracion, int satisfaccionSuennoMenor, int saludSocialMenor) {
-        super(posiblesMedicamentos, accepted, duracion);
+    @Override
+    public void afectar() {
+        System.out.println("Afectar xd");
+    }
+
+    public Ansiedad(ArrayList<Medicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, double duracion, boolean active,
+                    int satisfaccionSuennoMenor, int saludSocialMenor) {
+        super(posiblesMedicamentos, tipo, accepted, duracion, active);
         this.satisfaccionSuennoMenor = satisfaccionSuennoMenor;
         this.saludSocialMenor = saludSocialMenor;
     }
@@ -34,5 +40,10 @@ public class Ansiedad extends AbstractEnfermedad{
 
     public void setSaludSocialMenor(int saludSocialMenor) {
         this.saludSocialMenor = saludSocialMenor;
+    }
+
+    @Override
+    public void curar() {
+
     }
 }
