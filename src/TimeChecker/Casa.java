@@ -1,11 +1,13 @@
 package TimeChecker;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Casa {
+public class Casa implements Serializable {
 
     private Habitacion habitacionActual;
     private HashMap<String, Habitacion> habitaciones = new HashMap<String, Habitacion>();
+    private static final long serialVersionUID = 1001L;
 
     public Casa(){
 
@@ -27,8 +29,4 @@ public class Casa {
         this.habitaciones.put(habitacion.getNombre(), habitacion);
     }
 
-    // PENDIENTE NO RECUERSO PARA QUÉ ERA xD.
-    public void moverse(){
-
-    }
 }

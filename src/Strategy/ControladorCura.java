@@ -1,6 +1,6 @@
 package Strategy;
 
-import Model.Jugador;
+import ModuloPelea.ModuloPersonajes.Jugador;
 
 public class ControladorCura implements IControlerStrategy {
 
@@ -12,5 +12,7 @@ public class ControladorCura implements IControlerStrategy {
         Jugador.getInstance().controladorSalud.modSatisfaccionHambre(-15);
         Jugador.getInstance().controladorSalud.modSaludFisica(-15);
         Jugador.getInstance().controladorSalud.setEnfermo(false);
+
+        Jugador.getInstance().controladorSalud.verificar();
     }
 }

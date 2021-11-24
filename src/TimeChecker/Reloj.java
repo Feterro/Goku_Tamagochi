@@ -1,6 +1,8 @@
 package TimeChecker;
 
-public class Reloj {
+import java.io.Serializable;
+
+public class Reloj implements Serializable {
     // Datos de configuración
     private int segundosMaximo = 6;
     private int minutosMaximo = 6;
@@ -14,31 +16,33 @@ public class Reloj {
     private int dias = 0;
     private int anios = 0;
 
-    private Logger logger = new Logger();
-    private Partida partida;
+    private static final long serialVersionUID = 1006L;
 
-    public Reloj(Partida partida){
+//    private Logger logger = new Logger();
+//    private Partida partida;
+
+    public Reloj(){
         segundosMaximo = 60;
         minutosMaximo = 60;
         horasMaximo = 24;
         diasMaximo = 365;
-        this.partida = partida;
+//        this.partida = partida;
 //        System.out.println(partida.);
 
     }
 
-    public Reloj(Partida partida, int segundosMaximo, int minutosMaximo, int horasMaximo, int diasMaximo){
+    public Reloj(int segundosMaximo, int minutosMaximo, int horasMaximo, int diasMaximo){
         this.segundosMaximo = segundosMaximo;
         this.minutosMaximo = minutosMaximo;
         this.horasMaximo = horasMaximo;
         this.diasMaximo = diasMaximo;
-        this.partida = partida;
-        System.out.println(partida.tex);
+//        this.partida = partida;
+//        System.out.println(partida.tex);
     }
 
-    public Logger getLogger() {
-        return logger;
-    }
+//    public Logger getLogger() {
+//        return logger;
+//    }
 
     public int getSegundosMaximo() {
         return segundosMaximo;
@@ -112,7 +116,7 @@ public class Reloj {
         this.anios = anios;
     }
 
-    public void aumentar(){
+    public int aumentar(){
         segundos++;
         if (segundos == segundosMaximo){
             segundos = 0;
@@ -122,10 +126,10 @@ public class Reloj {
                 horas++;
                 if (horas == horasMaximo){
                     horas = 0;
-                    System.out.println(partida);
-                    String partidaSerializada = logger.serializarObjeto(logger);
-                    logger.guardarDia(dias, anios, "src/TimeChecker/Dias/", partidaSerializada);
-                    logger.saveJson("src/TimeChecker/Dias/dias.json");
+//                    System.out.println(partida);
+//                    String partidaSerializada = logger.serializarObjeto(logger);
+//                    logger.guardarDia(dias, anios, "src/TimeChecker/Dias/", partidaSerializada);
+//                    logger.saveJson("src/TimeChecker/Dias/dias.json");
                     dias++;
                     if (dias == diasMaximo){
                         dias = 0;
@@ -134,6 +138,7 @@ public class Reloj {
                 }
             }
         }
+        return dias;
     }
 
     public String verHora(){

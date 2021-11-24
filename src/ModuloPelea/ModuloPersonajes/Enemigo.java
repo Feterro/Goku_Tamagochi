@@ -26,7 +26,7 @@ public class Enemigo extends Personaje {
         return combo;
     }
 
-    public void doCombo(Goku personaje){
+    public void doCombo(Jugador personaje){
         ArrayList<Personaje> objetivos = new ArrayList<>();
         objetivos.add(personaje);
         atacar(objetivos,crearCombo());

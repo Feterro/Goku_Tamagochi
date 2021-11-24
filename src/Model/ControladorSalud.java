@@ -10,7 +10,7 @@ public class ControladorSalud {
     private int saludSocial = 100;
     private int saludFisica = 100;
 
-    private int probabilidadEnfermedad = 100;
+    private int probabilidadEnfermedad = 0;
     private int liquidosConsumidos = 0;
     private int solidosConsumidos = 0;
     private boolean enfermo = false;

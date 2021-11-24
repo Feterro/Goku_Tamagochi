@@ -5,16 +5,13 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import javax.jnlp.FileContents;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.Base64;
 
 public class Logger implements Serializable {
     private String filePath;
     private static JSONObject dias = new JSONObject();
-
+    private static final long serialVersionUID = 1003L;
     public  Logger(){
 
     }

@@ -5,6 +5,7 @@ public class Habitacion {
     private String nombre;
     private Integer posicion;
     private String fondo;
+    private static final long serialVersionUID = 1002L;
 
     public Habitacion(String nombre, Integer posicion, String fondo){
         this.nombre = nombre;

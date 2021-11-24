@@ -7,11 +7,11 @@ import java.util.ArrayList;
 
 public class Pelea {
     
-    Goku personaje;
+    Jugador personaje;
     Enemigo enemigo;
     ArrayList<Arma> combo;
     
-    public Pelea(Goku personaje){
+    public Pelea(Jugador personaje){
         this.personaje = personaje;
         crearEnemigo();
         combo = new ArrayList<>();

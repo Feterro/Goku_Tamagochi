@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="PersonajesLibrary">
-    <CLASSES />
-    <JAVADOC />
-    <SOURCES>
-      <root url="jar://$PROJECT_DIR$/PersonajesLibrary.jar!/" />
-    </SOURCES>
-  </library>
-</component>
