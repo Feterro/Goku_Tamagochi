@@ -1,0 +1,18 @@
+.list-view {
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.list-view .list-cell:even {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-family: "Eras demi itc";
+    -fx-font-size: 20px;
+    -fx-alignment: center;
+}
+.list-view .list-cell:odd {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-family: "Eras demi itc";
+    -fx-font-size: 20px;
+    -fx-alignment: center;
+}

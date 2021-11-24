@@ -1,26 +1,37 @@
-package VISTA.Controladores;
+package VISTA;
 
 import VISTA.Ambiente;
+import VISTA.Controladores.Deporte;
+import VISTA.Controladores.Velocidad;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Juego implements Initializable {
@@ -39,6 +50,9 @@ public class Juego implements Initializable {
 
     @FXML
     private Pane cancha;
+
+    @FXML
+    private Pane cultivos;
 
     @FXML
     private Pane cocina;
@@ -87,6 +101,43 @@ public class Juego implements Initializable {
 
     @FXML
     private Pane piscina;
+
+    @FXML
+    private ImageView imagenDeportePis;
+
+    @FXML
+    private Text nombreDeportePis;
+
+    @FXML
+    private ComboBox<Deporte> deportesPisicina;
+
+    @FXML
+    private ImageView imagenDeporteCancha;
+
+    @FXML
+    private Text nombreDeporteCancha;
+
+    @FXML
+    private ComboBox<Deporte> deportesCancha;
+
+    @FXML
+    private ImageView imagenDeporteGym;
+
+    @FXML
+    private Text nombreDeporteGym;
+
+    @FXML
+    private ComboBox<Deporte> deportesGym;
+
+    @FXML
+    private ImageView imagenDeportePeleas;
+
+    @FXML
+    private Text nombreDeportePeleas;
+
+    @FXML
+    private ComboBox<Deporte> deportesPeleas;
+
 
 
     public void cambiarAmbiente(Ambiente ambiente) throws FileNotFoundException {
@@ -270,26 +321,63 @@ public class Juego implements Initializable {
         personajeImagen.setLayoutX(event.getSceneX());
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        personajeImagen.setVisible(false);
-        meterALista();
-        notificaciones.getItems().add("HOLA");
-        try {
-            cambiarAmbiente(Ambiente.NOCHE);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
     @FXML
     public void comer(ActionEvent event) {
 
     }
 
     @FXML
-    public void hacerDeporte(ActionEvent event) {
+    public void hacerDeportePis(ActionEvent event) throws FileNotFoundException {
+        Deporte deporte = deportesPisicina.getSelectionModel().getSelectedItem();
+        if (deporte != null){
+//            String path = ""; //ruta imagen
+//            InputStream stream = new FileInputStream(path);
+//            Image image = new Image(stream);
+//            imagenDeportePis.setImage(image);
+            //jugar
+            nombreDeportePis.setText(deporte.name());
+        }
 
+    }
+
+    @FXML
+    public void hacerDeporteCancha(ActionEvent event) throws FileNotFoundException {
+        Deporte deporte = deportesCancha.getSelectionModel().getSelectedItem();
+        if (deporte != null){
+//            String path = ""; //ruta imagen
+//            InputStream stream = new FileInputStream(path);
+//            Image image = new Image(stream);
+//            imagenDeporteCancha.setImage(image);
+            //jugar
+            nombreDeporteCancha.setText(deporte.name());
+        }
+
+    }
+
+    @FXML
+    public void hacerDeporteGym(ActionEvent event) throws FileNotFoundException {
+        Deporte deporte = deportesGym.getSelectionModel().getSelectedItem();
+        if (deporte != null){
+//            String path = ""; //ruta imagen
+//            InputStream stream = new FileInputStream(path);
+//            Image image = new Image(stream);
+//            imagenDeporteGym.setImage(image);
+            //jugar
+            nombreDeporteGym.setText(deporte.name());
+        }
+    }
+
+    @FXML
+    public void hacerDeportePeleas(ActionEvent event) throws FileNotFoundException {
+        Deporte deporte = deportesPeleas.getSelectionModel().getSelectedItem();
+        if (deporte != null){
+//            String path = ""; //ruta imagen
+//            InputStream stream = new FileInputStream(path);
+//            Image image = new Image(stream);
+//            imagenDeportePeleas.setImage(image);
+            //jugar
+            nombreDeportePeleas.setText(deporte.name());
+        }
     }
 
     @FXML
@@ -314,11 +402,34 @@ public class Juego implements Initializable {
 
     @FXML
     public void recogerCultivos(ActionEvent event){
-
+        cultivos.setVisible(false);
+        moverse.stop();
+        notificaciones.getItems().remove(notificaciones.getItems().get(notificaciones.getItems().size()-1));
+        notificaciones.getItems().add("Los cultivos fueron recogidos!".toUpperCase(Locale.ROOT));
     }
 
     @FXML
-    public void verInventario(ActionEvent event) {
+    public void verInventario(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLS/Inventario.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        deportesPisicina.setItems(FXCollections.observableArrayList(Deporte.values()));
+        deportesCancha.setItems(FXCollections.observableArrayList(Deporte.values()));
+        personajeImagen.setVisible(false);
+        meterALista();
+        notificaciones.getItems().add("HOLA DJSKFJHDSKFJDSKF SKJFJKDSFKJDS FDSKJFKSJDFKJSDKF JSDKFJDKLSJFLKDS KDSFJKLSDJFLKSD");
+        try {
+            cambiarAmbiente(Ambiente.NOCHE);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
