@@ -4,7 +4,7 @@ import Consumibles.Medicamento;
 
 import java.util.ArrayList;
 
-public class AbstractEnfermedad {
+public abstract class AbstractEnfermedad implements ICura{
     protected  ArrayList<Medicamento> posiblesMedicamentos;
     protected  EnumTipoEnfermedad tipo;
     protected  boolean accepted; //No sé pa que
@@ -61,8 +61,6 @@ public class AbstractEnfermedad {
         }
     }
 
-    public void afectar(){
-
-    }
+    public abstract void afectar();
 
 }

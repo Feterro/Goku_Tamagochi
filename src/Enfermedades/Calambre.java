@@ -16,6 +16,11 @@ public class Calambre  extends AbstractEnfermedad{
         this.probEnfermedadMenor = 50;
     }
 
+    @Override
+    public void afectar() {
+        System.out.println("Afectar xd");
+    }
+
     public Calambre(ArrayList<Medicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, double duracion, boolean active,
                     int saludFisicaMenor, int probEnfermedadMenor) {
         super(posiblesMedicamentos, tipo, accepted, duracion, active);
@@ -37,5 +42,10 @@ public class Calambre  extends AbstractEnfermedad{
 
     public void setProbEnfermedadMenor(int probEnfermedadMenor) {
         this.probEnfermedadMenor = probEnfermedadMenor;
+    }
+
+    @Override
+    public void curar() {
+
     }
 }

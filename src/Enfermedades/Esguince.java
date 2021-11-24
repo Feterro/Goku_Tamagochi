@@ -12,9 +12,19 @@ public class Esguince  extends AbstractEnfermedad{
         this.saludFisicaMenor = 30;
     }
 
+    @Override
+    public void afectar() {
+        System.out.println("Afectar xd");
+    }
+
     public Esguince(ArrayList<Medicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, double duracion, boolean active,
                     int saludFisicaMenor) {
         super(posiblesMedicamentos, tipo, accepted, duracion, active);
         this.saludFisicaMenor = saludFisicaMenor;
+    }
+
+    @Override
+    public void curar() {
+
     }
 }
