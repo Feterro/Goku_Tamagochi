@@ -1,11 +1,21 @@
 package Consumibles;
 
+import Utils.BodegaJSON;
+
+import java.io.IOException;
 import java.util.HashMap;
 
 public class Bodega {
 
-    private HashMap<EnumAlimento,Consumible> alimentos = new HashMap<>();
-    private HashMap<EnumMedicamento,Consumible> medicamentos = new HashMap<>();
+    private HashMap<EnumAlimento,Consumible> alimentos;
+    private HashMap<EnumMedicamento,Consumible> medicamentos;
+    private BodegaJSON bodegaJson;
+
+    public Bodega() throws IOException {
+        this.bodegaJson= BodegaJSON.getInstance();
+        this.alimentos = bodegaJson.getHashMapAlimentos();
+        this.medicamentos = bodegaJson.getHashMapMedicamentos();
+    }
 
     public void addAlimento(EnumAlimento name, Consumible consumible){
         alimentos.put(name, consumible);
@@ -14,4 +24,8 @@ public class Bodega {
     public void addMedicamentos(EnumMedicamento name, Consumible consumible){
         medicamentos.put(name, consumible);
     }
+
+    public HashMap<EnumAlimento, Consumible> getAlimentos() {return alimentos;}
+
+    public HashMap<EnumMedicamento, Consumible> getMedicamentos() {return medicamentos;}
 }

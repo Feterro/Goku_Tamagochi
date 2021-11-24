@@ -15,8 +15,14 @@ public class Diarrea  extends AbstractEnfermedad{
         this.energiaMayor = 90;
     }
 
-    public Diarrea(ArrayList<Medicamento> posiblesMedicamentos, boolean accepted, double duracion, int nivelComidaInjeridaMayor, int energiaMayor) {
-        super(posiblesMedicamentos, accepted, duracion);
+    @Override
+    public void afectar() {
+        System.out.println("Afectar xd");
+    }
+
+    public Diarrea(ArrayList<Medicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, double duracion, boolean active,
+                   int nivelComidaInjeridaMayor, int energiaMayor) {
+        super(posiblesMedicamentos, tipo, accepted, duracion, active);
         this.nivelComidaInjeridaMayor = nivelComidaInjeridaMayor;
         this.energiaMayor = energiaMayor;
     }
@@ -35,5 +41,10 @@ public class Diarrea  extends AbstractEnfermedad{
 
     public void setEnergiaMayor(int energiaMayor) {
         this.energiaMayor = energiaMayor;
+    }
+
+    @Override
+    public void curar() {
+
     }
 }

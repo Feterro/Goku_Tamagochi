@@ -1,0 +1,22 @@
+
+{
+   "enfermedades":[
+      {
+         "posiblesMedicamentos":
+		 [
+			{
+			"nombre":"ESTILO",
+			"cantidadDisponible":5
+			}
+		 ],
+         "tipo":"ANSIEDAD",
+         "accepted":true,
+         "duracion":3,
+		 "active":true,
+		 "satisfaccionSuennoMenor": 50,
+		 "saludSocialMenor": 45
+		 
+      }
+   ]
+
+}
