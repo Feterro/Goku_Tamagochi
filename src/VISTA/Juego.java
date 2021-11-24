@@ -188,15 +188,19 @@ public class Juego implements Initializable {
             if (pane.equals(jardin) || pane.equals(piscina) || pane.equals(cancha) || pane.equals(huerto)){
                 moverPersonaje(Velocidad.RAPIDO, 1);
                 personajeImagen.setLayoutX(0);
+                personajeImagen.setLayoutY(458);
             } else if (pane.equals(gimnasio) || pane.equals(bodega)){
               personajeImagen.setLayoutX(115);
               moverPersonaje(Velocidad.RAPIDO, 2);
+              personajeImagen.setLayoutY(458);
             }else if (pane.equals(peleas)){
                 personajeImagen.setLayoutX(106);
                 moverPersonaje(Velocidad.RAPIDO, 3);
+                personajeImagen.setLayoutY(458);
             } else {
                 personajeImagen.setLayoutX(235);
                 moverPersonaje(Velocidad.RAPIDO, 0);
+                personajeImagen.setLayoutY(458);
             }
         }
         for (Pane area: areas){
