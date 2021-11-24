@@ -1,5 +1,11 @@
 package VISTA;
 
+import LibreriaPersonajes.Apariencia.LvlImages;
+import LibreriaPersonajes.TDA.Personaje;
+import ModuloPelea.ModuloPersonajes.EnemigoFactory;
+import ModuloPelea.ModuloPersonajes.HabilidadFactory;
+import ModuloPelea.ModuloPersonajes.Jugador;
+import Strategy.EnumActividades;
 import VISTA.Ambiente;
 import VISTA.Controladores.Deporte;
 import VISTA.Controladores.Velocidad;
@@ -38,6 +44,7 @@ public class Juego implements Initializable {
 
     private ArrayList<Pane> areas = new ArrayList<>();
     private Timeline moverse;
+    private Jugador goku = Jugador.getInstance();
 
     @FXML
     private ImageView ambiente;
@@ -137,8 +144,7 @@ public class Juego implements Initializable {
 
     @FXML
     private ComboBox<Deporte> deportesPeleas;
-
-
+    
 
     public void cambiarAmbiente(Ambiente ambiente) throws FileNotFoundException {
         switch (ambiente){
@@ -165,27 +171,36 @@ public class Juego implements Initializable {
         areas.add(gimnasio); areas.add(bodega); areas.add(huerto); areas.add(peleas); areas.add(mapa); areas.add(cancha);
     }
 
-    private void ponerVisible(Pane pane){
+    private void ponerVisible(Pane pane) throws FileNotFoundException {
+        humor.setText(goku.etiquetaEstadoActual.name());
         if (pane.equals(mapa)){
             moverse.stop();
             personajeImagen.setVisible(false);
             personajeImagen.setLayoutY(420);
             estados.setVisible(false);
         }else{
+            System.out.println(goku.getApariencia().getImagenPorNivelNombre(10, EnumActividades.Comer.name()));
+            InputStream stream = new FileInputStream(goku.getApariencia().getImagenPorNivelNombre(goku.getNivel(), EnumActividades.Caminando.name()));
+            Image image = new Image(stream);
+            personajeImagen.setImage(image);
             estados.setVisible(true);
             personajeImagen.setVisible(true);
             if (pane.equals(jardin) || pane.equals(piscina) || pane.equals(cancha) || pane.equals(huerto)){
                 moverPersonaje(Velocidad.RAPIDO, 1);
                 personajeImagen.setLayoutX(0);
+                personajeImagen.setLayoutY(458);
             } else if (pane.equals(gimnasio) || pane.equals(bodega)){
               personajeImagen.setLayoutX(115);
               moverPersonaje(Velocidad.RAPIDO, 2);
+              personajeImagen.setLayoutY(458);
             }else if (pane.equals(peleas)){
                 personajeImagen.setLayoutX(106);
                 moverPersonaje(Velocidad.RAPIDO, 3);
+                personajeImagen.setLayoutY(458);
             } else {
                 personajeImagen.setLayoutX(235);
                 moverPersonaje(Velocidad.RAPIDO, 0);
+                personajeImagen.setLayoutY(458);
             }
         }
         for (Pane area: areas){
@@ -241,6 +256,44 @@ public class Juego implements Initializable {
         moverse.play();
     }
 
+    private void inicializarPersonaje(){
+        new EnemigoFactory();//Fabrica de personajes
+        new HabilidadFactory();//Fabrica de armas
+
+        LvlImages primerNivel = new LvlImages();
+        primerNivel.addApariencia(EnumActividades.Atacar.name(), "src/VISTA/Imagenes/Personaje/ataque_nivel1.png");
+        primerNivel.addApariencia(EnumActividades.Caminando.name(), "src/VISTA/Imagenes/Personaje/caminando_nivel1.png");
+        primerNivel.addApariencia(EnumActividades.Enfermo.name(), "src/VISTA/Imagenes/Personaje/caminandoEnfermo_nivel1.png");
+        primerNivel.addApariencia(EnumActividades.Comer.name(), "src/VISTA/Imagenes/Personaje/comiendo_nivel1.png");
+        primerNivel.addApariencia(EnumActividades.Mimir.name(), "src/VISTA/Imagenes/Personaje/dormir_nivel1.png");
+        primerNivel.addApariencia(EnumActividades.Ejercitar.name(), "src/VISTA/Imagenes/Personaje/ejercicio_nivel1.png");
+        primerNivel.addApariencia(EnumActividades.Normal.name(), "src/VISTA/Imagenes/Personaje/estarQuietoEnfermo_nivel1.png");
+
+        LvlImages segundoNivel = new LvlImages();
+        segundoNivel.addApariencia(EnumActividades.Atacar.name(), "src/VISTA/Imagenes/Personaje/ataque_nivel2.png");
+        segundoNivel.addApariencia(EnumActividades.Caminando.name(), "src/VISTA/Imagenes/Personaje/caminando_nivel2.png");
+        segundoNivel.addApariencia(EnumActividades.Enfermo.name(), "src/VISTA/Imagenes/Personaje/caminandoEnfermo_nivel2.png");
+        segundoNivel.addApariencia(EnumActividades.Comer.name(), "src/VISTA/Imagenes/Personaje/comiendo_nivel2.png");
+        segundoNivel.addApariencia(EnumActividades.Mimir.name(), "src/VISTA/Imagenes/Personaje/dormir_nivel2.png");
+        segundoNivel.addApariencia(EnumActividades.Ejercitar.name(), "src/VISTA/Imagenes/Personaje/ejercicio_nivel2.png");
+        segundoNivel.addApariencia(EnumActividades.Normal.name(), "src/VISTA/Imagenes/Personaje/estarQuietoEnfermo_nivel2.png");
+
+        LvlImages tercerNivel = new LvlImages();
+        tercerNivel.addApariencia(EnumActividades.Atacar.name(), "src/VISTA/Imagenes/Personaje/ataque_nivel3.png");
+        tercerNivel.addApariencia(EnumActividades.Caminando.name(), "src/VISTA/Imagenes/Personaje/caminando_nivel3.png");
+        tercerNivel.addApariencia(EnumActividades.Enfermo.name(), "src/VISTA/Imagenes/Personaje/caminandoEnfermo_nivel3.png");
+        tercerNivel.addApariencia(EnumActividades.Comer.name(), "src/VISTA/Imagenes/Personaje/comiendo_nivel3.png");
+        tercerNivel.addApariencia(EnumActividades.Mimir.name(), "src/VISTA/Imagenes/Personaje/dormir_nivel3.png");
+        tercerNivel.addApariencia(EnumActividades.Ejercitar.name(), "src/VISTA/Imagenes/Personaje/ejercicio_nivel3.png");
+        tercerNivel.addApariencia(EnumActividades.Normal.name(), "src/VISTA/Imagenes/Personaje/estarQuietoEnfermo_nivel3.png");
+
+        goku = new Jugador(new Personaje.BuilderPersonaje().setNombre("Goku")
+                .addApariencia(0, primerNivel)
+                .addApariencia(10, segundoNivel)
+                .addApariencia(30, tercerNivel)
+                .setVida(500).addArma(HabilidadFactory.getHabilidad("Karate")).build());
+    }
+
     @FXML
     public void cerrar(MouseEvent event){
         //agregar ventana de preguntar
@@ -248,63 +301,62 @@ public class Juego implements Initializable {
     }
 
     @FXML
-    public void mostrarMapa(MouseEvent event){
+    public void mostrarMapa(MouseEvent event) throws FileNotFoundException {
         ponerVisible(mapa);
     }
 
     @FXML
-    void irBaño(ActionEvent event) {
+    void irBaño(ActionEvent event) throws FileNotFoundException {
         ponerVisible(banno);
     }
 
     @FXML
-    void irBodega(ActionEvent event) {
+    void irBodega(ActionEvent event) throws FileNotFoundException {
         ponerVisible(bodega);
-
     }
 
     @FXML
-    void irCanchaFutbol(ActionEvent event) {
+    void irCanchaFutbol(ActionEvent event) throws FileNotFoundException {
         ponerVisible(cancha);
     }
 
     @FXML
-    void irCocina(ActionEvent event) {
+    void irCocina(ActionEvent event) throws FileNotFoundException {
         ponerVisible(cocina);
     }
 
     @FXML
-    void irComedor(ActionEvent event) {
+    void irComedor(ActionEvent event) throws FileNotFoundException {
         ponerVisible(comedor);
     }
 
     @FXML
-    void irCuarto(ActionEvent event) {
+    void irCuarto(ActionEvent event) throws FileNotFoundException {
         ponerVisible(cuarto);
     }
 
     @FXML
-    void irGinmasio(ActionEvent event) {
+    void irGinmasio(ActionEvent event) throws FileNotFoundException {
         ponerVisible(gimnasio);
     }
 
     @FXML
-    void irHuerto(ActionEvent event) {
+    void irHuerto(ActionEvent event) throws FileNotFoundException {
         ponerVisible(huerto);
     }
 
     @FXML
-    void irPeleas(ActionEvent event) {
+    void irPeleas(ActionEvent event) throws FileNotFoundException {
         ponerVisible(peleas);
     }
 
     @FXML
-    void irPiscina(ActionEvent event) {
+    void irPiscina(ActionEvent event) throws FileNotFoundException {
         ponerVisible(piscina);
     }
 
     @FXML
-    void irjardin(ActionEvent event) {
+    void irjardin(ActionEvent event) throws FileNotFoundException {
         ponerVisible(jardin);
     }
 
@@ -421,11 +473,13 @@ public class Juego implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        inicializarPersonaje();
+        edad.setText(String.valueOf(goku.getNivel()));
         deportesPisicina.setItems(FXCollections.observableArrayList(Deporte.values()));
         deportesCancha.setItems(FXCollections.observableArrayList(Deporte.values()));
         personajeImagen.setVisible(false);
         meterALista();
-        notificaciones.getItems().add("HOLA DJSKFJHDSKFJDSKF SKJFJKDSFKJDS FDSKJFKSJDFKJSDKF JSDKFJDKLSJFLKDS KDSFJKLSDJFLKSD");
+        notificaciones.getItems().add("");
         try {
             cambiarAmbiente(Ambiente.NOCHE);
         } catch (FileNotFoundException e) {

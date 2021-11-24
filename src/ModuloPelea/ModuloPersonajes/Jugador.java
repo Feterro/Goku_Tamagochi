@@ -23,12 +23,16 @@ public class Jugador extends Personaje implements Serializable {
     public HashMap<EnumActividades, IControlerStrategy> controladores;
     public IControlerStrategy estadoActual;
     public ControladorSalud controladorSalud;
+    public EnumActividades etiquetaEstadoActual;
     private static Jugador jugador;
     private Object consumible;
 
     public Jugador (Personaje personaje){
         super(personaje);
-        controladores = new HashMap<>();
+        this.controladores = new HashMap<>();
+        initializeControllers();
+        this.etiquetaEstadoActual = EnumActividades.Normal;
+        this.controladorSalud = new ControladorSalud();
         jugador = this;
     }
 
@@ -79,28 +83,33 @@ public class Jugador extends Personaje implements Serializable {
 
     public void comer(Object comida){//Todo:Cambiar a comida
         estadoActual = controladores.get(EnumActividades.Comer);
+        etiquetaEstadoActual = EnumActividades.Comer;
         this.consumible = comida;
         estadoActual.satisfacer();
     }
 
     public void bano(){
         estadoActual = controladores.get(EnumActividades.Bano);
+        etiquetaEstadoActual = EnumActividades.Bano;
         estadoActual.satisfacer();
     }
     
     public void curar(Object medicamento){
         estadoActual = controladores.get(EnumActividades.Cura);
+        etiquetaEstadoActual = EnumActividades.Cura;
         consumible = medicamento;
         estadoActual.satisfacer();
     }
     
     public void ejercitarse(){
         estadoActual = controladores.get(EnumActividades.Ejercitar);
+        etiquetaEstadoActual = EnumActividades.Ejercitar;
         estadoActual.satisfacer();
     }
     
     public void social(){
         estadoActual = controladores.get(EnumActividades.Social);
+        etiquetaEstadoActual = EnumActividades.Social;
         estadoActual.satisfacer();
     }
 

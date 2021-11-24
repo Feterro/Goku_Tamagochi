@@ -260,8 +260,8 @@ public class Personaje implements IPrototype<Personaje> {
             return this;
         }
 
-        public BuilderPersonaje addApariencia(int nivel,String nombre, ArrayList<String> imagenes) {
-            this.apariencia.addApariencia(nivel,nombre,imagenes);
+        public BuilderPersonaje addApariencia(int nivel,String nombre, String imagenes) {
+            this.apariencia.addApariencia(nivel,nombre, imagenes);
             return this;
         }
 

@@ -13,7 +13,6 @@ public class TimeChecker extends Thread implements Serializable {
     private int anioActual = 0;
     private Reloj reloj;
     private Logger logger = new Logger();
-    private Partida partida;
     private static final long serialVersionUID = 1007L;
 
 

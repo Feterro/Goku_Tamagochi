@@ -5,5 +5,10 @@ public enum EnumActividades {
     Mimir,
     Bano,
     Cura,
-    Social, Ejercitar,
+    Social,
+    Ejercitar,
+    Normal,
+    Atacar,
+    Caminando,
+    Enfermo
 }

@@ -101,7 +101,7 @@ public class Arma implements IPrototype<Arma> {
         }
 
         //Aca se ponen las imagenes como strings porque van a ser los URL
-        public BuilderArma addApariencia(int nivel,String nombre, ArrayList<String> imagenes) {
+        public BuilderArma addApariencia(int nivel,String nombre, String imagenes) {
             this.apariencia.addApariencia(nivel,nombre,imagenes);
             return  this;
         }
