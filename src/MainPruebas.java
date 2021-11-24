@@ -33,6 +33,7 @@ public class MainPruebas {
         System.out.println(Jugador.getInstance().controladorSalud.getSolidosConsumidos());
         System.out.println(Jugador.getInstance().controladorSalud.getSatisfaccionSuenno());
         System.out.println(Jugador.getInstance().controladorSalud.getProbabilidadEnfermedad());
+
         System.out.println("Puto quien lo lea");
         //BodegaJSON b = BodegaJSON.getInstance();
         //System.out.println(b.getHashMapAlimentos());
@@ -42,7 +43,7 @@ public class MainPruebas {
         //System.out.println(a);
         //enfermedades y deportes mejor hacerlo con serializables porque son muchos tipos y evitarnos el error de casteos
 
-        Jugador.getInstance().controladores.get(EnumActividades.Comer).satisfacer();
+        //Jugador.getInstance().controladores.get(EnumActividades.Comer).satisfacer();
         System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         System.out.println(Jugador.getInstance().controladorSalud.getSaludSocial());
         System.out.println(Jugador.getInstance().controladorSalud.getSaludFisica());
