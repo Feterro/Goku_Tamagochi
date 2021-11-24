@@ -1,26 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <Pane prefHeight="703.0" prefWidth="1188.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VISTA.Controladores.Juego">
    <children>
-      <ImageView fx:id="ambiente" fitHeight="710.0" fitWidth="1189.0" pickOnBounds="true" />
+      <ImageView fx:id="ambiente" fitHeight="710.0" fitWidth="1189.0" pickOnBounds="true">
+         <image>
+            <Image url="@../Imagenes/Ambientes/Día.png" />
+         </image></ImageView>
       <Pane layoutY="571.0" prefHeight="132.0" prefWidth="1188.0">
          <children>
             <ListView fx:id="notificaciones" layoutX="-1.0" prefHeight="135.0" prefWidth="1190.0" />
          </children>
       </Pane>
-      <Pane fx:id="mapa" prefHeight="572.0" prefWidth="1188.0" visible="false">
+      <Pane fx:id="mapa" prefHeight="572.0" prefWidth="1188.0">
          <children>
             <ImageView fitHeight="572.0" fitWidth="1188.0" pickOnBounds="true">
                <image>
-                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+                  <Image url="@../Imagenes/PartesCasa/mapa casa.png" />
                </image>
             </ImageView>
             <Button blendMode="MULTIPLY" layoutX="-2.0" layoutY="1.0" mnemonicParsing="false" onAction="#irCocina" prefHeight="126.0" prefWidth="225.0" style="-fx-background-color: transparent;" />
@@ -46,16 +54,16 @@
             </Text>
          </children>
       </Pane>
-      <Pane fx:id="comedor" prefHeight="572.0" prefWidth="1188.0">
+      <Pane fx:id="comedor" prefHeight="572.0" prefWidth="1188.0" visible="false">
          <children>
-            <ImageView fitHeight="703.0" fitWidth="1190.0" layoutY="4.0" onMouseClicked="#prueba" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="703.0" fitWidth="1190.0" layoutY="4.0" onMouseClicked="#moverAquiX" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Imagenes/PartesCasa/comedor.png" />
                </image>
             </ImageView>
             <ImageView fx:id="mapaMiniatura" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+                  <Image url="@../Imagenes/PartesCasa/mapa casa.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
@@ -63,23 +71,30 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="personajeImagen" fitHeight="101.0" fitWidth="86.0" layoutX="235.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Imagenes/Personaje/estarQuieto_nivel2.png" />
-               </image>
-            </ImageView>
+            <Button layoutX="14.0" layoutY="216.0" mnemonicParsing="false" onAction="#comer" prefHeight="30.0" prefWidth="163.0" text="COMER" textAlignment="CENTER">
+               <font>
+                  <Font name="Curlz MT" size="24.0" />
+               </font>
+               <effect>
+                  <InnerShadow height="85.34" radius="40.1225" width="77.15">
+                     <color>
+                        <Color red="0.21960784494876862" green="0.4588235318660736" blue="0.8196078538894653" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
          </children>
       </Pane>
       <Pane fx:id="cocina" prefHeight="572.0" prefWidth="1188.0" visible="false">
          <children>
-            <ImageView fitHeight="703.0" fitWidth="1188.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="703.0" fitWidth="1188.0" layoutY="3.0" onMouseClicked="#moverAquiX" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Imagenes/PartesCasa/cocina.png" />
                </image>
             </ImageView>
             <ImageView fx:id="mapaMiniatura1" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+                  <Image url="@../Imagenes/PartesCasa/mapa casa.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
@@ -87,17 +102,29 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
+            <Button layoutX="14.0" layoutY="216.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="163.0" text="COMER" textAlignment="CENTER">
+               <font>
+                  <Font name="Curlz MT" size="24.0" />
+               </font>
+               <effect>
+                  <InnerShadow height="105.22" radius="46.2625" width="81.83">
+                     <color>
+                        <Color red="0.21960784494876862" green="0.4588235318660736" blue="0.8196078538894653" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
          </children>
       </Pane>
       <Pane fx:id="cuarto" prefHeight="572.0" prefWidth="1188.0" visible="false">
          <children>
-            <ImageView fitHeight="708.0" fitWidth="1194.0" layoutX="-6.0" pickOnBounds="true">
+            <ImageView fitHeight="708.0" fitWidth="1194.0" layoutX="-6.0" onMouseClicked="#moverAquiX" pickOnBounds="true">
                <image>
                   <Image url="@../Imagenes/PartesCasa/cuarto.png" />
                </image></ImageView>
             <ImageView fx:id="mapaMiniatura11" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+                  <Image url="@../Imagenes/PartesCasa/mapa casa.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
@@ -105,17 +132,29 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
+            <Button layoutX="14.0" layoutY="216.0" mnemonicParsing="false" onAction="#dormir" prefHeight="30.0" prefWidth="163.0" text="DORMIR" textAlignment="CENTER">
+               <font>
+                  <Font name="Curlz MT" size="24.0" />
+               </font>
+               <effect>
+                  <InnerShadow height="93.52" radius="62.795" width="159.66">
+                     <color>
+                        <Color red="0.21960784494876862" green="0.4588235318660736" blue="0.8196078538894653" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
          </children>
       </Pane>
       <Pane fx:id="banno" prefHeight="572.0" prefWidth="1188.0" visible="false">
          <children>
-            <ImageView fitHeight="708.0" fitWidth="1188.0" pickOnBounds="true">
+            <ImageView fitHeight="708.0" fitWidth="1188.0" onMouseClicked="#moverAquiX" pickOnBounds="true">
                <image>
                   <Image url="@../Imagenes/PartesCasa/baño.png" />
                </image></ImageView>
             <ImageView fx:id="mapaMiniatura12" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+                  <Image url="@../Imagenes/PartesCasa/mapa casa.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
@@ -123,18 +162,42 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
+            <Button layoutX="14.0" layoutY="328.0" mnemonicParsing="false" onAction="#defecar" prefHeight="30.0" prefWidth="163.0" text="DEFECAR" textAlignment="CENTER">
+               <font>
+                  <Font name="Curlz MT" size="24.0" />
+               </font>
+               <effect>
+                  <InnerShadow height="102.88" radius="46.845" width="86.5">
+                     <color>
+                        <Color red="0.21960784494876862" green="0.4588235318660736" blue="0.8196078538894653" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
+            <Button layoutX="14.0" layoutY="216.0" mnemonicParsing="false" onAction="#orinar" prefHeight="30.0" prefWidth="163.0" text="ORINAR" textAlignment="CENTER">
+               <font>
+                  <Font name="Curlz MT" size="24.0" />
+               </font>
+               <effect>
+                  <InnerShadow choke="0.06" height="159.03" radius="63.2225" width="95.86">
+                     <color>
+                        <Color red="0.21960784494876862" green="0.4588235318660736" blue="0.8196078538894653" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
          </children>
       </Pane>
       <Pane fx:id="piscina" prefHeight="572.0" prefWidth="1188.0" visible="false">
          <children>
-            <ImageView fitHeight="708.0" fitWidth="1190.0" layoutX="-2.0" pickOnBounds="true">
+            <ImageView fitHeight="708.0" fitWidth="1190.0" layoutX="-2.0" onMouseClicked="#moverAquiXY" pickOnBounds="true">
                <image>
                   <Image url="@../Imagenes/PartesCasa/piscina.png" />
                </image>
             </ImageView>
             <ImageView fx:id="mapaMiniatura13" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+                  <Image url="@../Imagenes/PartesCasa/mapa casa.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
@@ -142,18 +205,40 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
+            <ComboBox fx:id="deportesPisicina" layoutX="1013.0" layoutY="82.0" prefWidth="150.0" promptText="DEPORTES">
+               <effect>
+                  <InnerShadow height="51.41" radius="26.375" width="56.09">
+                     <color>
+                        <Color red="0.21960784494876862" green="0.4588235318660736" blue="0.8196078538894653" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </ComboBox>
+            <ImageView fitHeight="69.0" fitWidth="88.0" layoutX="1044.0" layoutY="116.0" pickOnBounds="true" />
+            <Button layoutX="1013.0" layoutY="193.0" mnemonicParsing="false" onAction="#hacerDeporte" prefHeight="30.0" prefWidth="150.0" text="HACER DEPORTE" textAlignment="CENTER">
+               <font>
+                  <Font name="Curlz MT" size="16.0" />
+               </font>
+               <effect>
+                  <InnerShadow height="116.92" radius="42.7525" width="56.09">
+                     <color>
+                        <Color red="0.21960784494876862" green="0.4588235318660736" blue="0.8196078538894653" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
          </children>
       </Pane>
       <Pane fx:id="jardin" prefHeight="572.0" prefWidth="1188.0" visible="false">
          <children>
-            <ImageView fitHeight="709.0" fitWidth="1188.0" pickOnBounds="true">
+            <ImageView fitHeight="709.0" fitWidth="1188.0" onMouseClicked="#moverAquiXY" pickOnBounds="true">
                <image>
                   <Image url="@../Imagenes/PartesCasa/jardin.png" />
                </image>
             </ImageView>
             <ImageView fx:id="mapaMiniatura14" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+                  <Image url="@../Imagenes/PartesCasa/mapa casa.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
@@ -165,13 +250,13 @@
       </Pane>
       <Pane fx:id="cancha" prefHeight="572.0" prefWidth="1188.0" visible="false">
          <children>
-            <ImageView fitHeight="708.0" fitWidth="1191.0" pickOnBounds="true">
+            <ImageView fitHeight="708.0" fitWidth="1191.0" onMouseClicked="#moverAquiXY" pickOnBounds="true">
                <image>
                   <Image url="@../Imagenes/PartesCasa/cancha.png" />
                </image></ImageView>
             <ImageView fx:id="mapaMiniatura15" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+                  <Image url="@../Imagenes/PartesCasa/mapa casa.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
@@ -179,17 +264,39 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
+            <ComboBox fx:id="deportesCancha" layoutX="1020.0" layoutY="76.0" prefWidth="150.0" promptText="DEPORTES">
+               <effect>
+                  <InnerShadow height="65.45" radius="36.905" width="84.17">
+                     <color>
+                        <Color red="0.21960784494876862" green="0.4588235318660736" blue="0.8196078538894653" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </ComboBox>
+            <ImageView fitHeight="69.0" fitWidth="88.0" layoutX="1051.0" layoutY="110.0" pickOnBounds="true" />
+            <Button layoutX="1020.0" layoutY="187.0" mnemonicParsing="false" onAction="#hacerDeporte" prefHeight="30.0" prefWidth="150.0" text="HACER DEPORTE" textAlignment="CENTER">
+               <font>
+                  <Font name="Curlz MT" size="16.0" />
+               </font>
+               <effect>
+                  <InnerShadow height="84.17" radius="41.0" width="81.83">
+                     <color>
+                        <Color red="0.21960784494876862" green="0.4588235318660736" blue="0.8196078538894653" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
          </children>
       </Pane>
       <Pane fx:id="gimnasio" prefHeight="572.0" prefWidth="1188.0" visible="false">
          <children>
-            <ImageView fitHeight="706.0" fitWidth="1188.0" pickOnBounds="true">
+            <ImageView fitHeight="706.0" fitWidth="1188.0" onMouseClicked="#moverAquiX" pickOnBounds="true">
                <image>
                   <Image url="@../Imagenes/PartesCasa/gimnasio.png" />
                </image></ImageView>
             <ImageView fx:id="mapaMiniatura16" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+                  <Image url="@../Imagenes/PartesCasa/mapa casa.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
@@ -197,17 +304,71 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
+            <ComboBox fx:id="deportesGym" blendMode="MULTIPLY" layoutX="146.0" layoutY="527.0" prefWidth="150.0" promptText="DEPORTES">
+               <effect>
+                  <InnerShadow height="55.51" radius="27.985" width="58.43">
+                     <color>
+                        <Color red="0.24313725531101227" green="0.6000000238418579" blue="0.6627451181411743" />
+                     </color>
+                     <input>
+                        <Lighting diffuseConstant="2.0" specularConstant="0.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+<!--                           <light>-->
+<!--                              <Light.Distant>-->
+<!--                                 <color>-->
+<!--                                    <Color red="0.24313725531101227" green="0.6000000238418579" blue="0.6627451181411743" />-->
+<!--                                 </color>-->
+<!--                              </Light.Distant>-->
+<!--                           </light>-->
+                        </Lighting>
+                     </input>
+                  </InnerShadow>
+               </effect>
+            </ComboBox>
+            <ImageView fitHeight="69.0" fitWidth="88.0" layoutX="1069.0" layoutY="89.0" pickOnBounds="true" />
+            <Button blendMode="MULTIPLY" layoutX="891.0" layoutY="523.0" mnemonicParsing="false" onAction="#hacerDeporte" prefHeight="30.0" prefWidth="150.0" text="HACER DEPORTE" textAlignment="CENTER">
+               <font>
+                  <Font name="Curlz MT" size="16.0" />
+               </font>
+               <effect>
+                  <InnerShadow height="60.77" radius="29.885" width="60.77">
+                     <color>
+                        <Color red="0.1725490242242813" green="0.5411764979362488" blue="0.6431372761726379" />
+                     </color>
+                     <input>
+                        <Lighting diffuseConstant="2.0" specularConstant="1.11" specularExponent="40.0" surfaceScale="5.26">
+                           <bumpInput>
+                              <Shadow height="5.25" radius="0.8125" width="0.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Shadow>
+                           </bumpInput>
+<!--                           <light>-->
+<!--                              <Light.Distant>-->
+<!--                                 <color>-->
+<!--                                    <Color red="0.24313725531101227" green="0.6000000238418579" blue="0.6627451181411743" />-->
+<!--                                 </color>-->
+<!--                              </Light.Distant>-->
+<!--                           </light>-->
+                        </Lighting>
+                     </input>
+                  </InnerShadow>
+               </effect>
+            </Button>
          </children>
       </Pane>
       <Pane fx:id="peleas" prefHeight="572.0" prefWidth="1188.0" visible="false">
          <children>
-            <ImageView fitHeight="703.0" fitWidth="1188.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="703.0" fitWidth="1188.0" layoutY="2.0" onMouseClicked="#moverAquiX" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Imagenes/PartesCasa/peleas.png" />
                </image></ImageView>
             <ImageView fx:id="mapaMiniatura17" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+                  <Image url="@../Imagenes/PartesCasa/mapa casa.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
@@ -215,18 +376,102 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
+            <ComboBox fx:id="deportesPeleas" blendMode="MULTIPLY" layoutX="88.0" layoutY="524.0" prefWidth="150.0" promptText="DEPORTES">
+               <effect>
+                  <InnerShadow height="55.51" radius="27.985" width="58.43">
+                     <color>
+                        <Color red="0.24313725531101227" green="0.6000000238418579" blue="0.6627451181411743" />
+                     </color>
+                     <input>
+                        <Lighting diffuseConstant="2.0" specularConstant="0.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+<!--                           <light>-->
+<!--                              <Light.Distant>-->
+<!--                                 <color>-->
+<!--                                    <Color red="0.24313725531101227" green="0.6000000238418579" blue="0.6627451181411743" />-->
+<!--                                 </color>-->
+<!--                              </Light.Distant>-->
+<!--                           </light>-->
+                        </Lighting>
+                     </input>
+                  </InnerShadow>
+               </effect>
+            </ComboBox>
+            <Button blendMode="MULTIPLY" layoutX="976.0" layoutY="518.0" mnemonicParsing="false" onAction="#hacerDeporte" prefHeight="30.0" prefWidth="150.0" text="HACER DEPORTE" textAlignment="CENTER">
+               <font>
+                  <Font name="Curlz MT" size="16.0" />
+               </font>
+               <effect>
+                  <InnerShadow height="60.77" radius="29.885" width="60.77">
+                     <color>
+                        <Color red="0.1725490242242813" green="0.5411764979362488" blue="0.6431372761726379" />
+                     </color>
+                     <input>
+                        <Lighting diffuseConstant="2.0" specularConstant="1.11" specularExponent="40.0" surfaceScale="5.26">
+                           <bumpInput>
+                              <Shadow height="5.25" radius="0.8125" width="0.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Shadow>
+                           </bumpInput>
+<!--                           <light>-->
+<!--                              <Light.Distant>-->
+<!--                                 <color>-->
+<!--                                    <Color red="0.24313725531101227" green="0.6000000238418579" blue="0.6627451181411743" />-->
+<!--                                 </color>-->
+<!--                              </Light.Distant>-->
+<!--                           </light>-->
+                        </Lighting>
+                     </input>
+                  </InnerShadow>
+               </effect>
+            </Button>
+            <ImageView fitHeight="69.0" fitWidth="88.0" layoutX="993.0" layoutY="195.0" pickOnBounds="true" />
+            <Button blendMode="MULTIPLY" layoutX="510.0" layoutY="513.0" mnemonicParsing="false" onAction="#pelear" prefHeight="27.0" prefWidth="168.0" text="PELEAR" textAlignment="CENTER">
+               <font>
+                  <Font name="Curlz MT" size="21.0" />
+               </font>
+               <effect>
+                  <InnerShadow height="60.77" radius="29.885" width="60.77">
+                     <color>
+                        <Color red="0.1725490242242813" green="0.5411764979362488" blue="0.6431372761726379" />
+                     </color>
+                     <input>
+                        <Lighting diffuseConstant="2.0" specularConstant="1.11" specularExponent="40.0" surfaceScale="5.26">
+                           <bumpInput>
+                              <Shadow height="5.25" radius="0.8125" width="0.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Shadow>
+                           </bumpInput>
+<!--                           <light>-->
+<!--                              <Light.Distant>-->
+<!--                                 <color>-->
+<!--                                    <Color red="0.24313725531101227" green="0.6000000238418579" blue="0.6627451181411743" />-->
+<!--                                 </color>-->
+<!--                              </Light.Distant>-->
+<!--                           </light>-->
+                        </Lighting>
+                     </input>
+                  </InnerShadow>
+               </effect>
+            </Button>
          </children>
       </Pane>
       <Pane fx:id="huerto" prefHeight="572.0" prefWidth="1188.0" visible="false">
          <children>
-            <ImageView fitHeight="709.0" fitWidth="1196.0" layoutX="-2.0" pickOnBounds="true">
+            <ImageView fitHeight="709.0" fitWidth="1196.0" layoutX="-2.0" onMouseClicked="#moverAquiXY" pickOnBounds="true">
                <image>
                   <Image url="@../Imagenes/PartesCasa/huerta.png" />
                </image>
             </ImageView>
             <ImageView fx:id="mapaMiniatura18" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+                  <Image url="@../Imagenes/PartesCasa/mapa casa.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
@@ -234,17 +479,183 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
+            <Pane fx:id="cultivos" layoutX="-1.0" layoutY="238.0" onMouseClicked="#moverAquiXY" prefHeight="353.0" prefWidth="1188.0">
+               <children>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="37.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="153.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="271.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="373.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/4.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="489.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/5.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="620.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/6.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="774.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/7.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="876.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/8.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="992.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/9.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="1110.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/10.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="14.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/11.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="130.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="248.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="350.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="466.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/4.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="597.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/5.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="751.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/6.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="853.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/7.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="969.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/8.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="1087.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/9.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="29.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/10.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="145.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/11.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="263.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="365.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="481.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="612.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/4.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="766.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/5.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="868.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/6.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="984.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/7.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="1102.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Huerto/8.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Button layoutX="1024.0" layoutY="162.0" mnemonicParsing="false" onAction="#recogerCultivos" prefHeight="30.0" prefWidth="150.0" text="RECOGER" textAlignment="CENTER">
+               <font>
+                  <Font name="Curlz MT" size="20.0" />
+               </font>
+               <effect>
+                  <InnerShadow height="116.92" radius="42.7525" width="56.09">
+                     <color>
+                        <Color red="0.21960784494876862" green="0.4588235318660736" blue="0.8196078538894653" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
          </children>
       </Pane>
       <Pane fx:id="bodega" prefHeight="572.0" prefWidth="1188.0" visible="false">
          <children>
-            <ImageView fitHeight="708.0" fitWidth="1189.0" layoutX="-1.0" pickOnBounds="true">
+            <ImageView fitHeight="708.0" fitWidth="1189.0" layoutX="-1.0" onMouseClicked="#moverAquiX" pickOnBounds="true">
                <image>
                   <Image url="@../Imagenes/PartesCasa/bodega.png" />
                </image></ImageView>
             <ImageView fx:id="mapaMiniatura19" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+                  <Image url="@../Imagenes/PartesCasa/mapa casa.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
@@ -252,6 +663,85 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
+            <Button blendMode="MULTIPLY" layoutX="458.0" layoutY="515.0" mnemonicParsing="false" onAction="#verInventario" prefHeight="39.0" prefWidth="271.0" text="VER INVENTARIO" textAlignment="CENTER">
+               <font>
+                  <Font name="Curlz MT" size="20.0" />
+               </font>
+               <effect>
+                  <InnerShadow height="60.77" radius="29.885" width="60.77">
+                     <color>
+                        <Color red="0.1712280660867691" green="0.5400818586349487" blue="0.6421052813529968" />
+                     </color>
+                     <input>
+                        <Lighting diffuseConstant="2.0" specularConstant="1.11" specularExponent="40.0" surfaceScale="5.26">
+                           <bumpInput>
+                              <Shadow height="10.5" radius="2.125" width="0.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Shadow>
+                           </bumpInput>
+<!--                           <light>-->
+<!--                              <Light.Distant>-->
+<!--                                 <color>-->
+<!--                                    <Color red="0.24315789341926575" green="0.6001579165458679" blue="0.6631578803062439" />-->
+<!--                                 </color>-->
+<!--                              </Light.Distant>-->
+<!--                           </light>-->
+                        </Lighting>
+                     </input>
+                  </InnerShadow>
+               </effect>
+            </Button>
+         </children>
+      </Pane>
+      <ImageView fx:id="personajeImagen" fitHeight="101.0" fitWidth="86.0" layoutX="235.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../Imagenes/Personaje/estarQuieto_nivel2.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="estados" layoutX="154.0" prefHeight="46.0" prefWidth="951.0" visible="false">
+         <children>
+            <Text fill="#2b63d4" layoutX="27.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Humor">
+               <font>
+                  <Font name="Cooper Black" size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="humor" fill="#2ca9d4" layoutX="99.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feliz" textAlignment="CENTER" wrappingWidth="137.25">
+               <font>
+                  <Font name="Cooper Black" size="18.0" />
+               </font>
+            </Text>
+            <Text fill="#2b63d4" layoutX="243.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edad">
+               <font>
+                  <Font name="Cooper Black" size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="edad" fill="#2ca9d4" layoutX="300.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feliz" textAlignment="CENTER" wrappingWidth="137.25">
+               <font>
+                  <Font name="Cooper Black" size="18.0" />
+               </font>
+            </Text>
+            <Text fill="#2b63d4" layoutX="453.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dia numero">
+               <font>
+                  <Font name="Cooper Black" size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="numeroDias" fill="#2ca9d4" layoutX="581.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feliz" textAlignment="CENTER" wrappingWidth="137.25">
+               <font>
+                  <Font name="Cooper Black" size="18.0" />
+               </font>
+            </Text>
+            <Text fill="#2b63d4" layoutX="730.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hora">
+               <font>
+                  <Font name="Cooper Black" size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="hora" fill="#2ca9d4" layoutX="798.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feliz" textAlignment="CENTER" wrappingWidth="137.25">
+               <font>
+                  <Font name="Cooper Black" size="18.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
    </children>
