@@ -19,11 +19,6 @@
          <image>
             <Image url="@../Imagenes/Ambientes/Día.png" />
          </image></ImageView>
-      <Pane layoutY="571.0" prefHeight="132.0" prefWidth="1188.0">
-         <children>
-            <ListView fx:id="notificaciones" layoutX="-1.0" prefHeight="135.0" prefWidth="1190.0" />
-         </children>
-      </Pane>
       <Pane fx:id="mapa" prefHeight="572.0" prefWidth="1188.0">
          <children>
             <ImageView fitHeight="572.0" fitWidth="1188.0" pickOnBounds="true">
@@ -71,9 +66,9 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
-            <Button layoutX="14.0" layoutY="216.0" mnemonicParsing="false" onAction="#comer" prefHeight="30.0" prefWidth="163.0" text="COMER" textAlignment="CENTER">
+            <Button blendMode="MULTIPLY" layoutX="14.0" layoutY="216.0" mnemonicParsing="false" onAction="#comer" prefHeight="30.0" prefWidth="163.0" text="COMER" textAlignment="CENTER" textFill="#1d76a9">
                <font>
-                  <Font name="Curlz MT" size="24.0" />
+                  <Font name="Cooper Black" size="24.0" />
                </font>
                <effect>
                   <InnerShadow height="85.34" radius="40.1225" width="77.15">
@@ -102,9 +97,9 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
-            <Button layoutX="14.0" layoutY="216.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="163.0" text="COMER" textAlignment="CENTER">
+            <Button blendMode="MULTIPLY" layoutX="14.0" layoutY="216.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="163.0" text="COMER" textAlignment="CENTER" textFill="#1d76a9">
                <font>
-                  <Font name="Curlz MT" size="24.0" />
+                  <Font name="Cooper Black" size="25.0" />
                </font>
                <effect>
                   <InnerShadow height="105.22" radius="46.2625" width="81.83">
@@ -132,9 +127,9 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
-            <Button layoutX="14.0" layoutY="216.0" mnemonicParsing="false" onAction="#dormir" prefHeight="30.0" prefWidth="163.0" text="DORMIR" textAlignment="CENTER">
+            <Button blendMode="MULTIPLY" layoutX="14.0" layoutY="216.0" mnemonicParsing="false" onAction="#dormir" prefHeight="30.0" prefWidth="163.0" text="DORMIR" textAlignment="CENTER" textFill="#1d76a9">
                <font>
-                  <Font name="Curlz MT" size="24.0" />
+                  <Font name="Cooper Black" size="24.0" />
                </font>
                <effect>
                   <InnerShadow height="93.52" radius="62.795" width="159.66">
@@ -162,9 +157,9 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
-            <Button layoutX="14.0" layoutY="328.0" mnemonicParsing="false" onAction="#defecar" prefHeight="30.0" prefWidth="163.0" text="DEFECAR" textAlignment="CENTER">
+            <Button blendMode="MULTIPLY" layoutX="13.0" layoutY="282.0" mnemonicParsing="false" onAction="#defecar" prefHeight="30.0" prefWidth="163.0" text="DEFECAR" textAlignment="CENTER" textFill="#1d76a9">
                <font>
-                  <Font name="Curlz MT" size="24.0" />
+                  <Font name="Cooper Black" size="24.0" />
                </font>
                <effect>
                   <InnerShadow height="102.88" radius="46.845" width="86.5">
@@ -174,9 +169,9 @@
                   </InnerShadow>
                </effect>
             </Button>
-            <Button layoutX="14.0" layoutY="216.0" mnemonicParsing="false" onAction="#orinar" prefHeight="30.0" prefWidth="163.0" text="ORINAR" textAlignment="CENTER">
+            <Button blendMode="MULTIPLY" layoutX="14.0" layoutY="216.0" mnemonicParsing="false" onAction="#orinar" prefHeight="30.0" prefWidth="163.0" text="ORINAR" textAlignment="CENTER" textFill="#1d76a9">
                <font>
-                  <Font name="Curlz MT" size="24.0" />
+                  <Font name="Cooper Black" size="24.0" />
                </font>
                <effect>
                   <InnerShadow choke="0.06" height="159.03" radius="63.2225" width="95.86">
@@ -205,7 +200,7 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
-            <ComboBox fx:id="deportesPisicina" layoutX="1013.0" layoutY="82.0" prefWidth="150.0" promptText="DEPORTES">
+            <ComboBox fx:id="deportesPisicina" layoutX="995.0" layoutY="57.0" prefWidth="150.0" promptText="DEPORTES">
                <effect>
                   <InnerShadow height="51.41" radius="26.375" width="56.09">
                      <color>
@@ -214,10 +209,10 @@
                   </InnerShadow>
                </effect>
             </ComboBox>
-            <ImageView fitHeight="69.0" fitWidth="88.0" layoutX="1044.0" layoutY="116.0" pickOnBounds="true" />
-            <Button layoutX="1013.0" layoutY="193.0" mnemonicParsing="false" onAction="#hacerDeporte" prefHeight="30.0" prefWidth="150.0" text="HACER DEPORTE" textAlignment="CENTER">
+            <ImageView fx:id="imagenDeportePis" fitHeight="69.0" fitWidth="88.0" layoutX="1026.0" layoutY="115.0" pickOnBounds="true" />
+            <Button blendMode="MULTIPLY" layoutX="979.0" layoutY="193.0" mnemonicParsing="false" onAction="#hacerDeportePis" prefHeight="30.0" prefWidth="184.0" text="HACER DEPORTE" textAlignment="CENTER" textFill="#1d76a9">
                <font>
-                  <Font name="Curlz MT" size="16.0" />
+                  <Font name="Cooper Black" size="16.0" />
                </font>
                <effect>
                   <InnerShadow height="116.92" radius="42.7525" width="56.09">
@@ -227,6 +222,11 @@
                   </InnerShadow>
                </effect>
             </Button>
+            <Text fx:id="nombreDeportePis" layoutX="976.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="187.00000000000023">
+               <font>
+                  <Font name="Elephant" size="12.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
       <Pane fx:id="jardin" prefHeight="572.0" prefWidth="1188.0" visible="false">
@@ -264,7 +264,7 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
-            <ComboBox fx:id="deportesCancha" layoutX="1020.0" layoutY="76.0" prefWidth="150.0" promptText="DEPORTES">
+            <ComboBox fx:id="deportesCancha" layoutX="1002.0" layoutY="50.0" prefWidth="150.0" promptText="DEPORTES">
                <effect>
                   <InnerShadow height="65.45" radius="36.905" width="84.17">
                      <color>
@@ -273,10 +273,10 @@
                   </InnerShadow>
                </effect>
             </ComboBox>
-            <ImageView fitHeight="69.0" fitWidth="88.0" layoutX="1051.0" layoutY="110.0" pickOnBounds="true" />
-            <Button layoutX="1020.0" layoutY="187.0" mnemonicParsing="false" onAction="#hacerDeporte" prefHeight="30.0" prefWidth="150.0" text="HACER DEPORTE" textAlignment="CENTER">
+            <ImageView fx:id="imagenDeporteCancha" fitHeight="69.0" fitWidth="88.0" layoutX="1033.0" layoutY="102.0" pickOnBounds="true" />
+            <Button blendMode="MULTIPLY" layoutX="983.0" layoutY="187.0" mnemonicParsing="false" onAction="#hacerDeporteCancha" prefHeight="31.0" prefWidth="187.0" text="HACER DEPORTE" textAlignment="CENTER" textFill="#1d76a9">
                <font>
-                  <Font name="Curlz MT" size="16.0" />
+                  <Font name="Cooper Black" size="17.0" />
                </font>
                <effect>
                   <InnerShadow height="84.17" radius="41.0" width="81.83">
@@ -286,6 +286,11 @@
                   </InnerShadow>
                </effect>
             </Button>
+            <Text fx:id="nombreDeporteCancha" layoutX="983.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="187.00000000000023">
+               <font>
+                  <Font name="Elephant" size="12.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
       <Pane fx:id="gimnasio" prefHeight="572.0" prefWidth="1188.0" visible="false">
@@ -315,22 +320,22 @@
                            <bumpInput>
                               <Shadow />
                            </bumpInput>
-<!--                           <light>-->
-<!--                              <Light.Distant>-->
-<!--                                 <color>-->
-<!--                                    <Color red="0.24313725531101227" green="0.6000000238418579" blue="0.6627451181411743" />-->
-<!--                                 </color>-->
-<!--                              </Light.Distant>-->
-<!--                           </light>-->
+                           <!--                           <light>-->
+                           <!--                              <Light.Distant>-->
+                           <!--                                 <color>-->
+                           <!--                                    <Color red="0.24313725531101227" green="0.6000000238418579" blue="0.6627451181411743" />-->
+                           <!--                                 </color>-->
+                           <!--                              </Light.Distant>-->
+                           <!--                           </light>-->
                         </Lighting>
                      </input>
                   </InnerShadow>
                </effect>
             </ComboBox>
-            <ImageView fitHeight="69.0" fitWidth="88.0" layoutX="1069.0" layoutY="89.0" pickOnBounds="true" />
-            <Button blendMode="MULTIPLY" layoutX="891.0" layoutY="523.0" mnemonicParsing="false" onAction="#hacerDeporte" prefHeight="30.0" prefWidth="150.0" text="HACER DEPORTE" textAlignment="CENTER">
+            <ImageView fx:id="imagenDeporteGym" fitHeight="69.0" fitWidth="88.0" layoutX="1069.0" layoutY="89.0" pickOnBounds="true" />
+            <Button blendMode="MULTIPLY" layoutX="872.0" layoutY="523.0" mnemonicParsing="false" onAction="#hacerDeporteGym" prefHeight="30.0" prefWidth="169.0" text="HACER DEPORTE" textAlignment="CENTER" textFill="#1d76a9">
                <font>
-                  <Font name="Curlz MT" size="16.0" />
+                  <Font name="Cooper Black" size="15.0" />
                </font>
                <effect>
                   <InnerShadow height="60.77" radius="29.885" width="60.77">
@@ -346,18 +351,23 @@
                                  </color>
                               </Shadow>
                            </bumpInput>
-<!--                           <light>-->
-<!--                              <Light.Distant>-->
-<!--                                 <color>-->
-<!--                                    <Color red="0.24313725531101227" green="0.6000000238418579" blue="0.6627451181411743" />-->
-<!--                                 </color>-->
-<!--                              </Light.Distant>-->
-<!--                           </light>-->
+                           <!--                           <light>-->
+                           <!--                              <Light.Distant>-->
+                           <!--                                 <color>-->
+                           <!--                                    <Color red="0.24313725531101227" green="0.6000000238418579" blue="0.6627451181411743" />-->
+                           <!--                                 </color>-->
+                           <!--                              </Light.Distant>-->
+                           <!--                           </light>-->
                         </Lighting>
                      </input>
                   </InnerShadow>
                </effect>
             </Button>
+            <Text fx:id="nombreDeporteGym" layoutX="1048.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="131.0">
+               <font>
+                  <Font name="Elephant" size="12.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
       <Pane fx:id="peleas" prefHeight="572.0" prefWidth="1188.0" visible="false">
@@ -376,7 +386,7 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
-            <ComboBox fx:id="deportesPeleas" blendMode="MULTIPLY" layoutX="88.0" layoutY="524.0" prefWidth="150.0" promptText="DEPORTES">
+            <ComboBox fx:id="deportesPeleas" blendMode="MULTIPLY" layoutX="104.0" layoutY="524.0" prefWidth="150.0" promptText="DEPORTES">
                <effect>
                   <InnerShadow height="55.51" radius="27.985" width="58.43">
                      <color>
@@ -387,21 +397,21 @@
                            <bumpInput>
                               <Shadow />
                            </bumpInput>
-<!--                           <light>-->
-<!--                              <Light.Distant>-->
-<!--                                 <color>-->
-<!--                                    <Color red="0.24313725531101227" green="0.6000000238418579" blue="0.6627451181411743" />-->
-<!--                                 </color>-->
-<!--                              </Light.Distant>-->
-<!--                           </light>-->
+                           <!--                           <light>-->
+                           <!--                              <Light.Distant>-->
+                           <!--                                 <color>-->
+                           <!--                                    <Color red="0.24313725531101227" green="0.6000000238418579" blue="0.6627451181411743" />-->
+                           <!--                                 </color>-->
+                           <!--                              </Light.Distant>-->
+                           <!--                           </light>-->
                         </Lighting>
                      </input>
                   </InnerShadow>
                </effect>
             </ComboBox>
-            <Button blendMode="MULTIPLY" layoutX="976.0" layoutY="518.0" mnemonicParsing="false" onAction="#hacerDeporte" prefHeight="30.0" prefWidth="150.0" text="HACER DEPORTE" textAlignment="CENTER">
+            <Button blendMode="MULTIPLY" layoutX="871.0" layoutY="519.0" mnemonicParsing="false" onAction="#hacerDeportePeleas" prefHeight="36.0" prefWidth="224.0" text="HACER DEPORTE" textAlignment="CENTER" textFill="#1d76a9">
                <font>
-                  <Font name="Curlz MT" size="16.0" />
+                  <Font name="Cooper Black" size="19.0" />
                </font>
                <effect>
                   <InnerShadow height="60.77" radius="29.885" width="60.77">
@@ -417,22 +427,22 @@
                                  </color>
                               </Shadow>
                            </bumpInput>
-<!--                           <light>-->
-<!--                              <Light.Distant>-->
-<!--                                 <color>-->
-<!--                                    <Color red="0.24313725531101227" green="0.6000000238418579" blue="0.6627451181411743" />-->
-<!--                                 </color>-->
-<!--                              </Light.Distant>-->
-<!--                           </light>-->
+                           <!--                           <light>-->
+                           <!--                              <Light.Distant>-->
+                           <!--                                 <color>-->
+                           <!--                                    <Color red="0.24313725531101227" green="0.6000000238418579" blue="0.6627451181411743" />-->
+                           <!--                                 </color>-->
+                           <!--                              </Light.Distant>-->
+                           <!--                           </light>-->
                         </Lighting>
                      </input>
                   </InnerShadow>
                </effect>
             </Button>
-            <ImageView fitHeight="69.0" fitWidth="88.0" layoutX="993.0" layoutY="195.0" pickOnBounds="true" />
-            <Button blendMode="MULTIPLY" layoutX="510.0" layoutY="513.0" mnemonicParsing="false" onAction="#pelear" prefHeight="27.0" prefWidth="168.0" text="PELEAR" textAlignment="CENTER">
+            <ImageView fx:id="imagenDeportePeleas" fitHeight="69.0" fitWidth="88.0" layoutX="993.0" layoutY="195.0" pickOnBounds="true" />
+            <Button blendMode="MULTIPLY" layoutX="115.0" layoutY="347.0" mnemonicParsing="false" onAction="#pelear" prefHeight="27.0" prefWidth="168.0" text="PELEAR" textAlignment="CENTER">
                <font>
-                  <Font name="Curlz MT" size="21.0" />
+                  <Font name="Cooper Black" size="19.0" />
                </font>
                <effect>
                   <InnerShadow height="60.77" radius="29.885" width="60.77">
@@ -448,18 +458,41 @@
                                  </color>
                               </Shadow>
                            </bumpInput>
-<!--                           <light>-->
-<!--                              <Light.Distant>-->
-<!--                                 <color>-->
-<!--                                    <Color red="0.24313725531101227" green="0.6000000238418579" blue="0.6627451181411743" />-->
-<!--                                 </color>-->
-<!--                              </Light.Distant>-->
-<!--                           </light>-->
+                           <!--                           <light>-->
+                           <!--                              <Light.Distant>-->
+                           <!--                                 <color>-->
+                           <!--                                    <Color red="0.24313725531101227" green="0.6000000238418579" blue="0.6627451181411743" />-->
+                           <!--                                 </color>-->
+                           <!--                              </Light.Distant>-->
+                           <!--                           </light>-->
                         </Lighting>
                      </input>
                   </InnerShadow>
                </effect>
             </Button>
+            <Text fx:id="nombreDeportePeleas" layoutX="993.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="88.0">
+               <font>
+                  <Font name="Elephant" size="12.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="ataques" blendMode="MULTIPLY" layoutX="124.0" layoutY="195.0" prefWidth="150.0" promptText="ATAQUES">
+               <effect>
+                  <InnerShadow height="55.51" radius="27.985" width="58.43">
+                     <color>
+                        <Color red="0.24313725531101227" green="0.6000000238418579" blue="0.6627451181411743" />
+                     </color>
+                     <input>
+                        <Lighting diffuseConstant="2.0" specularConstant="0.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                        </Lighting>
+                     </input>
+                  </InnerShadow>
+               </effect>
+            </ComboBox>
+            <ImageView fx:id="fotoHabilidad" fitHeight="101.0" fitWidth="125.0" layoutX="137.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="personajeEnemigo" fitHeight="101.0" fitWidth="86.0" layoutX="551.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
       <Pane fx:id="huerto" prefHeight="572.0" prefWidth="1188.0" visible="false">
@@ -479,6 +512,18 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
+            <Button blendMode="MULTIPLY" layoutX="949.0" layoutY="194.0" mnemonicParsing="false" onAction="#recogerCultivos" prefHeight="39.0" prefWidth="236.0" text="RECOGER" textAlignment="CENTER" textFill="#1d76a9">
+               <font>
+                  <Font name="Cooper Black" size="21.0" />
+               </font>
+               <effect>
+                  <InnerShadow height="116.92" radius="42.7525" width="56.09">
+                     <color>
+                        <Color red="0.21960784494876862" green="0.4588235318660736" blue="0.8196078538894653" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
             <Pane fx:id="cultivos" layoutX="-1.0" layoutY="238.0" onMouseClicked="#moverAquiXY" prefHeight="353.0" prefWidth="1188.0">
                <children>
                   <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="37.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
@@ -633,18 +678,6 @@
                   </ImageView>
                </children>
             </Pane>
-            <Button layoutX="1024.0" layoutY="162.0" mnemonicParsing="false" onAction="#recogerCultivos" prefHeight="30.0" prefWidth="150.0" text="RECOGER" textAlignment="CENTER">
-               <font>
-                  <Font name="Curlz MT" size="20.0" />
-               </font>
-               <effect>
-                  <InnerShadow height="116.92" radius="42.7525" width="56.09">
-                     <color>
-                        <Color red="0.21960784494876862" green="0.4588235318660736" blue="0.8196078538894653" />
-                     </color>
-                  </InnerShadow>
-               </effect>
-            </Button>
          </children>
       </Pane>
       <Pane fx:id="bodega" prefHeight="572.0" prefWidth="1188.0" visible="false">
@@ -663,9 +696,9 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
-            <Button blendMode="MULTIPLY" layoutX="458.0" layoutY="515.0" mnemonicParsing="false" onAction="#verInventario" prefHeight="39.0" prefWidth="271.0" text="VER INVENTARIO" textAlignment="CENTER">
+            <Button blendMode="MULTIPLY" layoutX="448.0" layoutY="517.0" mnemonicParsing="false" onAction="#verInventario" prefHeight="39.0" prefWidth="271.0" text="VER INVENTARIO" textAlignment="CENTER" textFill="#1d76a9">
                <font>
-                  <Font name="Curlz MT" size="20.0" />
+                  <Font name="Cooper Black" size="23.0" />
                </font>
                <effect>
                   <InnerShadow height="60.77" radius="29.885" width="60.77">
@@ -681,13 +714,13 @@
                                  </color>
                               </Shadow>
                            </bumpInput>
-<!--                           <light>-->
-<!--                              <Light.Distant>-->
-<!--                                 <color>-->
-<!--                                    <Color red="0.24315789341926575" green="0.6001579165458679" blue="0.6631578803062439" />-->
-<!--                                 </color>-->
-<!--                              </Light.Distant>-->
-<!--                           </light>-->
+                           <!--                           <light>-->
+                           <!--                              <Light.Distant>-->
+                           <!--                                 <color>-->
+                           <!--                                    <Color red="0.24315789341926575" green="0.6001579165458679" blue="0.6631578803062439" />-->
+                           <!--                                 </color>-->
+                           <!--                              </Light.Distant>-->
+                           <!--                           </light>-->
                         </Lighting>
                      </input>
                   </InnerShadow>
@@ -695,7 +728,7 @@
             </Button>
          </children>
       </Pane>
-      <ImageView fx:id="personajeImagen" fitHeight="99.0" fitWidth="148.0" layoutX="235.0" layoutY="422.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="personajeImagen" fitHeight="101.0" fitWidth="86.0" layoutX="235.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../Imagenes/Personaje/estarQuieto_nivel2.png" />
          </image>
@@ -742,6 +775,11 @@
                   <Font name="Cooper Black" size="18.0" />
                </font>
             </Text>
+         </children>
+      </Pane>
+      <Pane layoutY="571.0" prefHeight="132.0" prefWidth="1188.0">
+         <children>
+            <ListView fx:id="notificaciones" layoutX="-1.0" layoutY="18.0" prefHeight="117.0" prefWidth="1190.0" />
          </children>
       </Pane>
    </children>
