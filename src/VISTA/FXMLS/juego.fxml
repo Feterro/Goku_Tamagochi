@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane prefHeight="703.0" prefWidth="1188.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VISTA.Controladores.Juego">
+   <children>
+      <ImageView fx:id="ambiente" fitHeight="710.0" fitWidth="1189.0" pickOnBounds="true" />
+      <Pane layoutY="571.0" prefHeight="132.0" prefWidth="1188.0">
+         <children>
+            <ListView fx:id="notificaciones" layoutX="-1.0" prefHeight="135.0" prefWidth="1190.0" />
+         </children>
+      </Pane>
+      <Pane fx:id="mapa" prefHeight="572.0" prefWidth="1188.0" visible="false">
+         <children>
+            <ImageView fitHeight="572.0" fitWidth="1188.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+               </image>
+            </ImageView>
+            <Button blendMode="MULTIPLY" layoutX="-2.0" layoutY="1.0" mnemonicParsing="false" onAction="#irCocina" prefHeight="126.0" prefWidth="225.0" style="-fx-background-color: transparent;" />
+            <Button blendMode="MULTIPLY" layoutX="224.0" layoutY="1.0" mnemonicParsing="false" onAction="#irComedor" prefHeight="126.0" prefWidth="183.0" style="-fx-background-color: transparent;" />
+            <Button blendMode="MULTIPLY" layoutX="411.0" layoutY="1.0" mnemonicParsing="false" onAction="#irHuerto" prefHeight="135.0" prefWidth="448.0" style="-fx-background-color: transparent;" />
+            <Button blendMode="MULTIPLY" layoutX="858.0" mnemonicParsing="false" onAction="#irBodega" prefHeight="172.0" prefWidth="328.0" style="-fx-background-color: transparent;" />
+            <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1145.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/Otros/salir.png" />
+               </image>
+            </ImageView>
+            <Button blendMode="MULTIPLY" layoutX="-1.0" layoutY="197.0" mnemonicParsing="false" onAction="#irCuarto" prefHeight="174.0" prefWidth="279.0" style="-fx-background-color: transparent;" />
+            <Button blendMode="MULTIPLY" layoutX="276.0" layoutY="199.0" mnemonicParsing="false" onAction="#irBaño" prefHeight="174.0" prefWidth="131.0" style="-fx-background-color: transparent;" />
+            <Button blendMode="MULTIPLY" layoutX="1.0" layoutY="370.0" mnemonicParsing="false" onAction="#irPiscina" prefHeight="201.0" prefWidth="175.0" style="-fx-background-color: transparent;" />
+            <Button blendMode="MULTIPLY" layoutX="173.0" layoutY="373.0" mnemonicParsing="false" onAction="#irjardin" prefHeight="199.0" prefWidth="314.0" style="-fx-background-color: transparent;" />
+            <Button blendMode="MULTIPLY" layoutX="491.0" layoutY="371.0" mnemonicParsing="false" onAction="#irCanchaFutbol" prefHeight="199.0" prefWidth="385.0" style="-fx-background-color: transparent;" />
+            <Button blendMode="MULTIPLY" layoutX="876.0" layoutY="373.0" mnemonicParsing="false" onAction="#irGinmasio" prefHeight="198.0" prefWidth="313.0" style="-fx-background-color: transparent;" />
+            <Button blendMode="MULTIPLY" layoutX="706.0" layoutY="175.0" mnemonicParsing="false" onAction="#irPeleas" prefHeight="196.0" prefWidth="481.0" style="-fx-background-color: transparent;" />
+            <Text fill="#0a7ed7" layoutX="450.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="¿A dónde vamos?">
+               <font>
+                  <Font name="Cooper Black" size="26.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane fx:id="comedor" prefHeight="572.0" prefWidth="1188.0">
+         <children>
+            <ImageView fitHeight="703.0" fitWidth="1190.0" layoutY="4.0" onMouseClicked="#prueba" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/comedor.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="mapaMiniatura" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/Otros/salir.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="personajeImagen" fitHeight="101.0" fitWidth="86.0" layoutX="235.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/Personaje/estarQuieto_nivel2.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="cocina" prefHeight="572.0" prefWidth="1188.0" visible="false">
+         <children>
+            <ImageView fitHeight="703.0" fitWidth="1188.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/cocina.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="mapaMiniatura1" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/Otros/salir.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="cuarto" prefHeight="572.0" prefWidth="1188.0" visible="false">
+         <children>
+            <ImageView fitHeight="708.0" fitWidth="1194.0" layoutX="-6.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/cuarto.png" />
+               </image></ImageView>
+            <ImageView fx:id="mapaMiniatura11" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/Otros/salir.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="banno" prefHeight="572.0" prefWidth="1188.0" visible="false">
+         <children>
+            <ImageView fitHeight="708.0" fitWidth="1188.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/baño.png" />
+               </image></ImageView>
+            <ImageView fx:id="mapaMiniatura12" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/Otros/salir.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="piscina" prefHeight="572.0" prefWidth="1188.0" visible="false">
+         <children>
+            <ImageView fitHeight="708.0" fitWidth="1190.0" layoutX="-2.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/piscina.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="mapaMiniatura13" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/Otros/salir.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="jardin" prefHeight="572.0" prefWidth="1188.0" visible="false">
+         <children>
+            <ImageView fitHeight="709.0" fitWidth="1188.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/jardin.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="mapaMiniatura14" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/Otros/salir.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="cancha" prefHeight="572.0" prefWidth="1188.0" visible="false">
+         <children>
+            <ImageView fitHeight="708.0" fitWidth="1191.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/cancha.png" />
+               </image></ImageView>
+            <ImageView fx:id="mapaMiniatura15" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/Otros/salir.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="gimnasio" prefHeight="572.0" prefWidth="1188.0" visible="false">
+         <children>
+            <ImageView fitHeight="706.0" fitWidth="1188.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/gimnasio.png" />
+               </image></ImageView>
+            <ImageView fx:id="mapaMiniatura16" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/Otros/salir.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="peleas" prefHeight="572.0" prefWidth="1188.0" visible="false">
+         <children>
+            <ImageView fitHeight="703.0" fitWidth="1188.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/peleas.png" />
+               </image></ImageView>
+            <ImageView fx:id="mapaMiniatura17" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/Otros/salir.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="huerto" prefHeight="572.0" prefWidth="1188.0" visible="false">
+         <children>
+            <ImageView fitHeight="709.0" fitWidth="1196.0" layoutX="-2.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/huerta.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="mapaMiniatura18" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/Otros/salir.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="bodega" prefHeight="572.0" prefWidth="1188.0" visible="false">
+         <children>
+            <ImageView fitHeight="708.0" fitWidth="1189.0" layoutX="-1.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/bodega.png" />
+               </image></ImageView>
+            <ImageView fx:id="mapaMiniatura19" fitHeight="79.0" fitWidth="136.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#mostrarMapa" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/PartesCasa/mapa%20casa.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="1142.0" layoutY="5.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/Otros/salir.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</Pane>
