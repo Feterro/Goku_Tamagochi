@@ -1,5 +1,7 @@
 package TimeChecker;
 
+import ModuloPelea.ModuloPersonajes.Jugador;
+
 import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -42,21 +44,23 @@ public class TimeChecker extends Thread implements Serializable {
             public void run() {
                 int dia = reloj.aumentar(); // Aumenta un segundo.
                 if (dia != diaActual){
-                    String partidaSerializada = logger.serializarObjeto(partida.getPartida()); // Cambiar por Partida.
+                    String partidaSerializada = logger.serializarObjeto(Jugador.getInstance()); // Cambiar por Partida.
                     logger.guardarDia(diaActual, reloj.getAnios(), "src/TimeChecker/Dias/", partidaSerializada);
                     logger.saveJson("src/TimeChecker/Dias/dias.json");
                     diaActual = dia;
                 }
                 int parteDia = reloj.getHorasMaximo() / 3;
-                if (reloj.getHoras() == parteDia){
+                if (reloj.getHoras() == parteDia && reloj.getMinutos() == 0 && reloj.getSegundos() == 0){
                     // primera parte del dia
+                    if(reloj.getDias() == 1)
+                        Jugador.getInstance().setNombre("Pepe");
                     System.out.println("Primera parte del día");
                 }
-                else if (reloj.getHoras() == parteDia * 2){
+                else if (reloj.getHoras() == parteDia * 2 && reloj.getMinutos() == 0 && reloj.getSegundos() == 0){
                     // Segunda parte del día
                     System.out.println("Segunda parte del día");
                 }
-                else if (reloj.getHoras() == parteDia * 3){
+                else if (reloj.getHoras() == 0 && reloj.getMinutos() == 0 && reloj.getSegundos() == 0){
                     // Ultima parte del día
                     System.out.println("A mimir");
                 }
@@ -76,4 +80,11 @@ public class TimeChecker extends Thread implements Serializable {
         return estadoDelDia;
     }
 
+    public Logger getLogger() {
+        return logger;
+    }
+
+    public void setLogger(Logger logger) {
+        this.logger = logger;
+    }
 }

@@ -5,10 +5,11 @@ import LibreriaPersonajes.TDA.Personaje;
 import Model.ControladorSalud;
 import Strategy.*;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 
-public class Jugador extends Personaje {
+public class Jugador extends Personaje implements Serializable {
 
     private static final long serialVersionUID = 8L;
 

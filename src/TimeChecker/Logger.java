@@ -104,12 +104,12 @@ public class Logger implements Serializable {
         return null;
     }
 
-    public Partida buscarPartida(String dia){
+    public Object buscarPartida(String dia){
         String filePath = readJson(dia);
         String texto = readFile(filePath);
         try {
-            Partida partida = (Partida) deserealizar(texto);
-            return partida;
+            Object object = deserealizar(texto);
+            return object;
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
