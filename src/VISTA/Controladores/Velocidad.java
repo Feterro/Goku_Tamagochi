@@ -1,2 +1,7 @@
-package VISTA.Controladores;public enum Velocidad {
+package VISTA.Controladores;
+
+public enum Velocidad {
+    NORMAL,
+    RAPIDO,
+    ENFERMO
 }

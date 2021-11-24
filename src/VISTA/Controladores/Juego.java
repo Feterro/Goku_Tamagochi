@@ -8,12 +8,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Bounds;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.io.FileInputStream;
@@ -21,27 +21,24 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class Juego implements Initializable {
 
     private ArrayList<Pane> areas = new ArrayList<>();
+    private Timeline moverse;
 
     @FXML
     private ImageView ambiente;
 
     @FXML
-    private ImageView mapaMiniatura;
+    private Pane banno;
 
     @FXML
-    private Pane principal;
+    private Pane bodega;
 
     @FXML
-    private ListView<String> notificaciones;
-
-    @FXML
-    private Pane mapa;
+    private Pane cancha;
 
     @FXML
     private Pane cocina;
@@ -53,31 +50,44 @@ public class Juego implements Initializable {
     private Pane cuarto;
 
     @FXML
-    private Pane banno;
+    private Text edad;
 
     @FXML
-    private Pane piscina;
-
-    @FXML
-    private Pane peleas;
-
-    @FXML
-    private Pane huerto;
-
-    @FXML
-    private Pane bodega;
-
-    @FXML
-    private Pane jardin;
-
-    @FXML
-    private Pane cancha;
+    private Pane estados;
 
     @FXML
     private Pane gimnasio;
 
     @FXML
+    private Text hora;
+
+    @FXML
+    private Pane huerto;
+
+    @FXML
+    private Text humor;
+
+    @FXML
+    private Pane jardin;
+
+    @FXML
+    private Pane mapa;
+
+    @FXML
+    private ListView<String> notificaciones;
+
+    @FXML
+    private Text numeroDias;
+
+    @FXML
+    private Pane peleas;
+
+    @FXML
     private ImageView personajeImagen;
+
+    @FXML
+    private Pane piscina;
+
 
     public void cambiarAmbiente(Ambiente ambiente) throws FileNotFoundException {
         switch (ambiente){
@@ -105,7 +115,28 @@ public class Juego implements Initializable {
     }
 
     private void ponerVisible(Pane pane){
-
+        if (pane.equals(mapa)){
+            moverse.stop();
+            personajeImagen.setVisible(false);
+            personajeImagen.setLayoutY(420);
+            estados.setVisible(false);
+        }else{
+            estados.setVisible(true);
+            personajeImagen.setVisible(true);
+            if (pane.equals(jardin) || pane.equals(piscina) || pane.equals(cancha) || pane.equals(huerto)){
+                moverPersonaje(Velocidad.RAPIDO, 1);
+                personajeImagen.setLayoutX(0);
+            } else if (pane.equals(gimnasio) || pane.equals(bodega)){
+              personajeImagen.setLayoutX(115);
+              moverPersonaje(Velocidad.RAPIDO, 2);
+            }else if (pane.equals(peleas)){
+                personajeImagen.setLayoutX(106);
+                moverPersonaje(Velocidad.RAPIDO, 3);
+            } else {
+                personajeImagen.setLayoutX(235);
+                moverPersonaje(Velocidad.RAPIDO, 0);
+            }
+        }
         for (Pane area: areas){
             if (area.equals(pane)){
                 area.setVisible(true);
@@ -115,42 +146,48 @@ public class Juego implements Initializable {
         }
     }
 
-    private void moverPersonaje(){
-        Timeline tiempo = new Timeline(new KeyFrame(Duration.millis(10), new EventHandler<ActionEvent>() {
+    private void moverPersonaje(Velocidad vel, int edificio){
+        int velocidad = 0;
+        switch (vel){
+            case NORMAL:
+                velocidad = 25;
+                break;
+            case RAPIDO:
+                velocidad = 10;
+                break;
+            case ENFERMO:
+                velocidad = 50;
+                break;
+        }
+        moverse = new Timeline(new KeyFrame(Duration.millis(velocidad), new EventHandler<ActionEvent>() {
             int pos = 2;
             @Override
             public void handle(ActionEvent actionEvent) {
-
-                System.out.println(pos);
                 personajeImagen.setLayoutX(personajeImagen.getLayoutX() + pos);
-                boolean bordeDerecho = personajeImagen.getLayoutX() >= (875 - personajeImagen.getFitWidth());
-                boolean bordeIzquierdo = personajeImagen.getLayoutX() <= (235 + personajeImagen.getFitWidth());
-
-//                boolean rightBorder = circle.getLayoutX() >= (bounds.getMaxX() - circle.getRadius());
-//                boolean leftBorder = circle.getLayoutX() <= (bounds.getMinX() + circle.getRadius());
+                int bordeMax;
+                int bordeMin;
+                if (edificio == 0){
+                    bordeMin = 235;
+                    bordeMax = 875;
+                }else if (edificio == 1){
+                    bordeMin = 0;
+                    bordeMax = (int) (1188 - personajeImagen.getFitWidth());
+                } else if (edificio == 2){
+                    bordeMax = (int) (1019 - personajeImagen.getFitWidth());
+                    bordeMin = 115;
+                } else {
+                    bordeMax = (int) (1080 - personajeImagen.getFitWidth());
+                    bordeMin = 106;
+                }
+                boolean bordeDerecho = personajeImagen.getLayoutX() == bordeMax;
+                boolean bordeIzquierdo = personajeImagen.getLayoutX() == bordeMin;
 
                 if (bordeIzquierdo || bordeDerecho)
                     pos *= -1;
-
-//                if (pos[0] == 235){
-//                    izquierda = false;
-//                }else if (pos[0] == 875)
-//                    izquierda = true;
-//                if (izquierda){
-//                    pos[0]++;
-//                }else{
-//                    pos[0]--;
-//                }
-//                if (pos[0] <= 875 && pos[0] >= 235) {
-//
-//                }else{
-//                    pos[0]--;
-//                }
-
             }
         }));
-        tiempo.setCycleCount(Animation.INDEFINITE);
-        tiempo.play();
+        moverse.setCycleCount(Animation.INDEFINITE);
+        moverse.play();
     }
 
     @FXML
@@ -172,6 +209,7 @@ public class Juego implements Initializable {
     @FXML
     void irBodega(ActionEvent event) {
         ponerVisible(bodega);
+
     }
 
     @FXML
@@ -220,14 +258,21 @@ public class Juego implements Initializable {
     }
 
     @FXML
-    public void prueba(MouseEvent event){
-        moverPersonaje();
-//        personajeImagen.setX(235);
+    public void moverAquiXY(MouseEvent event){
+        moverse.stop();
+        personajeImagen.setLayoutX(event.getSceneX());
+        personajeImagen.setLayoutY(event.getSceneY()-personajeImagen.getFitHeight());
+    }
+
+    @FXML
+    public void moverAquiX(MouseEvent event){
+        moverse.stop();
+        personajeImagen.setLayoutX(event.getSceneX());
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        personajeImagen.setVisible(false);
         meterALista();
         notificaciones.getItems().add("HOLA");
         try {
@@ -235,5 +280,45 @@ public class Juego implements Initializable {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void comer(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void hacerDeporte(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void pelear(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void defecar(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void dormir(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void orinar(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void recogerCultivos(ActionEvent event){
+
+    }
+
+    @FXML
+    public void verInventario(ActionEvent event) {
+
     }
 }
