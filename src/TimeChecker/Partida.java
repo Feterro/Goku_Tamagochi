@@ -13,14 +13,15 @@ public class Partida implements Serializable {
     private static final long serialVersionUID = 1004L;
 
     public Partida(){
-//        timeChecker = new TimeChecker(this, segundo, segundosMaximo, minutosMaximo, horasMaximo, diasMaximo);
+       // timeChecker = new TimeChecker(this, segundo, segundosMaximo, minutosMaximo, horasMaximo, diasMaximo);
+
     }
 
 //    public Partida(int segundo){
 //        timeChecker = new TimeChecker(this, segundo);
 //    }
 
-    public Partida getPartida(){
+    public static Partida getPartida(){
         if (partida != null){
             return partida;
         }else {

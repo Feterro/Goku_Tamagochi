@@ -61,6 +61,8 @@ public class TimeChecker extends Thread implements Serializable {
                 }
                 else if (reloj.getHoras() == 0 && reloj.getMinutos() == 0 && reloj.getSegundos() == 0){
                     // Ultima parte del día
+                    Jugador.getInstance().verificarMuerte();//TODO cambiar esto porque se llama notificacion de morir
+                    Jugador.getInstance().verificarMimir();//TODO cambiar esto porque se llama notificacion de mimir
                     System.out.println("A mimir");
                 }
                 System.out.println(reloj.verHora());

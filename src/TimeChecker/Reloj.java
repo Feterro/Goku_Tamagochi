@@ -1,5 +1,7 @@
 package TimeChecker;
 
+import ModuloPelea.ModuloPersonajes.Jugador;
+
 import java.io.Serializable;
 
 public class Reloj implements Serializable {

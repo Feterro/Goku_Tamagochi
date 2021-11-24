@@ -1,5 +1,7 @@
 package Strategy;
 
-public interface IControlerStrategy {
+import java.io.Serializable;
+
+public interface IControlerStrategy extends Serializable {
     void satisfacer();
 }

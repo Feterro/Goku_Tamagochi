@@ -4,6 +4,7 @@ import LibreriaPersonajes.TDA.Arma;
 import LibreriaPersonajes.TDA.Personaje;
 import Model.ControladorSalud;
 import Strategy.*;
+import TimeChecker.Partida;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -17,13 +18,14 @@ public class Jugador extends Personaje implements Serializable {
     //Las habilidades son las armas
 
     public float velocidad;
-    public boolean muertePorEnfermedad;
+    public boolean muertePorEnfermedad = true;
     public int cantidadDeDiasEnfermo;
     //ArrayList de estados. Es una lista el boton de la pantalla setea el estado actual que es el que se satisface o se niega.
     public HashMap<EnumActividades, IControlerStrategy> controladores;
     public IControlerStrategy estadoActual;
     public ControladorSalud controladorSalud;
     public EnumActividades etiquetaEstadoActual;
+    public String diaDevolucion;
     private static Jugador jugador;
     private Object consumible;
 
@@ -80,6 +82,9 @@ public class Jugador extends Personaje implements Serializable {
         }
     }
 
+    public static void setJugador(Jugador jugador) {
+        Jugador.jugador = jugador;
+    }
 
     public void comer(Object comida){//Todo:Cambiar a comida
         estadoActual = controladores.get(EnumActividades.Comer);
@@ -104,7 +109,7 @@ public class Jugador extends Personaje implements Serializable {
     public void ejercitarse(){
         estadoActual = controladores.get(EnumActividades.Ejercitar);
         etiquetaEstadoActual = EnumActividades.Ejercitar;
-        estadoActual.satisfacer();
+        (estadoActual).satisfacer();
     }
     
     public void social(){
@@ -130,13 +135,20 @@ public class Jugador extends Personaje implements Serializable {
             estadoActual.satisfacer();
         }
         else{
-            //estadoActual.negar();
+            ((ControladorSuenno)estadoActual).madrugar();
         }
     }
 
     public void verificarMuerte(){
+        if(controladorSalud.isEnfermo())
+            cantidadDeDiasEnfermo += 1;
         if(cantidadDeDiasEnfermo >= 3){
-            this.muertePorEnfermedad = true;
+            //TODO MOSTRAR NOTIFICACION OPCIONES DE QUE SE QUIERE HACER CUANDO MUERE
+            if(muertePorEnfermedad){
+                setJugador((Jugador)Partida.getPartida().getTimeChecker().getLogger().buscarPartida("0-0"));
+            }else{
+                setJugador((Jugador)Partida.getPartida().getTimeChecker().getLogger().buscarPartida(diaDevolucion));
+            }
         }
     }
 

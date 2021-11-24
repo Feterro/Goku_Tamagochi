@@ -1,8 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class ControladorSalud {
+public class ControladorSalud implements Serializable {
 
     private int satisfaccionHambre = 100;
     private int satisfaccionSuenno = 100;
