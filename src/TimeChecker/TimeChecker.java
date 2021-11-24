@@ -11,7 +11,6 @@ public class TimeChecker extends Thread implements Serializable {
     private int anioActual = 0;
     private Reloj reloj;
     private Logger logger = new Logger();
-    private Partida partida;
     private static final long serialVersionUID = 1007L;
 
 
@@ -42,21 +41,21 @@ public class TimeChecker extends Thread implements Serializable {
             public void run() {
                 int dia = reloj.aumentar(); // Aumenta un segundo.
                 if (dia != diaActual){
-                    String partidaSerializada = logger.serializarObjeto(partida.getPartida()); // Cambiar por Partida.
+                    String partidaSerializada = logger.serializarObjeto(logger); // Cambiar por Partida.
                     logger.guardarDia(diaActual, reloj.getAnios(), "src/TimeChecker/Dias/", partidaSerializada);
                     logger.saveJson("src/TimeChecker/Dias/dias.json");
                     diaActual = dia;
                 }
-                int parteDia = reloj.getHorasMaximo() / 3;
-                if (reloj.getHoras() == parteDia){
+                int parteDia = reloj.getHorasMaximo();
+                if (reloj.getHoras() == parteDia && reloj.getSegundos() == 0 && reloj.getMinutos() == 0) {
                     // primera parte del dia
                     System.out.println("Primera parte del día");
                 }
-                else if (reloj.getHoras() == parteDia * 2){
+                else if (reloj.getHoras() == parteDia * 2 && reloj.getSegundos() == 0 && reloj.getMinutos() == 0){
                     // Segunda parte del día
                     System.out.println("Segunda parte del día");
                 }
-                else if (reloj.getHoras() == parteDia * 3){
+                else if (reloj.getHoras() == parteDia * 3 && reloj.getSegundos() == 0 && reloj.getMinutos() == 0){
                     // Ultima parte del día
                     System.out.println("A mimir");
                 }

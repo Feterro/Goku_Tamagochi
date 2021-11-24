@@ -13,57 +13,49 @@ public class LvlImages implements IPrototype<LvlImages> {
 
     private static final long serialVersionUID = -5460219658652083079L;
 
-    HashMap<String,ArrayList<String>> aparienciasPorNivel;
+    HashMap<String,String> aparienciasPorNivel;
 
     public LvlImages(){
-        this.aparienciasPorNivel = new HashMap<String,ArrayList<String>>();
+        this.aparienciasPorNivel = new HashMap<String,String>();
     }
 
-
-    public LvlImages(String nombre,ArrayList<String>urls){
-        this.aparienciasPorNivel = new HashMap<String,ArrayList<String>>();
-        this.aparienciasPorNivel.put(nombre, urls);
-    }
 
     public LvlImages(String nombre,String url){
-        ArrayList urls = new ArrayList();
-        urls.add(url);
-        this.aparienciasPorNivel = new HashMap<>();
-        this.aparienciasPorNivel.put(nombre,urls);
+        this.aparienciasPorNivel = new HashMap<String, String>();
+        this.aparienciasPorNivel.put(nombre, url);
     }
 
-
-    public LvlImages(HashMap<String, ArrayList<String>> aparienciasPorNivel) {
+    public LvlImages(HashMap<String, String> aparienciasPorNivel) {
         this.aparienciasPorNivel = aparienciasPorNivel;
     }
 
-    public HashMap<String,ArrayList<String>> getAparienciasPorNivel(){
+    public HashMap<String,String> getAparienciasPorNivel(){
         return this.aparienciasPorNivel;
     }
 
-    public ArrayList<String> getAparienciasPorNivel(String key) {
+    public String getAparienciasPorNivel(String key) {
         return aparienciasPorNivel.get(key);
     }
 
     //Creo que este cuenta a su vez como un set porque el hashmap sobreescribe en los campos del key.
-    public void addApariencia(String nombre,ArrayList<String> urls){
+    public void addApariencia(String nombre,String urls){
         this.aparienciasPorNivel.put(nombre, urls);
     }
 
-    @Override
-    public String toString(){
-        String string = "Apariencias:\n";
-        for (Map.Entry<String,ArrayList<String>> apariencia : aparienciasPorNivel.entrySet()) {
-            string += apariencia.getKey()+"\t";
-            for (String url : apariencia.getValue()) {
-                string += url + " ";
-            }
-        }
-        return string;
-    }
+//    @Override
+//    public String toString(){
+//        String string = "Apariencias:\n";
+//        for (Map.Entry<String,String> apariencia : aparienciasPorNivel.entrySet()) {
+//            string += apariencia.getKey()+"\t";
+//            for (String url : apariencia.getValue()) {
+//                string += url + " ";
+//            }
+//        }
+//        return string;
+//    }
 
-    public ArrayList<String> getDefault(){
-        ArrayList<ArrayList<String>> defaultImages = new ArrayList<ArrayList<String>>(aparienciasPorNivel.values());
+    public String getDefault(){
+        ArrayList<String> defaultImages = new ArrayList<String>(aparienciasPorNivel.values());
         return defaultImages.get(0);
     }
 
@@ -72,10 +64,10 @@ public class LvlImages implements IPrototype<LvlImages> {
     //Las acciones pero no se quieren las mismas imagenes. Mas creacional que de copia.
     @Override
     public LvlImages clone() {
-        HashMap<String,ArrayList<String>> copiaApariencias = new HashMap<String,ArrayList<String>>();
-        for (Map.Entry<String,ArrayList<String>> apariencia : aparienciasPorNivel.entrySet()) {
+        HashMap<String,String> copiaApariencias = new HashMap<String,String>();
+        for (Map.Entry<String,String> apariencia : aparienciasPorNivel.entrySet()) {
             String key = apariencia.getKey();
-            ArrayList<String> value = new ArrayList<String>();
+            String value = new String();
             copiaApariencias.put(key, value);
         }
         return new LvlImages(copiaApariencias);
@@ -83,10 +75,10 @@ public class LvlImages implements IPrototype<LvlImages> {
 
     @Override
     public LvlImages deepClone() {
-        HashMap<String,ArrayList<String>> copiaApariencias = new HashMap<String,ArrayList<String>>();
-        for (Map.Entry<String,ArrayList<String>> apariencia : aparienciasPorNivel.entrySet()) {
+        HashMap<String,String> copiaApariencias = new HashMap<String,String>();
+        for (Map.Entry<String,String> apariencia : aparienciasPorNivel.entrySet()) {
             String key = apariencia.getKey();
-            ArrayList<String> value = new ArrayList<String>(apariencia.getValue()); //Estoy inseguro con esta solucion
+            String value = new String(apariencia.getValue()); //Estoy inseguro con esta solucion
             copiaApariencias.put(key, value);
         }
         return new LvlImages(copiaApariencias);
