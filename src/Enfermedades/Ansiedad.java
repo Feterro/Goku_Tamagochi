@@ -14,8 +14,9 @@ public class Ansiedad extends AbstractEnfermedad{
         this.saludSocialMenor = 45;
     }
 
-    public Ansiedad(ArrayList<Medicamento> posiblesMedicamentos, boolean accepted, double duracion, int satisfaccionSuennoMenor, int saludSocialMenor) {
-        super(posiblesMedicamentos, accepted, duracion);
+    public Ansiedad(ArrayList<Medicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, double duracion, boolean active,
+                    int satisfaccionSuennoMenor, int saludSocialMenor) {
+        super(posiblesMedicamentos, tipo, accepted, duracion, active);
         this.satisfaccionSuennoMenor = satisfaccionSuennoMenor;
         this.saludSocialMenor = saludSocialMenor;
     }

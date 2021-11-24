@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class AbstractEnfermedad {
     protected  ArrayList<Medicamento> posiblesMedicamentos;
+    protected  EnumTipoEnfermedad tipo;
     protected  boolean accepted; //No sé pa que
     protected  double duracion; //Si no se trata antes, muere
     protected  boolean active;
@@ -18,11 +19,12 @@ public class AbstractEnfermedad {
         this.active = true;
     }
 
-    public AbstractEnfermedad(ArrayList<Medicamento> posiblesMedicamentos, boolean accepted, double duracion) {
+    public AbstractEnfermedad(ArrayList<Medicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, double duracion, boolean active) {
         this.posiblesMedicamentos = posiblesMedicamentos;
+        this.tipo = tipo;
         this.accepted = accepted;
         this.duracion = duracion;
-        this.active = true; //Si se crea está enfermo
+        this.active = active;
     }
 
     public ArrayList<Medicamento> getPosiblesMedicamentos() {
@@ -48,6 +50,10 @@ public class AbstractEnfermedad {
     public void setDuracion(double duracion) {
         this.duracion = duracion;
     }
+
+    public EnumTipoEnfermedad getTipo() {return tipo;}
+
+    public void setTipo(EnumTipoEnfermedad tipo) {this.tipo = tipo;}
 
     public void curar(Medicamento medicamento){
         for (Medicamento med: posiblesMedicamentos) {

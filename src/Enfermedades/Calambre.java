@@ -16,8 +16,9 @@ public class Calambre  extends AbstractEnfermedad{
         this.probEnfermedadMenor = 50;
     }
 
-    public Calambre(ArrayList<Medicamento> posiblesMedicamentos, boolean accepted, double duracion, int saludFisicaMenor, int probEnfermedadMenor) {
-        super(posiblesMedicamentos, accepted, duracion);
+    public Calambre(ArrayList<Medicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, double duracion, boolean active,
+                    int saludFisicaMenor, int probEnfermedadMenor) {
+        super(posiblesMedicamentos, tipo, accepted, duracion, active);
         this.saludFisicaMenor = saludFisicaMenor;
         this.probEnfermedadMenor = probEnfermedadMenor;
     }
