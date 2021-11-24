@@ -10,11 +10,18 @@ public class Bodega {
     private HashMap<EnumAlimento,Consumible> alimentos;
     private HashMap<EnumMedicamento,Consumible> medicamentos;
     private BodegaJSON bodegaJson;
+    public static Bodega bodega;
 
-    public Bodega() throws IOException {
+    private Bodega() throws IOException {
         this.bodegaJson= BodegaJSON.getInstance();
         this.alimentos = bodegaJson.getHashMapAlimentos();
         this.medicamentos = bodegaJson.getHashMapMedicamentos();
+    }
+
+    public static Bodega getInstance() throws IOException {
+        if (bodega == null)
+            bodega = new Bodega();
+        return bodega;
     }
 
     public void addAlimento(EnumAlimento name, Consumible consumible){
