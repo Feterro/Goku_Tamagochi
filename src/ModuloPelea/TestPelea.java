@@ -13,8 +13,8 @@ public class TestPelea {
     public static void main(String[] args) throws Exception {
 
         new EnemigoFactory();//Fabrica de personajes
-        new HabilidadFactory();//Fabrica de armas
-        Jugador personaje = new Jugador(new Personaje.BuilderPersonaje().setNombre("Goku").addApariencia("Goku.jpg").setVida(500).addArma(HabilidadFactory.getHabilidad("Karate")).build());
+        //new HabilidadFactory();//Fabrica de armas
+        Jugador personaje = new Jugador(new Personaje.BuilderPersonaje().setNombre("Goku").addApariencia("Goku.jpg").setVida(500).addArma(HabilidadFactory.getInstance().getHabilidad("Karate")).build());
 
 
 

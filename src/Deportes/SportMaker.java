@@ -16,8 +16,8 @@ public class SportMaker {
 
     public static void saveDeportes(){
         ArrayList<Deporte> deportes = new ArrayList<>();
-        ArrayList<Arma> armas = new ArrayList<Arma>(); armas.add(HabilidadFactory.getHabilidad("Patada Alta"));
-        ArrayList<Arma> armas2 = new ArrayList<Arma>(); armas.add(HabilidadFactory.getHabilidad("Karate"));
+        ArrayList<Arma> armas = new ArrayList<Arma>(); armas.add(HabilidadFactory.getInstance().getHabilidad("Patada Alta"));
+        ArrayList<Arma> armas2 = new ArrayList<Arma>(); armas.add(HabilidadFactory.getInstance().getHabilidad("Karate"));
 
         deportes.add(new Futbol(20,30,15,EnumDeportes.FUTBOL,armas));
         deportes.add(new Karate(22,35,10,EnumDeportes.KARATE,armas2));

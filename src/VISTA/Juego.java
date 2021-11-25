@@ -258,7 +258,7 @@ public class Juego implements Initializable {
 
     private void inicializarPersonaje(){
         new EnemigoFactory();//Fabrica de personajes
-        new HabilidadFactory();//Fabrica de armas
+
 
         LvlImages primerNivel = new LvlImages();
         primerNivel.addApariencia(EnumActividades.Atacar.name(), "src/VISTA/Imagenes/Personaje/ataque_nivel1.png");
@@ -291,7 +291,7 @@ public class Juego implements Initializable {
                 .addApariencia(0, primerNivel)
                 .addApariencia(10, segundoNivel)
                 .addApariencia(30, tercerNivel)
-                .setVida(500).addArma(HabilidadFactory.getHabilidad("Karate")).build());
+                .setVida(500).addArma(HabilidadFactory.getInstance().getHabilidad("Karate")).build());
     }
 
     @FXML

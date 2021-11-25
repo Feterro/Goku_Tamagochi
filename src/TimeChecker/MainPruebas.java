@@ -11,8 +11,7 @@ public class MainPruebas {
     public static void main(String[] args) {
 //        Thread.currentThread().run();
         new EnemigoFactory();//Fabrica de personajes
-        new HabilidadFactory();//Fabrica de armas
-        Jugador personaje = new Jugador(new Personaje.BuilderPersonaje().setNombre("Goku").addApariencia("Goku.jpg").setVida(500).addArma(HabilidadFactory.getHabilidad("Karate")).build());
+        Jugador personaje = new Jugador(new Personaje.BuilderPersonaje().setNombre("Goku").addApariencia("Goku.jpg").setVida(500).addArma(HabilidadFactory.getInstance().getHabilidad("Karate")).build());
         personaje.controladorSalud.setEnfermo(true);
 
         Partida.getPartida().setTimeChecker(50);

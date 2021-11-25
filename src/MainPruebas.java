@@ -37,7 +37,7 @@ public class MainPruebas {
 
         */
 
-        HabilidadFactory h = new HabilidadFactory();
+        //HabilidadFactory h = new HabilidadFactory();
         System.out.println(SportFactory.getInstance().getDeporte(EnumDeportes.FUTBOL));
 
 

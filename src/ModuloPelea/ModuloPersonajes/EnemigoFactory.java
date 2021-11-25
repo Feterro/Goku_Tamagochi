@@ -26,7 +26,7 @@ public class EnemigoFactory {
 
         //Asignacion de las armas aleatorias al enemigo
         for(int i = 0; i < 3;i++){
-            enemy.getArmas().addArma(HabilidadFactory.getRandomHabilidad());
+            enemy.getArmas().addArma(HabilidadFactory.getInstance().getRandomHabilidad());
         }
         return (Enemigo)enemy;
     }
