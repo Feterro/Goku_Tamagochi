@@ -10,7 +10,6 @@ public class Karate extends Deporte{
         //this.habilidades = habilidades;
     }
 
-    @Override
     public void curar() {
         //goku.getInstance().setEnfermo(False);
     }

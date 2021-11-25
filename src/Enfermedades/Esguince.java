@@ -1,5 +1,6 @@
 package Enfermedades;
 
+import Consumibles.EnumMedicamento;
 import Consumibles.Medicamento;
 
 import java.util.ArrayList;
@@ -17,14 +18,11 @@ public class Esguince  extends AbstractEnfermedad{
         System.out.println("Afectar xd");
     }
 
-    public Esguince(ArrayList<Medicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, double duracion, boolean active,
+    public Esguince(ArrayList<EnumMedicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, boolean active,
                     int saludFisicaMenor) {
-        super(posiblesMedicamentos, tipo, accepted, duracion, active);
+        super(posiblesMedicamentos, tipo, accepted, active);
         this.saludFisicaMenor = saludFisicaMenor;
     }
 
-    @Override
-    public void curar() {
 
-    }
 }

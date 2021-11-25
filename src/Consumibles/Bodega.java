@@ -3,6 +3,7 @@ package Consumibles;
 import Utils.BodegaJSON;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Bodega {
@@ -35,4 +36,30 @@ public class Bodega {
     public HashMap<EnumAlimento, Consumible> getAlimentos() {return alimentos;}
 
     public HashMap<EnumMedicamento, Consumible> getMedicamentos() {return medicamentos;}
+
+    public Alimento getAlimento(EnumAlimento alimento) {
+        return (Alimento) alimentos.get(alimento);
+    }
+
+    public Medicamento getMedicamento(EnumMedicamento medicamento) {
+        return (Medicamento) medicamentos.get(medicamento);
+    }
+
+    public ArrayList<String> getAlimentosDisponibles(){
+        ArrayList<String> disponibles = new ArrayList<>();
+        for(EnumAlimento item : alimentos.keySet()){
+            if(alimentos.get(item).cantidadDisponible > 0)
+                disponibles.add(item.toString());
+        }
+        return disponibles;
+    }
+
+    public ArrayList<String> getMedicamentosDisponibles(){
+        ArrayList<String> disponibles = new ArrayList<>();
+        for(EnumMedicamento item : medicamentos.keySet()){
+            if(medicamentos.get(item).cantidadDisponible > 0)
+                disponibles.add(item.toString());
+        }
+        return disponibles;
+    }
 }

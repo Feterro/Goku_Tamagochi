@@ -7,7 +7,6 @@ public class Futbol extends Deporte {
         super(mejoraSaludFisica, mejoraSaludMnetal, aumentaProbLesion);
     }
 
-    @Override
     public void curar() {
         //goku.getInstance().setEnfermo(False);
     }

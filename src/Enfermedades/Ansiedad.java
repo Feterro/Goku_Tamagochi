@@ -1,5 +1,6 @@
 package Enfermedades;
 
+import Consumibles.EnumMedicamento;
 import Consumibles.Medicamento;
 
 import java.util.ArrayList;
@@ -19,9 +20,9 @@ public class Ansiedad extends AbstractEnfermedad{
         System.out.println("Afectar xd");
     }
 
-    public Ansiedad(ArrayList<Medicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, double duracion, boolean active,
+    public Ansiedad(ArrayList<EnumMedicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, boolean active,
                     int satisfaccionSuennoMenor, int saludSocialMenor) {
-        super(posiblesMedicamentos, tipo, accepted, duracion, active);
+        super(posiblesMedicamentos, tipo, accepted, active);
         this.satisfaccionSuennoMenor = satisfaccionSuennoMenor;
         this.saludSocialMenor = saludSocialMenor;
     }
@@ -42,8 +43,4 @@ public class Ansiedad extends AbstractEnfermedad{
         this.saludSocialMenor = saludSocialMenor;
     }
 
-    @Override
-    public void curar() {
-
-    }
 }

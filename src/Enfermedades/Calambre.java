@@ -1,5 +1,6 @@
 package Enfermedades;
 
+import Consumibles.EnumMedicamento;
 import Consumibles.Medicamento;
 
 import java.util.ArrayList;
@@ -7,13 +8,12 @@ import java.util.ArrayList;
 public class Calambre  extends AbstractEnfermedad{
 
     private int saludFisicaMenor;
-    private int probEnfermedadMenor;
+
 
     public Calambre() {
         //Si los valores menor a esto, le da un calambre
         //Agregar algo mas
         this.saludFisicaMenor = 42;
-        this.probEnfermedadMenor = 50;
     }
 
     @Override
@@ -21,11 +21,11 @@ public class Calambre  extends AbstractEnfermedad{
         System.out.println("Afectar xd");
     }
 
-    public Calambre(ArrayList<Medicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, double duracion, boolean active,
+    public Calambre(ArrayList<EnumMedicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, boolean active,
                     int saludFisicaMenor, int probEnfermedadMenor) {
-        super(posiblesMedicamentos, tipo, accepted, duracion, active);
+        super(posiblesMedicamentos, tipo, accepted, active);
         this.saludFisicaMenor = saludFisicaMenor;
-        this.probEnfermedadMenor = probEnfermedadMenor;
+
     }
 
     public int getSaludFisicaMenor() {
@@ -36,16 +36,5 @@ public class Calambre  extends AbstractEnfermedad{
         this.saludFisicaMenor = saludFisicaMenor;
     }
 
-    public int getProbEnfermedadMenor() {
-        return probEnfermedadMenor;
-    }
 
-    public void setProbEnfermedadMenor(int probEnfermedadMenor) {
-        this.probEnfermedadMenor = probEnfermedadMenor;
-    }
-
-    @Override
-    public void curar() {
-
-    }
 }

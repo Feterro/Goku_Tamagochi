@@ -1,5 +1,10 @@
 package Model;
 
+import Enfermedades.AbstractEnfermedad;
+import Enfermedades.FactoryEnfermedad;
+import ModuloPelea.ModuloPersonajes.Jugador;
+import Strategy.EnumActividades;
+
 import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -15,25 +20,9 @@ public class ControladorSalud implements Serializable {
     private int liquidosConsumidos = 0;
     private int solidosConsumidos = 0;
     private boolean enfermo = false;
-    //public Enfermedad enfermedad; TODO Cambiar a la clase Abstracta
+    public AbstractEnfermedad enfermedad;
 
-
-    public ControladorSalud(int probabilidadEnfermedad, int hambre, int suenno, int satisfaccionBano, int saludSocial, int saludFisica, int liquidosConsumidos, int solidosConsumidos, boolean enfermo) {
-        this.probabilidadEnfermedad = probabilidadEnfermedad;
-        this.satisfaccionHambre = hambre;
-        this.satisfaccionSuenno = suenno;
-        this.satisfaccionBano = satisfaccionBano;
-        this.saludSocial = saludSocial;
-        this.saludFisica = saludFisica;
-        this.liquidosConsumidos = liquidosConsumidos;
-        this.solidosConsumidos = solidosConsumidos;
-        this.enfermo = enfermo;
-    } //TODO Puede que sea innecesario este constructor entonces se borra
-
-
-    public ControladorSalud() {
-
-    }
+    public ControladorSalud() {}
 
     public void verificar(){
         if(satisfaccionHambre < 0 || satisfaccionHambre >100 ){
@@ -53,7 +42,9 @@ public class ControladorSalud implements Serializable {
         }
         int rand_enfermedad = ThreadLocalRandom.current().nextInt(0, 100);
         if (rand_enfermedad < this.probabilidadEnfermedad){
-            System.out.println("Se enferma"); //TODO setear enfermedad
+            this.enfermedad = FactoryEnfermedad.getRandomAssEnfermedad();
+            this.enfermo = true;
+            Jugador.getInstance().etiquetaEstadoActual = EnumActividades.Enfermo;
         }
     }
 

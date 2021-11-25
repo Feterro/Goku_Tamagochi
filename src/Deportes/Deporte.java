@@ -1,6 +1,5 @@
 package Deportes;
 
-import Enfermedades.ICura;
 import Strategy.IControlerStrategy;
 
 public abstract class Deporte implements IControlerStrategy, ICura {

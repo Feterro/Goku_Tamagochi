@@ -1,5 +1,6 @@
 package Enfermedades;
 
+import Consumibles.EnumMedicamento;
 import Consumibles.Medicamento;
 
 import java.util.ArrayList;
@@ -20,9 +21,9 @@ public class Diarrea  extends AbstractEnfermedad{
         System.out.println("Afectar xd");
     }
 
-    public Diarrea(ArrayList<Medicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, double duracion, boolean active,
+    public Diarrea(ArrayList<EnumMedicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, boolean active,
                    int nivelComidaInjeridaMayor, int energiaMayor) {
-        super(posiblesMedicamentos, tipo, accepted, duracion, active);
+        super(posiblesMedicamentos, tipo, accepted, active);
         this.nivelComidaInjeridaMayor = nivelComidaInjeridaMayor;
         this.energiaMayor = energiaMayor;
     }
@@ -43,8 +44,4 @@ public class Diarrea  extends AbstractEnfermedad{
         this.energiaMayor = energiaMayor;
     }
 
-    @Override
-    public void curar() {
-
-    }
 }

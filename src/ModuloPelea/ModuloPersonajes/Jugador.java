@@ -1,11 +1,13 @@
 package ModuloPelea.ModuloPersonajes;
 
+import Consumibles.*;
 import LibreriaPersonajes.TDA.Arma;
 import LibreriaPersonajes.TDA.Personaje;
 import Model.ControladorSalud;
 import Strategy.*;
 import TimeChecker.Partida;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -27,7 +29,7 @@ public class Jugador extends Personaje implements Serializable {
     public EnumActividades etiquetaEstadoActual;
     public String diaDevolucion;
     private static Jugador jugador;
-    private Object consumible;
+    public Consumible consumible;
 
     public Jugador (Personaje personaje){
         super(personaje);
@@ -86,10 +88,10 @@ public class Jugador extends Personaje implements Serializable {
         Jugador.jugador = jugador;
     }
 
-    public void comer(Object comida){//Todo:Cambiar a comida
+    public void comer(EnumAlimento comida) throws IOException {
         estadoActual = controladores.get(EnumActividades.Comer);
         etiquetaEstadoActual = EnumActividades.Comer;
-        this.consumible = comida;
+        this.consumible = Bodega.getInstance().getAlimento(comida);
         estadoActual.satisfacer();
     }
 
@@ -99,10 +101,10 @@ public class Jugador extends Personaje implements Serializable {
         estadoActual.satisfacer();
     }
     
-    public void curar(Object medicamento){
+    public void curar(EnumMedicamento medicamento) throws IOException {
         estadoActual = controladores.get(EnumActividades.Cura);
         etiquetaEstadoActual = EnumActividades.Cura;
-        consumible = medicamento;
+        this.consumible = Bodega.getInstance().getMedicamento(medicamento);
         estadoActual.satisfacer();
     }
     
