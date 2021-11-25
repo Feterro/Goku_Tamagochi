@@ -21,9 +21,9 @@ public class Diarrea  extends AbstractEnfermedad{
         System.out.println("Afectar xd");
     }
 
-    public Diarrea(ArrayList<EnumMedicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, boolean active,
+    public Diarrea(ArrayList<EnumMedicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted,
                    int nivelComidaInjeridaMayor, int energiaMayor) {
-        super(posiblesMedicamentos, tipo, accepted, active);
+        super(posiblesMedicamentos, tipo, accepted);
         this.nivelComidaInjeridaMayor = nivelComidaInjeridaMayor;
         this.energiaMayor = energiaMayor;
     }

@@ -1,6 +1,8 @@
 package Consumibles;
 
-public class Medicamento extends Consumible {
+import Enfermedades.ICura;
+
+public class Medicamento extends Consumible implements ICura {
     private EnumMedicamento nombre;
 
     public Medicamento() {}
@@ -16,5 +18,10 @@ public class Medicamento extends Consumible {
 
     public void setNombre(EnumMedicamento nombre) {
         this.nombre = nombre;
+    }
+
+    @Override
+    public void curar() {
+
     }
 }

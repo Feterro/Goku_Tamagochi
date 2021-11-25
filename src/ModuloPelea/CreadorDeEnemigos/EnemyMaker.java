@@ -1,5 +1,7 @@
 package ModuloPelea.CreadorDeEnemigos;
 
+import Enfermedades.AbstractEnfermedad;
+import Enfermedades.Ansiedad;
 import FileManager.ProcesadorSerializable;
 import LibreriaPersonajes.TDA.Arma;
 import LibreriaPersonajes.TDA.Personaje;
@@ -11,6 +13,7 @@ public class EnemyMaker {
     static final String PATH = "src\\Files\\EnemyList.txt";
 
     public static void saveEnemyList(){
+
         ArrayList<Personaje> enemigos = new ArrayList<>();
         enemigos.add(new Enemigo(new Personaje.BuilderPersonaje().setVida(300).setNombre("Broly").addApariencia("Broly.jpg").build()));
         enemigos.add(new Enemigo(new Personaje.BuilderPersonaje().setVida(275).setNombre("Bu").addApariencia("Bu.jpg").build()));

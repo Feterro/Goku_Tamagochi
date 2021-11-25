@@ -3,10 +3,11 @@ package Enfermedades;
 import Consumibles.EnumMedicamento;
 import Consumibles.Medicamento;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class AbstractEnfermedad{
-    protected  ArrayList<EnumMedicamento> posiblesMedicamentos;
+public abstract class AbstractEnfermedad implements Serializable {
+    protected  ArrayList<EnumMedicamento> posiblesMedicamentos;   //Deberia ser ICURA
     protected  EnumTipoEnfermedad tipo;
     protected  boolean accepted; //No sé pa que
     protected  boolean active;
@@ -18,11 +19,11 @@ public abstract class AbstractEnfermedad{
         this.active = true;
     }
 
-    public AbstractEnfermedad(ArrayList<EnumMedicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, boolean active) {
+    public AbstractEnfermedad(ArrayList<EnumMedicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted) {
         this.posiblesMedicamentos = posiblesMedicamentos;
         this.tipo = tipo;
         this.accepted = accepted;
-        this.active = active;
+        this.active = true;
     }
 
     public ArrayList<EnumMedicamento> getPosiblesMedicamentos() {

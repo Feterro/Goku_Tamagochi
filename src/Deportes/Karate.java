@@ -1,13 +1,14 @@
 package Deportes;
 
+import LibreriaPersonajes.TDA.Arma;
+
 import java.util.ArrayList;
 
 public class Karate extends Deporte{
-    //private ArrayList<Habilidad> habilidades;
 
-    public Karate(int mejoraSaludFisica, int mejoraSaludMnetal, int aumentaProbLesion) {
-        super(mejoraSaludFisica, mejoraSaludMnetal, aumentaProbLesion);
-        //this.habilidades = habilidades;
+    public Karate(int mejoraSaludFisica, int mejoraSaludMental, int aumentaProbLesion,EnumDeportes tipoDeporte,ArrayList<Arma> armas) {
+        super(mejoraSaludFisica, mejoraSaludMental, aumentaProbLesion,tipoDeporte,armas);
+        this.tipoDeporte = tipoDeporte;
     }
 
     public void curar() {

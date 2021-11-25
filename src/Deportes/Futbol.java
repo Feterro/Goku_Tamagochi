@@ -1,10 +1,14 @@
 package Deportes;
 
+import LibreriaPersonajes.TDA.Arma;
+
+import java.util.ArrayList;
+
 public class Futbol extends Deporte {
 
 
-    public Futbol(int mejoraSaludFisica, int mejoraSaludMnetal, int aumentaProbLesion) {
-        super(mejoraSaludFisica, mejoraSaludMnetal, aumentaProbLesion);
+    public Futbol(int mejoraSaludFisica, int mejoraSaludMental, int aumentaProbLesion, EnumDeportes tipoDeporte, ArrayList<Arma> armas) {
+        super(mejoraSaludFisica, mejoraSaludMental, aumentaProbLesion, tipoDeporte,armas);
     }
 
     public void curar() {

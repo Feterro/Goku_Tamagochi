@@ -20,9 +20,9 @@ public class Ansiedad extends AbstractEnfermedad{
         System.out.println("Afectar xd");
     }
 
-    public Ansiedad(ArrayList<EnumMedicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, boolean active,
+    public Ansiedad(ArrayList<EnumMedicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted,
                     int satisfaccionSuennoMenor, int saludSocialMenor) {
-        super(posiblesMedicamentos, tipo, accepted, active);
+        super(posiblesMedicamentos, tipo, accepted);
         this.satisfaccionSuennoMenor = satisfaccionSuennoMenor;
         this.saludSocialMenor = saludSocialMenor;
     }

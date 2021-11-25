@@ -1,7 +1,7 @@
 package Model;
 
 import Enfermedades.AbstractEnfermedad;
-import Enfermedades.FactoryEnfermedad;
+import Enfermedades.DiseaseFactory;
 import ModuloPelea.ModuloPersonajes.Jugador;
 import Strategy.EnumActividades;
 
@@ -42,7 +42,7 @@ public class ControladorSalud implements Serializable {
         }
         int rand_enfermedad = ThreadLocalRandom.current().nextInt(0, 100);
         if (rand_enfermedad < this.probabilidadEnfermedad){
-            this.enfermedad = FactoryEnfermedad.getRandomAssEnfermedad();
+            this.enfermedad = DiseaseFactory.getInstance().getRandomEnfermedad();
             this.enfermo = true;
             Jugador.getInstance().etiquetaEstadoActual = EnumActividades.Enfermo;
         }

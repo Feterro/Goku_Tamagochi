@@ -18,9 +18,9 @@ public class Esguince  extends AbstractEnfermedad{
         System.out.println("Afectar xd");
     }
 
-    public Esguince(ArrayList<EnumMedicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, boolean active,
+    public Esguince(ArrayList<EnumMedicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted,
                     int saludFisicaMenor) {
-        super(posiblesMedicamentos, tipo, accepted, active);
+        super(posiblesMedicamentos, tipo, accepted);
         this.saludFisicaMenor = saludFisicaMenor;
     }
 

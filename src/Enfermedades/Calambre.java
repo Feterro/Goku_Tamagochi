@@ -21,10 +21,11 @@ public class Calambre  extends AbstractEnfermedad{
         System.out.println("Afectar xd");
     }
 
-    public Calambre(ArrayList<EnumMedicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted, boolean active,
+    public Calambre(ArrayList<EnumMedicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted,
                     int saludFisicaMenor, int probEnfermedadMenor) {
-        super(posiblesMedicamentos, tipo, accepted, active);
+        super(posiblesMedicamentos, tipo, accepted);
         this.saludFisicaMenor = saludFisicaMenor;
+
 
     }
 
