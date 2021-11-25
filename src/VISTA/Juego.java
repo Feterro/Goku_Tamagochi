@@ -20,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -144,7 +145,9 @@ public class Juego implements Initializable {
 
     @FXML
     private ComboBox<Deporte> deportesPeleas;
-    
+
+    @FXML
+    private Button estadisticasB;
 
     public void cambiarAmbiente(Ambiente ambiente) throws FileNotFoundException {
         switch (ambiente){
@@ -178,7 +181,9 @@ public class Juego implements Initializable {
             personajeImagen.setVisible(false);
             personajeImagen.setLayoutY(420);
             estados.setVisible(false);
+            estadisticasB.setVisible(false);
         }else{
+            estadisticasB.setVisible(true);
             System.out.println(goku.getApariencia().getImagenPorNivelNombre(10, EnumActividades.Comer.name()));
             InputStream stream = new FileInputStream(goku.getApariencia().getImagenPorNivelNombre(goku.getNivel(), EnumActividades.Caminando.name()));
             Image image = new Image(stream);
@@ -204,11 +209,7 @@ public class Juego implements Initializable {
             }
         }
         for (Pane area: areas){
-            if (area.equals(pane)){
-                area.setVisible(true);
-            }else{
-                area.setVisible(false);
-            }
+            area.setVisible(area.equals(pane));
         }
     }
 
@@ -374,8 +375,14 @@ public class Juego implements Initializable {
     }
 
     @FXML
-    public void comer(ActionEvent event) {
-
+    public void comer(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLS/Comida.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @FXML
@@ -463,6 +470,17 @@ public class Juego implements Initializable {
     @FXML
     public void verInventario(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLS/Inventario.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    public void stats(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLS/statusPersonaje.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.TRANSPARENT);

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane fx:id="comidas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="354.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VISTA.Controladores.Comida">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="360.0" layoutX="-5.0" opacity="0.88" pickOnBounds="true">
+         <image>
+            <Image url="@../Imagenes/Otros/fondoComida.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="45.0" fitWidth="30.0" layoutX="324.0" onMouseClicked="#cerrar" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/Otros/salir.png" />
+         </image>
+      </ImageView>
+      <ListView fx:id="comida" layoutX="43.0" layoutY="14.0" onMouseClicked="#escogerComida" prefHeight="372.0" prefWidth="269.0" stylesheets="@../CSS/listViewComida.css" />
+   </children>
+</Pane>

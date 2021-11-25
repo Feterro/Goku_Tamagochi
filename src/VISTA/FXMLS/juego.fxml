@@ -97,7 +97,7 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
-            <Button blendMode="MULTIPLY" layoutX="14.0" layoutY="216.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="163.0" text="COMER" textAlignment="CENTER" textFill="#1d76a9">
+            <Button blendMode="MULTIPLY" layoutX="14.0" layoutY="216.0" mnemonicParsing="false" onAction="#comer" prefHeight="30.0" prefWidth="163.0" text="COMER" textAlignment="CENTER" textFill="#1d76a9">
                <font>
                   <Font name="Cooper Black" size="25.0" />
                </font>
@@ -386,7 +386,7 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
-            <ComboBox fx:id="deportesPeleas" blendMode="MULTIPLY" layoutX="104.0" layoutY="524.0" prefWidth="150.0" promptText="DEPORTES">
+            <ComboBox fx:id="deportesPeleas" blendMode="MULTIPLY" layoutX="175.0" layoutY="525.0" prefWidth="150.0" promptText="DEPORTES">
                <effect>
                   <InnerShadow height="55.51" radius="27.985" width="58.43">
                      <color>
@@ -409,7 +409,7 @@
                   </InnerShadow>
                </effect>
             </ComboBox>
-            <Button blendMode="MULTIPLY" layoutX="871.0" layoutY="519.0" mnemonicParsing="false" onAction="#hacerDeportePeleas" prefHeight="36.0" prefWidth="224.0" text="HACER DEPORTE" textAlignment="CENTER" textFill="#1d76a9">
+            <Button blendMode="MULTIPLY" layoutX="799.0" layoutY="520.0" mnemonicParsing="false" onAction="#hacerDeportePeleas" prefHeight="36.0" prefWidth="224.0" text="HACER DEPORTE" textAlignment="CENTER" textFill="#1d76a9">
                <font>
                   <Font name="Cooper Black" size="19.0" />
                </font>
@@ -439,8 +439,8 @@
                   </InnerShadow>
                </effect>
             </Button>
-            <ImageView fx:id="imagenDeportePeleas" fitHeight="69.0" fitWidth="88.0" layoutX="993.0" layoutY="195.0" pickOnBounds="true" />
-            <Button blendMode="MULTIPLY" layoutX="115.0" layoutY="347.0" mnemonicParsing="false" onAction="#pelear" prefHeight="27.0" prefWidth="168.0" text="PELEAR" textAlignment="CENTER">
+            <ImageView fx:id="imagenDeportePeleas" fitHeight="69.0" fitWidth="88.0" layoutX="918.0" layoutY="195.0" pickOnBounds="true" />
+            <Button blendMode="MULTIPLY" layoutX="179.0" layoutY="354.0" mnemonicParsing="false" onAction="#pelear" prefHeight="27.0" prefWidth="168.0" text="PELEAR" textAlignment="CENTER">
                <font>
                   <Font name="Cooper Black" size="19.0" />
                </font>
@@ -470,12 +470,12 @@
                   </InnerShadow>
                </effect>
             </Button>
-            <Text fx:id="nombreDeportePeleas" layoutX="993.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="88.0">
+            <Text fx:id="nombreDeportePeleas" layoutX="918.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="88.0">
                <font>
                   <Font name="Elephant" size="12.0" />
                </font>
             </Text>
-            <ComboBox fx:id="ataques" blendMode="MULTIPLY" layoutX="124.0" layoutY="195.0" prefWidth="150.0" promptText="ATAQUES">
+            <ComboBox fx:id="ataques" blendMode="MULTIPLY" layoutX="187.0" layoutY="195.0" prefWidth="150.0" promptText="ATAQUES">
                <effect>
                   <InnerShadow height="55.51" radius="27.985" width="58.43">
                      <color>
@@ -491,7 +491,7 @@
                   </InnerShadow>
                </effect>
             </ComboBox>
-            <ImageView fx:id="fotoHabilidad" fitHeight="101.0" fitWidth="125.0" layoutX="137.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="fotoHabilidad" fitHeight="101.0" fitWidth="125.0" layoutX="200.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="personajeEnemigo" fitHeight="101.0" fitWidth="86.0" layoutX="551.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
@@ -782,5 +782,17 @@
             <ListView fx:id="notificaciones" layoutX="-1.0" layoutY="18.0" prefHeight="117.0" prefWidth="1190.0" />
          </children>
       </Pane>
+      <Button fx:id="estadisticasB" blendMode="MULTIPLY" layoutX="1042.0" layoutY="598.0" mnemonicParsing="false" onAction="#stats" text="ESTADÍSTICAS" visible="false">
+         <font>
+            <Font name="Cooper Black" size="15.0" />
+         </font>
+         <effect>
+            <InnerShadow height="49.07" radius="22.865000000000002" width="44.39">
+               <color>
+                  <Color red="0.18269005417823792" green="0.5779649019241333" blue="0.7473683953285217" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
    </children>
 </Pane>
