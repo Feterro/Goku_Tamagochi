@@ -1,8 +1,10 @@
 package ModuloPelea.ModuloPersonajes;
 
 import Consumibles.*;
+import Deportes.EnumDeportes;
 import LibreriaPersonajes.TDA.Arma;
 import LibreriaPersonajes.TDA.Personaje;
+import Strategy.ControladorDeporte;
 import Model.ControladorSalud;
 import Strategy.*;
 import TimeChecker.Partida;
@@ -26,6 +28,7 @@ public class Jugador extends Personaje implements Serializable {
     public HashMap<EnumActividades, IControlerStrategy> controladores;
     public IControlerStrategy estadoActual;
     public ControladorSalud controladorSalud;
+    public EnumDeportes deporteActual;
     public EnumActividades etiquetaEstadoActual;
     public String diaDevolucion;
     private static Jugador jugador;
@@ -50,9 +53,6 @@ public class Jugador extends Personaje implements Serializable {
         this.controladorSalud = controladorSalud;
     }
 
-//    public void addControlador(EnumActividades name, IControlerStrategy controlador){
-//        controladores.put(name,controlador);
-//    }
 
     public void initializeControllers(){
         controladores.put(EnumActividades.Comer, new ControladorComer());
@@ -60,6 +60,7 @@ public class Jugador extends Personaje implements Serializable {
         controladores.put(EnumActividades.Social, new ControladorSocial());
         controladores.put(EnumActividades.Bano, new ControladorBano());
         controladores.put(EnumActividades.Cura, new ControladorCura());
+        controladores.put(EnumActividades.Deporte, new ControladorDeporte());
     }
 
     //Metodos de pelea.
@@ -92,6 +93,7 @@ public class Jugador extends Personaje implements Serializable {
         estadoActual = controladores.get(EnumActividades.Comer);
         etiquetaEstadoActual = EnumActividades.Comer;
         this.consumible = Bodega.getInstance().getAlimento(comida);
+        this.consumible.consumir();
         estadoActual.satisfacer();
     }
 
@@ -105,13 +107,16 @@ public class Jugador extends Personaje implements Serializable {
         estadoActual = controladores.get(EnumActividades.Cura);
         etiquetaEstadoActual = EnumActividades.Cura;
         this.consumible = Bodega.getInstance().getMedicamento(medicamento);
+        this.consumible.consumir();
+        Bodega.getInstance().actualizarBodega();
         estadoActual.satisfacer();
     }
     
-    public void ejercitarse(){
+    public void ejercitarse(EnumDeportes deporteActual){
+        this.deporteActual = deporteActual;
         estadoActual = controladores.get(EnumActividades.Ejercitar);
         etiquetaEstadoActual = EnumActividades.Ejercitar;
-        (estadoActual).satisfacer();
+        estadoActual.satisfacer();
     }
     
     public void social(){
@@ -121,13 +126,13 @@ public class Jugador extends Personaje implements Serializable {
     }
 
 //Cero que el creciento se va  a pasar con un boton.
-    public void verifarEdad(int edad){
-        //Cuando termina el dia entonces
-        //Reviso si la cantidad de dias que han pasado ven un año
-        //Numero de dias % dias por año
-        this.nivel = edad;
-        //this.aparienciaActual = apariencias.get(nivel,estadoActual.toString());//Apariencia pone: nivel,estadoActual
-    }
+//    public void verifarEdad(int edad){
+//        //Cuando termina el dia entonces
+//        //Reviso si la cantidad de dias que han pasado ven un año
+//        //Numero de dias % dias por año
+//        this.nivel = edad;
+//        //this.aparienciaActual = apariencias.get(nivel,estadoActual.toString());//Apariencia pone: nivel,estadoActual
+//    }
 
     public void verificarMimir(){
         //Crear una alerta en pantalla para preguntar si quiere dormir
@@ -153,5 +158,11 @@ public class Jugador extends Personaje implements Serializable {
             }
         }
     }
+
+    public ControladorSalud getControladorSalud(){
+        return this.controladorSalud;
+    }
+
+
 
 }

@@ -72,4 +72,21 @@ public class BodegaJSON {
     }
 
 
+    public void updateJSON() throws IOException {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new File(this.URL)));
+            writer.write("");
+            writer.write("{\"alimentos\":");
+            writer.write(json.toJson(getAlimentos()));
+            writer.write(",\"medicamentos\":");
+            writer.write(json.toJson(getMedicamentos()));
+            writer.write("}");
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+
 }

@@ -2,6 +2,7 @@ package Enfermedades;
 
 import Consumibles.EnumMedicamento;
 import Consumibles.Medicamento;
+import ModuloPelea.ModuloPersonajes.Jugador;
 
 import java.util.ArrayList;
 
@@ -15,7 +16,10 @@ public class Esguince  extends AbstractEnfermedad{
 
     @Override
     public void afectar() {
-        System.out.println("Afectar xd");
+
+        Jugador.getInstance().velocidad = 45;
+        Jugador.getInstance().controladorSalud.modSaludFisica(-15);
+        Jugador.getInstance().controladorSalud.modSaludSocial(-15);
     }
 
     public Esguince(ArrayList<EnumMedicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted,

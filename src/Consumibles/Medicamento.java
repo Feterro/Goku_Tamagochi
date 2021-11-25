@@ -1,11 +1,11 @@
 package Consumibles;
 
-import Enfermedades.ICura;
+import ModuloPelea.ModuloPersonajes.Jugador;
 
-public class Medicamento extends Consumible implements ICura {
+public class Medicamento extends Consumible {
     private EnumMedicamento nombre;
 
-    public Medicamento() {}
+    public Medicamento(){}
 
     public Medicamento(int cantidadDisponible, EnumMedicamento nombre) {
         super(cantidadDisponible);
@@ -20,8 +20,8 @@ public class Medicamento extends Consumible implements ICura {
         this.nombre = nombre;
     }
 
-    @Override
-    public void curar() {
-
+    public void curar(){
+        Jugador.getInstance().getControladorSalud().setEnfermo(false);
     }
 }
+

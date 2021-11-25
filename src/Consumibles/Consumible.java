@@ -18,4 +18,11 @@ public abstract class Consumible {
     public void setCantidadDisponible(int cantidadDisponible) {
         this.cantidadDisponible = cantidadDisponible;
     }
+
+    public void consumir(){
+        if(cantidadDisponible>0){
+            cantidadDisponible-=1;
+        }
+    }
+
 }

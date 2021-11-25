@@ -2,15 +2,17 @@ package Enfermedades;
 
 import Consumibles.EnumMedicamento;
 import Consumibles.Medicamento;
+import Deportes.EnumDeportes;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public abstract class AbstractEnfermedad implements Serializable {
-    protected  ArrayList<EnumMedicamento> posiblesMedicamentos;   //Deberia ser ICURA
-    protected  EnumTipoEnfermedad tipo;
-    protected  boolean accepted; //No sé pa que
-    protected  boolean active;
+    protected ArrayList<EnumMedicamento> posiblesMedicamentos;
+    protected ArrayList<EnumDeportes> posiblesDeportes;
+    protected EnumTipoEnfermedad tipo;
+    protected boolean accepted; //No sé pa que
+    protected boolean active;
 
 
     public AbstractEnfermedad() {
@@ -30,6 +32,10 @@ public abstract class AbstractEnfermedad implements Serializable {
         return posiblesMedicamentos;
     }
 
+    public ArrayList<EnumDeportes> getPosiblesDeportes() {
+        return posiblesDeportes;
+    }
+
     public void setPosiblesMedicamentos(ArrayList<EnumMedicamento> posiblesMedicamentos) {
         this.posiblesMedicamentos = posiblesMedicamentos;
     }
@@ -46,7 +52,7 @@ public abstract class AbstractEnfermedad implements Serializable {
 
     public void setTipo(EnumTipoEnfermedad tipo) {this.tipo = tipo;}
 
-    public boolean curar(EnumMedicamento medicamento){
+    public boolean curarMedicamento(EnumMedicamento medicamento){
         for (EnumMedicamento med: posiblesMedicamentos) {
             if (med.toString().equals(medicamento.toString()))
                 return true;
@@ -54,6 +60,13 @@ public abstract class AbstractEnfermedad implements Serializable {
         return false;
     }
 
+    public boolean curarDeporte(EnumDeportes deporte){
+        for (EnumDeportes dep: posiblesDeportes) {
+            if (dep.toString().equals(deporte.toString()))
+                return true;
+        }
+        return false;
+    }
     public abstract void afectar();
 
 }

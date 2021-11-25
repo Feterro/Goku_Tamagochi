@@ -10,7 +10,7 @@ public class ControladorComer implements IControlerStrategy{
     Object comida;//Cambiar a comida
 
     @Override
-    public void satisfacer(){ //TODO Aumentar Liquidos y Solidos consumidos
+    public void satisfacer(){
         int mejora = ((Alimento)Jugador.getInstance().consumible).getPuntosEnergía(); // consumible.getmejora()
         EnumTipoAlimento tipo = ((Alimento)Jugador.getInstance().consumible).getTipo();
         if(tipo == EnumTipoAlimento.LIQUIDO)

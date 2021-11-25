@@ -2,6 +2,7 @@ package Enfermedades;
 
 import Consumibles.EnumMedicamento;
 import Consumibles.Medicamento;
+import ModuloPelea.ModuloPersonajes.Jugador;
 
 import java.util.ArrayList;
 
@@ -17,7 +18,9 @@ public class Ansiedad extends AbstractEnfermedad{
 
     @Override
     public void afectar() {
-        System.out.println("Afectar xd");
+        Jugador.getInstance().velocidad = 55;
+        Jugador.getInstance().controladorSalud.modSaludSocial(-25);
+        Jugador.getInstance().controladorSalud.modSatisfaccionSuenno(25);
     }
 
     public Ansiedad(ArrayList<EnumMedicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted,

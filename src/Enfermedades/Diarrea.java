@@ -2,6 +2,8 @@ package Enfermedades;
 
 import Consumibles.EnumMedicamento;
 import Consumibles.Medicamento;
+import ModuloPelea.ModuloPersonajes.Jugador;
+import TimeChecker.Partida;
 
 import java.util.ArrayList;
 
@@ -18,7 +20,9 @@ public class Diarrea  extends AbstractEnfermedad{
 
     @Override
     public void afectar() {
-        System.out.println("Afectar xd");
+        Jugador.getInstance().controladorSalud.modSolidosConsumidos(30);
+        Jugador.getInstance().controladorSalud.modSatisfaccionBano(-30);
+        Jugador.getInstance().controladorSalud.modSatisfaccionHambre(-50);
     }
 
     public Diarrea(ArrayList<EnumMedicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted,

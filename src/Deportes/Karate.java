@@ -1,22 +1,21 @@
 package Deportes;
 
 import LibreriaPersonajes.TDA.Arma;
+import ModuloPelea.ModuloPersonajes.Jugador;
 
 import java.util.ArrayList;
 
 public class Karate extends Deporte{
 
-    public Karate(int mejoraSaludFisica, int mejoraSaludMental, int aumentaProbLesion,EnumDeportes tipoDeporte,ArrayList<Arma> armas) {
-        super(mejoraSaludFisica, mejoraSaludMental, aumentaProbLesion,tipoDeporte,armas);
+    public Karate(int aumentaProbLesion,EnumDeportes tipoDeporte,ArrayList<Arma> armas) {
+        super(aumentaProbLesion,tipoDeporte,armas);
         this.tipoDeporte = tipoDeporte;
-    }
-
-    public void curar() {
-        //goku.getInstance().setEnfermo(False);
     }
 
     @Override
     public void satisfacer() {
-        //goku.getInstance().Moverse....
+        Jugador.getInstance().getControladorSalud().modSaludSocial(10);
+        Jugador.getInstance().velocidad -= 10;
+        Jugador.getInstance().getControladorSalud().modSaludFisica(-5);
     }
 }

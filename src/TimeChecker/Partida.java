@@ -1,5 +1,7 @@
 package TimeChecker;
 
+import LibreriaPersonajes.TDA.Personaje;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 

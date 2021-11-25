@@ -2,6 +2,8 @@ package Enfermedades;
 
 import Consumibles.EnumMedicamento;
 import Consumibles.Medicamento;
+import LibreriaPersonajes.TDA.Personaje;
+import ModuloPelea.ModuloPersonajes.Jugador;
 
 import java.util.ArrayList;
 
@@ -18,7 +20,9 @@ public class Calambre  extends AbstractEnfermedad{
 
     @Override
     public void afectar() {
-        System.out.println("Afectar xd");
+        Jugador.getInstance().velocidad = 30;
+        Jugador.getInstance().controladorSalud.modSaludFisica(-30);
+        Jugador.getInstance().controladorSalud.modSatisfaccionSuenno(-10);
     }
 
     public Calambre(ArrayList<EnumMedicamento> posiblesMedicamentos, EnumTipoEnfermedad tipo, boolean accepted,

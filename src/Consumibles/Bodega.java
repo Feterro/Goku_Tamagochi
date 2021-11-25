@@ -62,4 +62,15 @@ public class Bodega {
         }
         return disponibles;
     }
+
+    /**
+     * Actualiza toda la bodegacada vez que se haga un cambio.
+     * Llamar despues de hacerle cualquier cambio a un alimento o medicamento si se quiere actualizar inmediatamente
+     * @throws IOException
+     */
+    public void actualizarBodega() throws IOException {
+        bodegaJson.updateJSON();
+    }
+
+
 }
