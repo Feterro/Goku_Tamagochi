@@ -11,6 +11,8 @@ public class Diarrea  extends AbstractEnfermedad{
     //Ver si estos los tendrá el personaje por el controllerSalud no los tiene
     private int nivelComidaInjeridaMayor;
     private int energiaMayor;
+    private static final long serialVersionUID = 44003L;
+
 
     public Diarrea() {
         //Cuando tiene mucha energia y comió mucho, le da hambre

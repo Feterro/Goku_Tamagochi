@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 public class Karate extends Deporte{
 
+    private static final long serialVersionUID = 4368L;
+
     public Karate(int aumentaProbLesion,EnumDeportes tipoDeporte,ArrayList<Arma> armas) {
         super(aumentaProbLesion,tipoDeporte,armas);
         this.tipoDeporte = tipoDeporte;

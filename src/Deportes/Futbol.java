@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 public class Futbol extends Deporte {
 
+    private static final long serialVersionUID = 4367L;
+
 
     public Futbol(int aumentaProbLesion, EnumDeportes tipoDeporte, ArrayList<Arma> armas) {
         super(aumentaProbLesion, tipoDeporte,armas);

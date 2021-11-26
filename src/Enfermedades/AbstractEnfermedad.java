@@ -8,6 +8,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public abstract class AbstractEnfermedad implements Serializable {
+
+    private static final long serialVersionUID = 44000L;
+
+
     protected ArrayList<EnumMedicamento> posiblesMedicamentos;
     protected ArrayList<EnumDeportes> posiblesDeportes;
     protected EnumTipoEnfermedad tipo;

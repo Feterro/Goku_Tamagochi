@@ -9,6 +9,8 @@ import java.util.ArrayList;
 public class Ansiedad extends AbstractEnfermedad{
     //Si los atributos de salud menores a esto, le da amnsiedad
     public int satisfaccionSuennoMenor;
+    private static final long serialVersionUID = 44001L;
+
     public int saludSocialMenor;
 
     public Ansiedad() {

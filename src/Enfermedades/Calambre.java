@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public class Calambre  extends AbstractEnfermedad{
 
+    private static final long serialVersionUID = 44002L;
+
     private int saludFisicaMenor;
 
 

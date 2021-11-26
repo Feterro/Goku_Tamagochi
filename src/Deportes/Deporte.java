@@ -12,7 +12,7 @@ public abstract class Deporte implements Serializable, IControlerStrategy {
     protected  int aumentaProbLesion; //Indica cuanto aumenta la probab
     protected  EnumDeportes tipoDeporte;
     protected ArrayList<Arma> armas;
-    private static final long serialVersionUID = 2001L;
+    private static final long serialVersionUID = 4366L;
 
 
     public Deporte() {}

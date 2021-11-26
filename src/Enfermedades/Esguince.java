@@ -9,6 +9,8 @@ import java.util.ArrayList;
 public class Esguince  extends AbstractEnfermedad{
     //No sé como saber cuando le dio un Esguince a menos que sea provocado por un deporte
     private int saludFisicaMenor;
+    private static final long serialVersionUID = 44006L;
+
 
     public Esguince() {
         this.saludFisicaMenor = 30;

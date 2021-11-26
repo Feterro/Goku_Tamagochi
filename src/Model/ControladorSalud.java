@@ -15,6 +15,7 @@ public class ControladorSalud implements Serializable {
     private int satisfaccionBano = 100;
     private int saludSocial = 100;
     private int saludFisica = 100;
+    private static final long serialVersionUID = 45000L;
 
     private int probabilidadEnfermedad = 0;
     private int liquidosConsumidos = 0;
