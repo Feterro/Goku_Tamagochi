@@ -1,6 +1,7 @@
 package TimeChecker;
 
 import ModuloPelea.ModuloPersonajes.Jugador;
+import VISTA.Juego;
 
 import java.io.Serializable;
 import java.util.Timer;
@@ -13,6 +14,7 @@ public class TimeChecker extends Thread implements Serializable {
     private int anioActual = 0;
     private Reloj reloj;
     private Logger logger = new Logger();
+    private Juego juego;
     private static final long serialVersionUID = 1007L;
 
 

@@ -6,7 +6,6 @@ import ModuloPelea.ModuloPersonajes.EnemigoFactory;
 import ModuloPelea.ModuloPersonajes.HabilidadFactory;
 import ModuloPelea.ModuloPersonajes.Jugador;
 import Strategy.EnumActividades;
-import VISTA.Ambiente;
 import VISTA.Controladores.Deporte;
 import VISTA.Controladores.Velocidad;
 import javafx.animation.Animation;
@@ -46,6 +45,8 @@ public class Juego implements Initializable {
     private ArrayList<Pane> areas = new ArrayList<>();
     private Timeline moverse;
     private Jugador goku = Jugador.getInstance();
+
+    public Juego(){}
 
     @FXML
     private ImageView ambiente;
