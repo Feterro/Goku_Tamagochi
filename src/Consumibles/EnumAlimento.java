@@ -5,6 +5,7 @@ public enum EnumAlimento {
     HAMBURGUESA,
     BATIDO,
     MANZANA,
+    CAFE,
     PERA,
     BANANO,
     LECHUGA,

@@ -157,24 +157,12 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
-            <Button blendMode="MULTIPLY" layoutX="13.0" layoutY="282.0" mnemonicParsing="false" onAction="#defecar" prefHeight="30.0" prefWidth="163.0" text="DEFECAR" textAlignment="CENTER" textFill="#1d76a9">
+            <Button blendMode="MULTIPLY" layoutX="5.0" layoutY="264.0" mnemonicParsing="false" onAction="#irBano" prefHeight="45.0" prefWidth="175.0" text="IR AL BAÑO" textAlignment="CENTER" textFill="#1d76a9">
                <font>
-                  <Font name="Cooper Black" size="24.0" />
+                  <Font name="Cooper Black" size="20.0" />
                </font>
                <effect>
                   <InnerShadow height="102.88" radius="46.845" width="86.5">
-                     <color>
-                        <Color red="0.21960784494876862" green="0.4588235318660736" blue="0.8196078538894653" />
-                     </color>
-                  </InnerShadow>
-               </effect>
-            </Button>
-            <Button blendMode="MULTIPLY" layoutX="14.0" layoutY="216.0" mnemonicParsing="false" onAction="#orinar" prefHeight="30.0" prefWidth="163.0" text="ORINAR" textAlignment="CENTER" textFill="#1d76a9">
-               <font>
-                  <Font name="Cooper Black" size="24.0" />
-               </font>
-               <effect>
-                  <InnerShadow choke="0.06" height="159.03" radius="63.2225" width="95.86">
                      <color>
                         <Color red="0.21960784494876862" green="0.4588235318660736" blue="0.8196078538894653" />
                      </color>
@@ -696,7 +684,7 @@
                   <Image url="@../Imagenes/Otros/salir.png" />
                </image>
             </ImageView>
-            <Button blendMode="MULTIPLY" layoutX="448.0" layoutY="517.0" mnemonicParsing="false" onAction="#verInventario" prefHeight="39.0" prefWidth="271.0" text="VER INVENTARIO" textAlignment="CENTER" textFill="#1d76a9">
+            <Button blendMode="MULTIPLY" layoutX="346.0" layoutY="521.0" mnemonicParsing="false" onAction="#verInventario" prefHeight="39.0" prefWidth="271.0" text="VER INVENTARIO" textAlignment="CENTER" textFill="#1d76a9">
                <font>
                   <Font name="Cooper Black" size="23.0" />
                </font>
@@ -726,6 +714,18 @@
                   </InnerShadow>
                </effect>
             </Button>
+            <Button fx:id="curar" blendMode="MULTIPLY" layoutX="678.0" layoutY="521.0" mnemonicParsing="false" onAction="#curar" prefHeight="30.0" prefWidth="163.0" text="CURAR" textAlignment="CENTER" textFill="#1d76a9">
+               <font>
+                  <Font name="Cooper Black" size="24.0" />
+               </font>
+               <effect>
+                  <InnerShadow height="85.34" radius="40.1225" width="77.15">
+                     <color>
+                        <Color red="0.21960784494876862" green="0.4588235318660736" blue="0.8196078538894653" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
          </children>
       </Pane>
       <ImageView fx:id="personajeImagen" fitHeight="101.0" fitWidth="86.0" layoutX="235.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true" visible="false">
@@ -733,7 +733,7 @@
             <Image url="@../Imagenes/Personaje/estarQuieto_nivel2.png" />
          </image>
       </ImageView>
-      <Pane fx:id="estados" layoutX="154.0" prefHeight="46.0" prefWidth="951.0" visible="false">
+      <Pane fx:id="estados" layoutX="154.0" onMouseClicked="#cambiarMood" prefHeight="46.0" prefWidth="951.0" visible="false">
          <children>
             <Text fill="#2b63d4" layoutX="27.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Humor">
                <font>
@@ -790,6 +790,18 @@
             <InnerShadow height="49.07" radius="22.865000000000002" width="44.39">
                <color>
                   <Color red="0.18269005417823792" green="0.5779649019241333" blue="0.7473683953285217" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
+      <Button blendMode="MULTIPLY" layoutX="1080.0" layoutY="672.0" mnemonicParsing="false" onAction="#cambiarEdad" text="Cambiar nivel">
+         <font>
+            <Font name="Elephant" size="12.0" />
+         </font>
+         <effect>
+            <InnerShadow height="63.11" radius="33.394999999999996" width="72.47">
+               <color>
+                  <Color red="0.21789473295211792" green="0.5987368226051331" blue="0.8526315689086914" />
                </color>
             </InnerShadow>
          </effect>

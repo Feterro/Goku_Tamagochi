@@ -144,11 +144,16 @@ public class Reloj implements Serializable {
     }
 
     public String verHora(){
-        String tiempo = "Segundos: " + segundos;
-            tiempo += ", Minutos: " + minutos;
-            tiempo += ", Horas: " + horas;
-            tiempo += ", Días: " + dias;
-            tiempo += ", Años: " + anios;
+        String tiempo = "Segundo: " + segundos;
+            tiempo += ", Minuto: " + minutos;
+            tiempo += ", Hora: " + horas;
+        return tiempo;
+    }
+
+    public String verFecha(){
+        String tiempo = "";
+        tiempo += ", Día: " + dias;
+        tiempo += ", Año: " + anios;
         return tiempo;
     }
 

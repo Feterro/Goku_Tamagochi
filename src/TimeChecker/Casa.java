@@ -1,5 +1,8 @@
 package TimeChecker;
 
+import Consumibles.Bodega;
+
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -8,6 +11,15 @@ public class Casa implements Serializable {
     private Habitacion habitacionActual;
     private HashMap<String, Habitacion> habitaciones = new HashMap<String, Habitacion>();
     private static final long serialVersionUID = 1001L;
+    public Bodega bodega;
+
+    {//ACOMODAR más bonito
+        try {
+            bodega = Bodega.getInstance();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Casa(){
 

@@ -1,5 +1,8 @@
 package VISTA.Controladores;
 
+import Consumibles.Bodega;
+import Consumibles.EnumAlimento;
+import Consumibles.EnumMedicamento;
 import VISTA.Controladores.DragWindow;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,7 +12,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Inventario implements Initializable, DragWindow {
@@ -29,8 +34,19 @@ public class Inventario implements Initializable, DragWindow {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ArrayList<String> articulos = new ArrayList<>();
+        try {
+            for (EnumMedicamento medicamento: Bodega.getInstance().getMedicamentosDisponibles()){
+                articulos.add(medicamento.name());
+            }
+            for (EnumAlimento alimento: Bodega.bodega.getAlimentosDisponibles()){
+                articulos.add(alimento.name());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         onDraggedScene(invent);
-        inventario.getItems().add("Hola");
+        inventario.getItems().addAll(articulos);
 
     }
 }

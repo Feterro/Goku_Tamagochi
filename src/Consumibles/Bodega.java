@@ -3,10 +3,11 @@ package Consumibles;
 import Utils.BodegaJSON;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Bodega {
+public class Bodega implements Serializable {
 
     private HashMap<EnumAlimento,Consumible> alimentos;
     private HashMap<EnumMedicamento,Consumible> medicamentos;
@@ -45,20 +46,20 @@ public class Bodega {
         return (Medicamento) medicamentos.get(medicamento);
     }
 
-    public ArrayList<String> getAlimentosDisponibles(){
-        ArrayList<String> disponibles = new ArrayList<>();
+    public ArrayList<EnumAlimento> getAlimentosDisponibles(){
+        ArrayList<EnumAlimento> disponibles = new ArrayList<>();
         for(EnumAlimento item : alimentos.keySet()){
             if(alimentos.get(item).cantidadDisponible > 0)
-                disponibles.add(item.toString());
+                disponibles.add(item);
         }
         return disponibles;
     }
 
-    public ArrayList<String> getMedicamentosDisponibles(){
-        ArrayList<String> disponibles = new ArrayList<>();
+    public ArrayList<EnumMedicamento> getMedicamentosDisponibles(){
+        ArrayList<EnumMedicamento> disponibles = new ArrayList<>();
         for(EnumMedicamento item : medicamentos.keySet()){
             if(medicamentos.get(item).cantidadDisponible > 0)
-                disponibles.add(item.toString());
+                disponibles.add(item);
         }
         return disponibles;
     }
@@ -70,6 +71,14 @@ public class Bodega {
      */
     public void actualizarBodega() throws IOException {
         bodegaJson.updateJSON();
+    }
+
+    public void llenarBodega(){
+        for(Consumible item : alimentos.values()){
+            item.agregar();
+            item.agregar();
+            item.agregar();
+        }
     }
 
 

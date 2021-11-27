@@ -1,6 +1,7 @@
 package TimeChecker;
 
 import LibreriaPersonajes.TDA.Personaje;
+import VISTA.Juego;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ public class Partida implements Serializable {
     private Casa casa;
     private TimeChecker timeChecker;
     public String tex = "PRUEBA";
+    private Juego juego;
     private static Partida partida;
 
     private static final long serialVersionUID = 1004L;
@@ -17,6 +19,14 @@ public class Partida implements Serializable {
     public Partida(){
        // timeChecker = new TimeChecker(this, segundo, segundosMaximo, minutosMaximo, horasMaximo, diasMaximo);
 
+    }
+
+    public void setJuego(Juego juego) {
+        this.juego = juego;
+    }
+
+    public Juego getJuego(){
+        return juego;
     }
 
 //    public Partida(int segundo){

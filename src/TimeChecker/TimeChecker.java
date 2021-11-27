@@ -1,9 +1,15 @@
 package TimeChecker;
 
 import ModuloPelea.ModuloPersonajes.Jugador;
+import VISTA.Ambiente;
 import VISTA.Juego;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -14,9 +20,7 @@ public class TimeChecker extends Thread implements Serializable {
     private int anioActual = 0;
     private Reloj reloj;
     private Logger logger = new Logger();
-    private Juego juego;
     private static final long serialVersionUID = 1007L;
-
 
     public TimeChecker(int segundo ){
         this.segundo = segundo;
@@ -39,7 +43,7 @@ public class TimeChecker extends Thread implements Serializable {
         return segundo;
     }
 
-    public TimerTask iniciarTiempo(){
+    public TimerTask iniciarTiempo() {
         TimerTask tareaNuevoSegundo = new TimerTask() {
             @Override
             public void run() {
@@ -55,19 +59,35 @@ public class TimeChecker extends Thread implements Serializable {
                     // primera parte del dia
                     if(reloj.getDias() == 1)
                         Jugador.getInstance().setNombre("Pepe");
+                    try {
+                        Partida.getPartida().getJuego().cambiarAmbiente(Ambiente.MANANA);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     System.out.println("Primera parte del día");
                 }
                 else if (reloj.getHoras() == parteDia * 2 && reloj.getMinutos() == 0 && reloj.getSegundos() == 0){
                     // Segunda parte del día
+                    try {
+                        Partida.getPartida().getJuego().cambiarAmbiente(Ambiente.TARDE);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     System.out.println("Segunda parte del día");
                 }
                 else if (reloj.getHoras() == 0 && reloj.getMinutos() == 0 && reloj.getSegundos() == 0){
                     // Ultima parte del día
-                    Jugador.getInstance().verificarMuerte();//TODO cambiar esto porque se llama notificacion de morir
-                    Jugador.getInstance().verificarMimir();//TODO cambiar esto porque se llama notificacion de mimir
+//                    Jugador.getInstance().verificarMuerte();//TODO cambiar esto porque se llama notificacion de morir
+//                    Jugador.getInstance().verificarMimir();//TODO cambiar esto porque se llama notificacion de mimir
+                    try {
+                        Partida.getPartida().getJuego().cambiarAmbiente(Ambiente.NOCHE);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     System.out.println("A mimir");
                 }
                 System.out.println(reloj.verHora());
+                Partida.getPartida().getJuego().cambiarHoraYdias(reloj.verHora(), reloj.verFecha());
             }
         };
         return tareaNuevoSegundo;

@@ -5,7 +5,8 @@ public abstract class Consumible {
     //Efecto no está porque solo lo tiene alimento, med no ocupa
     //Nombres son diferentes enums
 
-    public Consumible() {}
+    public Consumible() {
+    }
 
     public Consumible(int cantidadDisponible) {
         this.cantidadDisponible = cantidadDisponible;
@@ -19,10 +20,13 @@ public abstract class Consumible {
         this.cantidadDisponible = cantidadDisponible;
     }
 
-    public void consumir(){
-        if(cantidadDisponible>0){
-            cantidadDisponible-=1;
+    public void consumir() {
+        if (cantidadDisponible > 0) {
+            cantidadDisponible -= 1;
         }
     }
 
+    public void agregar() {
+        cantidadDisponible -= 1;
+    }
 }

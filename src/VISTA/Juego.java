@@ -1,5 +1,6 @@
 package VISTA;
 
+import Consumibles.Bodega;
 import LibreriaPersonajes.Apariencia.LvlImages;
 import LibreriaPersonajes.TDA.Personaje;
 import ModuloPelea.ModuloPersonajes.EnemigoFactory;
@@ -30,23 +31,20 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
+import TimeChecker.Partida;
 
-public class Juego implements Initializable {
+public class Juego implements Initializable{
 
     private ArrayList<Pane> areas = new ArrayList<>();
     private Timeline moverse;
     private Jugador goku = Jugador.getInstance();
-
-    public Juego(){}
+    private int edadGoku = 1;
 
     @FXML
     private ImageView ambiente;
@@ -149,6 +147,10 @@ public class Juego implements Initializable {
 
     @FXML
     private Button estadisticasB;
+
+    public void cambiarHumor(String hum){
+        humor.setText(hum);
+    }
 
     public void cambiarAmbiente(Ambiente ambiente) throws FileNotFoundException {
         switch (ambiente){
@@ -296,6 +298,15 @@ public class Juego implements Initializable {
                 .setVida(500).addArma(HabilidadFactory.getInstance().getHabilidad("Karate")).build());
     }
 
+    public void cambiarHoraYdias(String horaS, String dia){
+        numeroDias.setText(dia);
+        hora.setText(horaS);
+    }
+
+    @FXML
+    public void cambiarMood(MouseEvent event){
+        cambiarHumor(String.valueOf(goku.etiquetaEstadoActual));
+    }
     @FXML
     public void cerrar(MouseEvent event){
         //agregar ventana de preguntar
@@ -387,6 +398,17 @@ public class Juego implements Initializable {
     }
 
     @FXML
+    public void curar(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLS/Medicinas.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
     public void hacerDeportePis(ActionEvent event) throws FileNotFoundException {
         Deporte deporte = deportesPisicina.getSelectionModel().getSelectedItem();
         if (deporte != null){
@@ -444,24 +466,25 @@ public class Juego implements Initializable {
     public void pelear(ActionEvent event) {
 
     }
-
-    @FXML
-    public void defecar(ActionEvent event) {
-
-    }
-
+    
     @FXML
     public void dormir(ActionEvent event) {
-
+        //if puede dormir dormir
     }
 
     @FXML
-    public void orinar(ActionEvent event) {
-
+    public void irBano(ActionEvent event) {
+        personajeImagen.setLayoutX(280);
+        personajeImagen.setLayoutY(400);
+        goku.bano(); //preguntar después si hay que hacer algo más
+        humor.setText(goku.etiquetaEstadoActual.name());
+        moverse.stop();
     }
 
     @FXML
-    public void recogerCultivos(ActionEvent event){
+    public void recogerCultivos(ActionEvent event) throws IOException {
+        Bodega.getInstance().llenarBodega();
+        //Bodega.getInstance().actualizarBodega();
         cultivos.setVisible(false);
         moverse.stop();
         notificaciones.getItems().remove(notificaciones.getItems().get(notificaciones.getItems().size()-1));
@@ -490,8 +513,31 @@ public class Juego implements Initializable {
         stage.show();
     }
 
+    @FXML
+    public void cambiarEdad(ActionEvent event){
+        if (edadGoku == 3){
+            edadGoku = 1;
+            goku.setNivel(0);
+            edad.setText(String.valueOf(goku.getNivel()));
+        }
+        else {
+            if (edadGoku == 2){
+                goku.setNivel(10);
+            }else{
+                goku.setNivel(30);
+            }
+            edad.setText(String.valueOf(goku.getNivel()));
+            edadGoku = edadGoku + 1;
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Partida.getPartida().setJuego(this);
+        Partida.getPartida().setTimeChecker(1000);
+        Partida.getPartida().getTimeChecker().setReloj(3, 3, 6, 6);
+        Timer timer = new Timer();
+        timer.schedule(Partida.getPartida().getTimeChecker().iniciarTiempo(), 0, Partida.getPartida().getTimeChecker().getSegundo());
         inicializarPersonaje();
         edad.setText(String.valueOf(goku.getNivel()));
         deportesPisicina.setItems(FXCollections.observableArrayList(Deporte.values()));
@@ -499,10 +545,11 @@ public class Juego implements Initializable {
         personajeImagen.setVisible(false);
         meterALista();
         notificaciones.getItems().add("");
-        try {
-            cambiarAmbiente(Ambiente.NOCHE);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            cambiarAmbiente(Ambiente.NOCHE);
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
     }
+
 }

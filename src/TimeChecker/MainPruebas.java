@@ -19,8 +19,8 @@ public class MainPruebas {
 
 //        partida.getTimeChecker().getReloj().getLogger().
 //        TimeChecker timeChecker = new TimeChecker(1000, 5, 6, 6, 6);
-//        Timer timer = new Timer();
-//        timer.schedule(Partida.getPartida().getTimeChecker().iniciarTiempo(), 0, Partida.getPartida().getTimeChecker().getSegundo());
+        Timer timer = new Timer();
+        timer.schedule(Partida.getPartida().getTimeChecker().iniciarTiempo(), 0, Partida.getPartida().getTimeChecker().getSegundo());
 
         Jugador cargado = (Jugador)Partida.getPartida().getTimeChecker().getLogger().buscarPartida("3-0");
         System.out.println(cargado.getNombre());

@@ -33,6 +33,7 @@ public class Jugador extends Personaje implements Serializable {
     public String diaDevolucion;
     private static Jugador jugador;
     public Consumible consumible;
+    public Partida partida;
 
     public Jugador (Personaje personaje){
         super(personaje);
@@ -41,6 +42,7 @@ public class Jugador extends Personaje implements Serializable {
         this.etiquetaEstadoActual = EnumActividades.Normal;
         this.controladorSalud = new ControladorSalud();
         jugador = this;
+        partida = Partida.getPartida();
     }
 
 

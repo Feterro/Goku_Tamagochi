@@ -7,6 +7,7 @@ public class ControladorCura implements IControlerStrategy {
 
     @Override
     public void satisfacer(){
+        System.out.println(Jugador.getInstance().controladorSalud.enfermedad);
         if(Jugador.getInstance().controladorSalud.enfermedad.curarMedicamento(((Medicamento)Jugador.getInstance().consumible).getNombre())){
             Jugador.getInstance().controladorSalud.setProbabilidadEnfermedad(0);
             Jugador.getInstance().controladorSalud.modSatisfaccionHambre(-15);
