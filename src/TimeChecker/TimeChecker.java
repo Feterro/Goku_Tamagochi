@@ -48,22 +48,13 @@ public class TimeChecker extends Thread implements Serializable {
             public void run() {
                 int dia = reloj.aumentar(); // Aumenta un segundo.
                 if (dia != diaActual){
-                    String partidaSerializada = null; // Cambiar por Partida.
-                    try {
-                        partidaSerializada = logger.serializarObjeto(Bodega.getInstance().getMedicamentos());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    // consumible controladores
+                    String partidaSerializada =  logger.serializarObjeto(Jugador.getInstance());
                     logger.guardarDia(diaActual, reloj.getAnios(), "src/TimeChecker/Dias/", partidaSerializada);
                     logger.saveJson("src/TimeChecker/Dias/dias.json");
                     diaActual = dia;
                 }
                 int parteDia = reloj.getHorasMaximo() / 3;
                 if (reloj.getHoras() == parteDia && reloj.getMinutos() == 0 && reloj.getSegundos() == 0){
-                    // primera parte del dia
-                    if(reloj.getDias() == 1)
-                        Jugador.getInstance().setNombre("Pepe");
                     try {
                         Partida.getPartida().getJuego().cambiarAmbiente(Ambiente.MANANA);
                     } catch (FileNotFoundException e) {
@@ -85,15 +76,18 @@ public class TimeChecker extends Thread implements Serializable {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-//                            try {
-////                                Partida.getPartida().getJuego().abrirNotificacionDormir();
-////                                Partida.getPartida().getJuego().abrirNotificacionMorir();
-//                            } catch (IOException e) {
-//                                e.printStackTrace();
-//                            }
-
+                            try {
+                                Partida.getPartida().getJuego().abrirNotificacionDormir();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
                     });
+                    try {
+                        Jugador.getInstance().verificarMuerte();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     try {
                         Jugador.getInstance().verificarMuerte();
                     } catch (IOException e) {

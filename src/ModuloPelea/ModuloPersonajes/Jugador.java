@@ -8,7 +8,12 @@ import Strategy.ControladorDeporte;
 import Model.ControladorSalud;
 import Strategy.*;
 import TimeChecker.Partida;
+import TimeChecker.Reloj;
+import VISTA.Controladores.Comunicador;
+import VISTA.Juego;
+import javafx.application.Platform;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -43,8 +48,6 @@ public class Jugador extends Personaje implements Serializable {
         jugador = this;
         partida = Partida.getPartida();
     }
-
-
 
     public static Jugador getInstance (){
         return jugador;
@@ -150,16 +153,30 @@ public class Jugador extends Personaje implements Serializable {
         if(controladorSalud.isEnfermo())
             cantidadDeDiasEnfermo += 1;
         if(cantidadDeDiasEnfermo >= 3){
-           Partida.getPartida().getJuego().abrirNotificacionMorir();
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Partida.getPartida().getJuego().abrirNotificacionMorir();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
     }
 
-    public void escogerReinicio(String fecha) {
+    public void escogerReinicio(String fecha) throws FileNotFoundException {
+        Juego juego = Jugador.getInstance().partida.getJuego();
         if (fecha == null){
             setJugador((Jugador) Partida.getPartida().getTimeChecker().getLogger().buscarPartida("0-0"));
         }else{
             setJugador((Jugador) Partida.getPartida().getTimeChecker().getLogger().buscarPartida(fecha));
         }
+        Jugador.getInstance().partida.setJuego(juego);
+        Jugador.getInstance().partida.getJuego().getPersonajeImagen().setImage(Comunicador.getInstance().cambiarImagenGoku(Jugador.getInstance().etiquetaEstadoActual));
+        Jugador.getInstance().partida.getJuego().getEdad().setText(String.valueOf(Jugador.getInstance().getNivel()));
+        Jugador.getInstance().partida.getJuego().cambiarHumor(Jugador.getInstance().etiquetaEstadoActual.name());
     }
 
     public ControladorSalud getControladorSalud(){

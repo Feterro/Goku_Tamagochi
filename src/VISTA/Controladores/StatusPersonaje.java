@@ -1,5 +1,6 @@
 package VISTA.Controladores;
 
+import ModuloPelea.ModuloPersonajes.Jugador;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -56,5 +57,15 @@ public class StatusPersonaje implements Initializable, DragWindow {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         onDraggedScene(contenedor);
+        estadosPersonaje.setText(Jugador.getInstance().etiquetaEstadoActual.name());
+        ganasDeIrAlbanno.setText(String.valueOf(Jugador.getInstance().controladorSalud.getSatisfaccionBano()));
+        hambre.setText(String.valueOf(Jugador.getInstance().controladorSalud.getSatisfaccionHambre()));
+        liquidosConsumidos.setText(String.valueOf(Jugador.getInstance().controladorSalud.getLiquidosConsumidos()));
+        probabilidadEnfermarse.setText(String.valueOf(Jugador.getInstance().controladorSalud.getProbabilidadEnfermedad()));
+        saludFisica.setText(String.valueOf(Jugador.getInstance().controladorSalud.getSaludFisica()));
+        saludSocial.setText(String.valueOf(Jugador.getInstance().controladorSalud.getSaludSocial()));
+        solidosConsumidos.setText(String.valueOf(Jugador.getInstance().controladorSalud.getSolidosConsumidos()));
+        sueno.setText(String.valueOf(Jugador.getInstance().controladorSalud.getSatisfaccionSuenno()));
+        vida.setText(String.valueOf(Jugador.getInstance().getVida()));
     }
 }

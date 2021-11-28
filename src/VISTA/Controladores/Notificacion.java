@@ -7,10 +7,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
-import java.awt.*;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,17 +34,24 @@ public class Notificacion implements Initializable, DragWindow {
     private Pane contMorir;
 
     @FXML
-    private TextField fechaT;
+    private TextField fechaTF;
 
     @FXML
-    public void reiniciar(ActionEvent event){
+    public void reiniciar(ActionEvent event) throws FileNotFoundException {
         Jugador.getInstance().escogerReinicio(null);
+        Node source = (Node) event.getSource();
+        Stage stageActual = (Stage) source.getScene().getWindow();
+        stageActual.close();
     }
 
     @FXML
-    public void volverA(ActionEvent event){
-        if (!fechaT.getText().isEmpty())
-            Jugador.getInstance().escogerReinicio(fechaT.getText());
+    public void volverA(ActionEvent event) throws FileNotFoundException {
+        if (!fechaTF.getText().isEmpty()) {
+            Jugador.getInstance().escogerReinicio(fechaTF.getText());
+            Node source = (Node) event.getSource();
+            Stage stageActual = (Stage) source.getScene().getWindow();
+            stageActual.close();
+        }
     }
 
     @FXML
@@ -72,8 +78,10 @@ public class Notificacion implements Initializable, DragWindow {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        onDraggedScene(cont);
-        onDraggedScene(contMorir);
+        if (cont != null)
+            onDraggedScene(cont);
+        if (contMorir != null)
+            onDraggedScene(contMorir);
     }
 
 }

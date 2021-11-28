@@ -166,6 +166,10 @@ public class Juego implements Initializable, Serializable {
         humor.setText(hum);
     }
 
+    public Text getEdad() {
+        return edad;
+    }
+
     public void cambiarAmbiente(Ambiente ambiente) throws FileNotFoundException {
         switch (ambiente){
             case MANANA:
@@ -569,20 +573,22 @@ public class Juego implements Initializable, Serializable {
     }
 
     @FXML
-    public void cambiarEdad(ActionEvent event){
+    public void cambiarEdad(ActionEvent event) throws FileNotFoundException {
         if (edadGoku == 3){
             edadGoku = 1;
             goku.setNivel(0);
             edad.setText(String.valueOf(goku.getNivel()));
+            personajeImagen.setImage(comunicador.cambiarImagenGoku(EnumActividades.Caminando));
         }
         else {
+            edadGoku = edadGoku + 1;
             if (edadGoku == 2){
                 goku.setNivel(10);
             }else{
                 goku.setNivel(30);
             }
             edad.setText(String.valueOf(goku.getNivel()));
-            edadGoku = edadGoku + 1;
+            personajeImagen.setImage(comunicador.cambiarImagenGoku(EnumActividades.Caminando));
         }
     }
 
@@ -600,7 +606,7 @@ public class Juego implements Initializable, Serializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Partida.getPartida().setJuego(this);
-        Partida.getPartida().setTimeChecker(100);
+        Partida.getPartida().setTimeChecker(1000);
         Partida.getPartida().getTimeChecker().setReloj(3, 3, 6, 6);
         Timer timer = new Timer();
         timer.schedule(Partida.getPartida().getTimeChecker().iniciarTiempo(), 0, Partida.getPartida().getTimeChecker().getSegundo());

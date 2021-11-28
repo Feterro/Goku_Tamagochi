@@ -11,7 +11,7 @@ public class Bodega implements Serializable {
 
     private HashMap<EnumAlimento,Consumible> alimentos;
     private HashMap<EnumMedicamento,Consumible> medicamentos;
-    private BodegaJSON bodegaJson;
+    public transient BodegaJSON bodegaJson;
     public static Bodega bodega;
 
     private Bodega() throws IOException {

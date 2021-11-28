@@ -29,7 +29,7 @@ public class BodegaJSON implements Serializable{
         return instance;
     }
 
-    private class ObjFormat{
+    private class ObjFormat implements Serializable{
         public ArrayList<Alimento> alimentos= new ArrayList();
         public ArrayList<Medicamento> medicamentos = new ArrayList();
     }
