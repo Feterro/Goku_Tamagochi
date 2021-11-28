@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="460.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VISTA.FXMLS.CreadorConsuminles" >
+   <children>
+      <TabPane layoutX="30.0" layoutY="68.0" prefHeight="354.0" prefWidth="606.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Alimento">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="txtCantidad1" layoutX="22.0" layoutY="37.0" promptText="Cantidad" />
+                        <TextField layoutX="22.0" layoutY="191.0" promptText="Puntos de energía" />
+                        <Button layoutX="22.0" layoutY="266.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Crear" />
+                        <ComboBox fx:id="cbxNombreAlimento" layoutX="22.0" layoutY="85.0" prefWidth="150.0" promptText="Nombre alimento" />
+                        <ComboBox fx:id="cbxTipoAlimento" layoutX="22.0" layoutY="138.0" prefWidth="150.0" promptText="Tipo alimento" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Medicamento">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="313.0" prefWidth="587.0">
+                     <children>
+                        <TextField fx:id="txtCantidad2" layoutX="27.0" layoutY="34.0" prefHeight="25.0" prefWidth="167.0" promptText="Cantidad" />
+                        <Button layoutX="27.0" layoutY="163.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="167.0" text="Crear" />
+                        <ComboBox fx:id="cbxNombreMed" layoutX="27.0" layoutY="96.0" prefHeight="25.0" prefWidth="167.0" promptText="Nombre medicamento" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <Label layoutX="266.0" layoutY="37.0" text="Creador de consumibles">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
