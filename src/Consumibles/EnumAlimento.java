@@ -1,6 +1,8 @@
 package Consumibles;
 
-public enum EnumAlimento {
+import java.io.Serializable;
+
+public enum EnumAlimento implements Serializable {
     PIZZA,
     HAMBURGUESA,
     BATIDO,

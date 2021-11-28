@@ -1,6 +1,8 @@
 package TimeChecker;
 
-public class Habitacion {
+import java.io.Serializable;
+
+public class Habitacion implements Serializable {
 
     private String nombre;
     private Integer posicion;

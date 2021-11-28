@@ -1,16 +1,19 @@
 package TimeChecker;
 
+import Consumibles.Bodega;
 import ModuloPelea.ModuloPersonajes.Jugador;
 import VISTA.Ambiente;
 import VISTA.Juego;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Observable;
-import java.util.Timer;
 import java.util.TimerTask;
 
 public class TimeChecker extends Thread implements Serializable {
@@ -26,10 +29,6 @@ public class TimeChecker extends Thread implements Serializable {
         this.segundo = segundo;
     }
 
-//    public TimeChecker(Partida partida, int segundo){
-//        this.segundo = segundo;
-//        reloj = new Reloj();
-//    }
 
     public void setReloj(int segundosMaximo, int minutosMaximo, int horasMaximo, int diasMaximo) {
         this.reloj = new Reloj(segundosMaximo, minutosMaximo, horasMaximo, diasMaximo);
@@ -49,7 +48,13 @@ public class TimeChecker extends Thread implements Serializable {
             public void run() {
                 int dia = reloj.aumentar(); // Aumenta un segundo.
                 if (dia != diaActual){
-                    String partidaSerializada = logger.serializarObjeto(Jugador.getInstance()); // Cambiar por Partida.
+                    String partidaSerializada = null; // Cambiar por Partida.
+                    try {
+                        partidaSerializada = logger.serializarObjeto(Bodega.getInstance().getMedicamentos());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    // consumible controladores
                     logger.guardarDia(diaActual, reloj.getAnios(), "src/TimeChecker/Dias/", partidaSerializada);
                     logger.saveJson("src/TimeChecker/Dias/dias.json");
                     diaActual = dia;
@@ -77,8 +82,23 @@ public class TimeChecker extends Thread implements Serializable {
                 }
                 else if (reloj.getHoras() == 0 && reloj.getMinutos() == 0 && reloj.getSegundos() == 0){
                     // Ultima parte del día
-//                    Jugador.getInstance().verificarMuerte();//TODO cambiar esto porque se llama notificacion de morir
-//                    Jugador.getInstance().verificarMimir();//TODO cambiar esto porque se llama notificacion de mimir
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+//                            try {
+////                                Partida.getPartida().getJuego().abrirNotificacionDormir();
+////                                Partida.getPartida().getJuego().abrirNotificacionMorir();
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
+
+                        }
+                    });
+                    try {
+                        Jugador.getInstance().verificarMuerte();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     try {
                         Partida.getPartida().getJuego().cambiarAmbiente(Ambiente.NOCHE);
                     } catch (FileNotFoundException e) {
@@ -89,6 +109,7 @@ public class TimeChecker extends Thread implements Serializable {
                 System.out.println(reloj.verHora());
                 Partida.getPartida().getJuego().cambiarHoraYdias(reloj.verHora(), reloj.verFecha());
             }
+
         };
         return tareaNuevoSegundo;
     }

@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class BodegaJSON {
+public class BodegaJSON implements Serializable{
     private static BodegaJSON instance;
     private String URL;
     private final Gson json;

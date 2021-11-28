@@ -1,6 +1,8 @@
 package Consumibles;
 
-public enum EnumTipoAlimento {
+import java.io.Serializable;
+
+public enum EnumTipoAlimento implements Serializable {
     SOLIDO,
     LIQUIDO;
 }

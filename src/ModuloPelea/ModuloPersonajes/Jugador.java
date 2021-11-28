@@ -30,7 +30,6 @@ public class Jugador extends Personaje implements Serializable {
     public ControladorSalud controladorSalud;
     public EnumDeportes deporteActual;
     public EnumActividades etiquetaEstadoActual;
-    public String diaDevolucion;
     private static Jugador jugador;
     public Consumible consumible;
     public Partida partida;
@@ -136,9 +135,8 @@ public class Jugador extends Personaje implements Serializable {
 //        //this.aparienciaActual = apariencias.get(nivel,estadoActual.toString());//Apariencia pone: nivel,estadoActual
 //    }
 
-    public void verificarMimir(){
-        //Crear una alerta en pantalla para preguntar si quiere dormir
-        boolean mimio = true;
+    public void verificarMimir(boolean mimio){
+
         estadoActual = controladores.get(EnumActividades.Mimir);
         if(mimio){
             estadoActual.satisfacer();
@@ -148,16 +146,19 @@ public class Jugador extends Personaje implements Serializable {
         }
     }
 
-    public void verificarMuerte(){
+    public void verificarMuerte() throws IOException {
         if(controladorSalud.isEnfermo())
             cantidadDeDiasEnfermo += 1;
         if(cantidadDeDiasEnfermo >= 3){
-            //TODO MOSTRAR NOTIFICACION OPCIONES DE QUE SE QUIERE HACER CUANDO MUERE
-            if(muertePorEnfermedad){
-                setJugador((Jugador)Partida.getPartida().getTimeChecker().getLogger().buscarPartida("0-0"));
-            }else{
-                setJugador((Jugador)Partida.getPartida().getTimeChecker().getLogger().buscarPartida(diaDevolucion));
-            }
+           Partida.getPartida().getJuego().abrirNotificacionMorir();
+        }
+    }
+
+    public void escogerReinicio(String fecha) {
+        if (fecha == null){
+            setJugador((Jugador) Partida.getPartida().getTimeChecker().getLogger().buscarPartida("0-0"));
+        }else{
+            setJugador((Jugador) Partida.getPartida().getTimeChecker().getLogger().buscarPartida(fecha));
         }
     }
 

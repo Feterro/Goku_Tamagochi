@@ -1,6 +1,8 @@
 package Enfermedades;
 
-public enum EnumTipoEnfermedad {
+import java.io.Serializable;
+
+public enum EnumTipoEnfermedad implements Serializable {
     ANSIEDAD,
     CALAMBRE,
     DIARREA,

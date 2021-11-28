@@ -9,8 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="213.0" prefWidth="442.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="cont" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="213.0" prefWidth="442.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VISTA.Controladores.Notificacion">
    <children>
       <ImageView fitHeight="213.0" fitWidth="449.0" opacity="0.88" pickOnBounds="true">
          <image>
@@ -32,7 +31,7 @@
             <Font name="Eras Demi ITC" size="17.0" />
          </font>
       </Text>
-      <Button blendMode="MULTIPLY" layoutX="40.0" layoutY="126.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="162.0" text="DORMIR">
+      <Button blendMode="MULTIPLY" layoutX="40.0" layoutY="126.0" mnemonicParsing="false" onAction="#dormir" prefHeight="34.0" prefWidth="162.0" text="DORMIR">
          <effect>
             <InnerShadow height="53.75" radius="26.96" width="56.09">
                <color>
@@ -44,7 +43,7 @@
             <Font name="Cooper Black" size="18.0" />
          </font>
       </Button>
-      <Button blendMode="MULTIPLY" layoutX="245.0" layoutY="126.0" mnemonicParsing="false" text="TRASNOCHAR">
+      <Button blendMode="MULTIPLY" layoutX="245.0" layoutY="126.0" mnemonicParsing="false" onAction="#trasnochar" text="TRASNOCHAR">
          <effect>
             <InnerShadow height="53.75" radius="26.96" width="56.09">
                <color>

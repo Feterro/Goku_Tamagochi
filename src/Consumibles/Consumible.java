@@ -1,6 +1,8 @@
 package Consumibles;
 
-public abstract class Consumible {
+import java.io.Serializable;
+
+public abstract class Consumible implements Serializable {
     protected int cantidadDisponible;
     //Efecto no está porque solo lo tiene alimento, med no ocupa
     //Nombres son diferentes enums

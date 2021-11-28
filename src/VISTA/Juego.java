@@ -7,7 +7,9 @@ import ModuloPelea.ModuloPersonajes.EnemigoFactory;
 import ModuloPelea.ModuloPersonajes.HabilidadFactory;
 import ModuloPelea.ModuloPersonajes.Jugador;
 import Strategy.EnumActividades;
+import VISTA.Controladores.Comunicador;
 import VISTA.Controladores.Deporte;
+import VISTA.Controladores.Notificacion;
 import VISTA.Controladores.Velocidad;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -18,6 +20,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -31,20 +34,19 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+
+import java.io.*;
 import java.net.URL;
 import java.util.*;
 import TimeChecker.Partida;
 
-public class Juego implements Initializable{
+public class Juego implements Initializable, Serializable {
 
     private ArrayList<Pane> areas = new ArrayList<>();
     private Timeline moverse;
     private Jugador goku = Jugador.getInstance();
     private int edadGoku = 1;
+    private Comunicador comunicador = Comunicador.getInstance();
 
     @FXML
     private ImageView ambiente;
@@ -148,6 +150,18 @@ public class Juego implements Initializable{
     @FXML
     private Button estadisticasB;
 
+    public Pane getCuarto() {
+        return cuarto;
+    }
+
+    public ImageView getPersonajeImagen() {
+        return personajeImagen;
+    }
+
+    public Timeline getMoverse() {
+        return moverse;
+    }
+
     public void cambiarHumor(String hum){
         humor.setText(hum);
     }
@@ -167,7 +181,7 @@ public class Juego implements Initializable{
     }
 
     private void ponerImagen(String ruta) throws FileNotFoundException {
-        InputStream stream = new FileInputStream(ruta);;
+        InputStream stream = new FileInputStream(ruta);
         Image image = new Image(stream);
         ambiente.setImage(image);
     }
@@ -177,7 +191,7 @@ public class Juego implements Initializable{
         areas.add(gimnasio); areas.add(bodega); areas.add(huerto); areas.add(peleas); areas.add(mapa); areas.add(cancha);
     }
 
-    private void ponerVisible(Pane pane) throws FileNotFoundException {
+    public void ponerVisible(Pane pane, boolean dormir) throws FileNotFoundException {
         humor.setText(goku.etiquetaEstadoActual.name());
         if (pane.equals(mapa)){
             moverse.stop();
@@ -194,21 +208,26 @@ public class Juego implements Initializable{
             estados.setVisible(true);
             personajeImagen.setVisible(true);
             if (pane.equals(jardin) || pane.equals(piscina) || pane.equals(cancha) || pane.equals(huerto)){
-                moverPersonaje(Velocidad.RAPIDO, 1);
+                moverPersonaje(Velocidad.NORMAL, 1);
                 personajeImagen.setLayoutX(0);
                 personajeImagen.setLayoutY(458);
             } else if (pane.equals(gimnasio) || pane.equals(bodega)){
               personajeImagen.setLayoutX(115);
-              moverPersonaje(Velocidad.RAPIDO, 2);
+              moverPersonaje(Velocidad.NORMAL, 2);
               personajeImagen.setLayoutY(458);
             }else if (pane.equals(peleas)){
                 personajeImagen.setLayoutX(106);
-                moverPersonaje(Velocidad.RAPIDO, 3);
+                moverPersonaje(Velocidad.NORMAL, 3);
                 personajeImagen.setLayoutY(458);
             } else {
-                personajeImagen.setLayoutX(235);
-                moverPersonaje(Velocidad.RAPIDO, 0);
-                personajeImagen.setLayoutY(458);
+                if (dormir){
+                    personajeImagen.setLayoutX(235);
+                    personajeImagen.setLayoutY(458);
+                }else {
+                    personajeImagen.setLayoutX(235);
+                    moverPersonaje(Velocidad.NORMAL, 0);
+                    personajeImagen.setLayoutY(458);
+                }
             }
         }
         for (Pane area: areas){
@@ -263,7 +282,6 @@ public class Juego implements Initializable{
     private void inicializarPersonaje(){
         new EnemigoFactory();//Fabrica de personajes
 
-
         LvlImages primerNivel = new LvlImages();
         primerNivel.addApariencia(EnumActividades.Atacar.name(), "src/VISTA/Imagenes/Personaje/ataque_nivel1.png");
         primerNivel.addApariencia(EnumActividades.Caminando.name(), "src/VISTA/Imagenes/Personaje/caminando_nivel1.png");
@@ -295,7 +313,7 @@ public class Juego implements Initializable{
                 .addApariencia(0, primerNivel)
                 .addApariencia(10, segundoNivel)
                 .addApariencia(30, tercerNivel)
-                .setVida(500).addArma(HabilidadFactory.getInstance().getHabilidad("Karate")).build());
+                .setVida(500).addArma(HabilidadFactory.getInstance().getHabilidad("Karate")).build()); //agregarHabilidades
     }
 
     public void cambiarHoraYdias(String horaS, String dia){
@@ -303,10 +321,35 @@ public class Juego implements Initializable{
         hora.setText(horaS);
     }
 
+    public void abrirNotificacionDormir() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLS/notificacion.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
+        Notificacion not = fxmlLoader.getController();
+        not.setJuego(this);
+    }
+
+    public void abrirNotificacionMorir() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLS/notificacionMorir.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
+        Notificacion not = fxmlLoader.getController();
+        not.setJuego(this);
+    }
+
     @FXML
     public void cambiarMood(MouseEvent event){
         cambiarHumor(String.valueOf(goku.etiquetaEstadoActual));
     }
+
     @FXML
     public void cerrar(MouseEvent event){
         //agregar ventana de preguntar
@@ -315,62 +358,62 @@ public class Juego implements Initializable{
 
     @FXML
     public void mostrarMapa(MouseEvent event) throws FileNotFoundException {
-        ponerVisible(mapa);
+        ponerVisible(mapa, false);
     }
 
     @FXML
     void irBaño(ActionEvent event) throws FileNotFoundException {
-        ponerVisible(banno);
+        ponerVisible(banno, false);
     }
 
     @FXML
     void irBodega(ActionEvent event) throws FileNotFoundException {
-        ponerVisible(bodega);
+        ponerVisible(bodega, false);
     }
 
     @FXML
     void irCanchaFutbol(ActionEvent event) throws FileNotFoundException {
-        ponerVisible(cancha);
+        ponerVisible(cancha, false);
     }
 
     @FXML
     void irCocina(ActionEvent event) throws FileNotFoundException {
-        ponerVisible(cocina);
+        ponerVisible(cocina, false);
     }
 
     @FXML
     void irComedor(ActionEvent event) throws FileNotFoundException {
-        ponerVisible(comedor);
+        ponerVisible(comedor, false);
     }
 
     @FXML
     void irCuarto(ActionEvent event) throws FileNotFoundException {
-        ponerVisible(cuarto);
+        ponerVisible(cuarto, false);
     }
 
     @FXML
     void irGinmasio(ActionEvent event) throws FileNotFoundException {
-        ponerVisible(gimnasio);
+        ponerVisible(gimnasio, false);
     }
 
     @FXML
     void irHuerto(ActionEvent event) throws FileNotFoundException {
-        ponerVisible(huerto);
+        ponerVisible(huerto, false);
     }
 
     @FXML
     void irPeleas(ActionEvent event) throws FileNotFoundException {
-        ponerVisible(peleas);
+        ponerVisible(peleas, false);
     }
 
     @FXML
     void irPiscina(ActionEvent event) throws FileNotFoundException {
-        ponerVisible(piscina);
+        ponerVisible(piscina, false);
     }
 
     @FXML
     void irjardin(ActionEvent event) throws FileNotFoundException {
-        ponerVisible(jardin);
+        ponerVisible(jardin, false);
     }
 
     @FXML
@@ -395,6 +438,11 @@ public class Juego implements Initializable{
         stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();
+
+        personajeImagen.setLayoutY(353);
+        personajeImagen.setLayoutX(380);
+        personajeImagen.setImage(comunicador.cambiarImagenGoku(EnumActividades.Comer));
+        moverse.stop();
     }
 
     @FXML
@@ -468,17 +516,24 @@ public class Juego implements Initializable{
     }
     
     @FXML
-    public void dormir(ActionEvent event) {
-        //if puede dormir dormir
+    public void dormir(ActionEvent event) throws FileNotFoundException {
+        moverse.stop();
+        goku.verificarMimir(true);
+        ponerVisible(cuarto, true);
+        personajeImagen.setLayoutX(680);
+        personajeImagen.setLayoutY(400);
+        personajeImagen.setImage(comunicador.cambiarImagenGoku(EnumActividades.Mimir));
+        cambiarHumor(goku.etiquetaEstadoActual.name());
     }
 
     @FXML
-    public void irBano(ActionEvent event) {
+    public void irBano(ActionEvent event) throws FileNotFoundException {
         personajeImagen.setLayoutX(280);
         personajeImagen.setLayoutY(400);
         goku.bano(); //preguntar después si hay que hacer algo más
         humor.setText(goku.etiquetaEstadoActual.name());
         moverse.stop();
+        comunicador.cambiarImagenGoku(EnumActividades.Bano);
     }
 
     @FXML
@@ -531,10 +586,21 @@ public class Juego implements Initializable{
         }
     }
 
+    @FXML
+    public void crearMedicina(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLS/CreadorMedicinas.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Partida.getPartida().setJuego(this);
-        Partida.getPartida().setTimeChecker(1000);
+        Partida.getPartida().setTimeChecker(100);
         Partida.getPartida().getTimeChecker().setReloj(3, 3, 6, 6);
         Timer timer = new Timer();
         timer.schedule(Partida.getPartida().getTimeChecker().iniciarTiempo(), 0, Partida.getPartida().getTimeChecker().getSegundo());
@@ -543,13 +609,18 @@ public class Juego implements Initializable{
         deportesPisicina.setItems(FXCollections.observableArrayList(Deporte.values()));
         deportesCancha.setItems(FXCollections.observableArrayList(Deporte.values()));
         personajeImagen.setVisible(false);
+        try {
+            personajeImagen.setImage(comunicador.cambiarImagenGoku(EnumActividades.Caminando));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         meterALista();
         notificaciones.getItems().add("");
-//        try {
-//            cambiarAmbiente(Ambiente.NOCHE);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            cambiarAmbiente(Ambiente.MANANA);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }
