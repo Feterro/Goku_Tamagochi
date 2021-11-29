@@ -11,5 +11,6 @@ public enum EnumAlimento implements Serializable {
     PERA,
     BANANO,
     LECHUGA,
+    BUBBLE_TEA,
     PAPA;
 }

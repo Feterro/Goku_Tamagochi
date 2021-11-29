@@ -26,12 +26,30 @@ public class Bodega implements Serializable {
         return bodega;
     }
 
-    public void addAlimento(EnumAlimento name, Consumible consumible){
-        alimentos.put(name, consumible);
+    public void addAlimento(EnumAlimento name, Consumible consumible) throws IOException {
+
+        if (!alimentos.containsKey(name)) {
+            alimentos.put(name, consumible);
+            BodegaJSON.getInstance().writeJSON((Alimento)consumible);
+            System.out.println("Se creó alimento de este tipo!");
+        } else {
+            getAlimento(name).agregar();
+            System.out.println("Se agregó más alimento de este tipo!");
+        }
+
     }
 
-    public void addMedicamentos(EnumMedicamento name, Consumible consumible){
-        medicamentos.put(name, consumible);
+    public void addMedicamentos(EnumMedicamento name, Consumible consumible) throws IOException {
+
+        if (!medicamentos.containsKey(name)) {
+            medicamentos.put(name, consumible);
+            BodegaJSON.getInstance().writeJSON((Medicamento) consumible);
+            System.out.println("Se creó medicamento de este tipo!");
+        } else {
+            getMedicamento(name).agregar();
+            System.out.println("Se agregó más medicamento de este tipo!");
+        }
+
     }
 
     public HashMap<EnumAlimento, Consumible> getAlimentos() {return alimentos;}
@@ -63,6 +81,7 @@ public class Bodega implements Serializable {
         }
         return disponibles;
     }
+
 
     /**
      * Actualiza toda la bodegacada vez que se haga un cambio.

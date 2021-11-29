@@ -1,5 +1,7 @@
 package VISTA.Controladores;
 
+import Consumibles.*;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,13 +23,13 @@ public class CreadorConsuminles implements Initializable, DragWindow {
     private Pane contenedor;
 
     @FXML
-    private ComboBox<String> cbxNombreAlimento;
+    private ComboBox<EnumAlimento> cbxNombreAlimento;
 
     @FXML
-    private ComboBox<String> cbxNombreMed;
+    private ComboBox<EnumMedicamento> cbxNombreMed;
 
     @FXML
-    private ComboBox<String> cbxTipoAlimento; //puede cambiarlo el String por algún enum
+    private ComboBox<EnumTipoAlimento> cbxTipoAlimento;
 
     @FXML
     private TextField txtCantidadComidas;
@@ -38,12 +41,19 @@ public class CreadorConsuminles implements Initializable, DragWindow {
     private TextField txtPtsEnergía;
 
     @FXML
-    void crearAlimento(ActionEvent event) {
-
+    void crearAlimento(ActionEvent event) throws IOException {
+        int cant=  Integer.valueOf(txtCantidadComidas.getText());
+        int puntos =  Integer.valueOf(txtPtsEnergía.getText());
+        EnumAlimento alimento =  cbxNombreAlimento.getSelectionModel().getSelectedItem();
+        EnumTipoAlimento tipo =  cbxTipoAlimento.getSelectionModel().getSelectedItem();
+        Bodega.getInstance().addAlimento(alimento, new Alimento(cant, alimento,tipo,puntos));
     }
 
     @FXML
-    void crearMedicamento(ActionEvent event) {
+    void crearMedicamento(ActionEvent event) throws IOException {
+        int cant = Integer.valueOf(txtCantidadMeds.getText());
+        EnumMedicamento med = cbxNombreMed.getSelectionModel().getSelectedItem();
+        Bodega.getInstance().addMedicamentos(med, new Medicamento(cant, med));
 
     }
 
@@ -56,6 +66,10 @@ public class CreadorConsuminles implements Initializable, DragWindow {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        cbxNombreAlimento.setItems(FXCollections.observableArrayList(EnumAlimento.values()));
+        cbxNombreMed.setItems(FXCollections.observableArrayList(EnumMedicamento.values()));
+        cbxTipoAlimento.setItems(FXCollections.observableArrayList(EnumTipoAlimento.values()));
         onDraggedScene(contenedor);
     }
 }

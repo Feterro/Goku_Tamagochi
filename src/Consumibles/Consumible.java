@@ -29,6 +29,6 @@ public abstract class Consumible implements Serializable {
     }
 
     public void agregar() {
-        cantidadDisponible -= 1;
+        cantidadDisponible += 1;
     }
 }

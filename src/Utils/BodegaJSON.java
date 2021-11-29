@@ -34,7 +34,7 @@ public class BodegaJSON implements Serializable{
         public ArrayList<Medicamento> medicamentos = new ArrayList();
     }
 
-    private void readJSON() throws FileNotFoundException, IOException {
+    public void readJSON() throws FileNotFoundException, IOException {
         try {
             if(new File(this.URL).exists()){
                 InputStream is = new FileInputStream(this.URL);
@@ -46,6 +46,30 @@ public class BodegaJSON implements Serializable{
                 bufferedReader.close();
             }
         } catch (JsonIOException | JsonSyntaxException | IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void writeJSON(Alimento pObject) throws IOException {
+        try {
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new File(this.URL)));
+            this.data.alimentos.add(pObject);
+            writer.write(json.toJson(this.data));
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void writeJSON(Medicamento pObject) throws IOException {
+        try {
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new File(this.URL)));
+            this.data.medicamentos.add(pObject);
+            writer.write(json.toJson(this.data));
+            writer.close();
+        } catch (IOException e) {
             System.out.println(e);
         }
     }

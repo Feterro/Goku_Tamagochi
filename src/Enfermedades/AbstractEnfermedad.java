@@ -15,7 +15,7 @@ public abstract class AbstractEnfermedad implements Serializable {
     protected ArrayList<EnumMedicamento> posiblesMedicamentos;
     protected ArrayList<EnumDeportes> posiblesDeportes;
     protected EnumTipoEnfermedad tipo;
-    protected boolean accepted; //No sé pa que
+    protected boolean accepted;
     protected boolean active;
 
 
