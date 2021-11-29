@@ -4,6 +4,7 @@ import Consumibles.Bodega;
 import Consumibles.EnumAlimento;
 import Consumibles.EnumMedicamento;
 import ModuloPelea.ModuloPersonajes.Jugador;
+import VISTA.Juego;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -18,11 +19,21 @@ import java.util.ResourceBundle;
 
 public class Medicinas implements Initializable, DragWindow {
 
+    private Juego juego;
+
     @FXML
     private Pane comidas;
 
     @FXML
     private ListView<EnumMedicamento> medicinas;
+
+    public Juego getJuego() {
+        return juego;
+    }
+
+    public void setJuego(Juego juego) {
+        this.juego = juego;
+    }
 
     @FXML
     public void escogerComida(MouseEvent event) throws IOException {
@@ -30,9 +41,11 @@ public class Medicinas implements Initializable, DragWindow {
         Jugador.getInstance().curar(nombre);
         medicinas.getItems().removeAll(Bodega.getInstance().getMedicamentosDisponibles());
         medicinas.getItems().addAll(Bodega.getInstance().getMedicamentosDisponibles());
-//        FXMLLoader loader =  FXMLLoader.load(Objects.requireNonNull(getClass().getResource("FXMLS/juego.fxml")));
-//        Juego controller = loader.getController();
-//        controller.cambiarHumor(String.valueOf(Jugador.getInstance().estadoActual));
+        juego.cambiarHumor(Jugador.getInstance().etiquetaEstadoActual.name());
+        Node source = (Node) event.getSource();
+        Stage stageActual = (Stage) source.getScene().getWindow();
+        stageActual.close();
+
     }
 
     @FXML

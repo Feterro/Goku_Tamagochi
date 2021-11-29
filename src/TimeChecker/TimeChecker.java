@@ -23,6 +23,7 @@ public class TimeChecker extends Thread implements Serializable {
     public int cantpeleas = 0;
     public int cantVisitas = 0;
     public boolean estaPeleando = false;
+    public boolean notificacion = false;
     private static final long serialVersionUID = 1007L;
 
     public TimeChecker(int segundo ){
@@ -47,7 +48,7 @@ public class TimeChecker extends Thread implements Serializable {
         TimerTask tareaNuevoSegundo = new TimerTask() {
             @Override
             public void run() {
-                if (cantpeleas < 2 && !estaPeleando && !visitando) {
+                if (cantpeleas < 2 && !estaPeleando && !visitando && !notificacion) {
                     int crear = ThreadLocalRandom.current().nextInt(0, 50);
                     if (crear == 5) {
                         ((ControladorPelea) Jugador.getInstance().controladores.get(EnumActividades.Pelear)).crearEnemigo();
@@ -56,6 +57,7 @@ public class TimeChecker extends Thread implements Serializable {
                             public void run() {
                                 try {
                                     Jugador.getInstance().partida.getJuego().notificacionPelea();
+                                    notificacion = true;
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
@@ -64,7 +66,7 @@ public class TimeChecker extends Thread implements Serializable {
 
                     }
                 }
-                if (cantVisitas < 2 && !visitando && !estaPeleando){
+                if (cantVisitas < 2 && !visitando && !estaPeleando && !notificacion){
                     int crear = ThreadLocalRandom.current().nextInt(0, 50);
                     if (crear == 7) {
                         Platform.runLater(new Runnable() {
@@ -72,6 +74,7 @@ public class TimeChecker extends Thread implements Serializable {
                             public void run() {
                                 try {
                                     Jugador.getInstance().partida.getJuego().notificacionSocializar();
+                                    notificacion = true;
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }

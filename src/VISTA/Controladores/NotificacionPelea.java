@@ -37,11 +37,14 @@ public class NotificacionPelea implements Initializable, DragWindow {
     @FXML
     void pelear(ActionEvent event) throws FileNotFoundException {
         juego.ponerVisible(juego.getPeleas(), true);
-        juego.getMoverse().stop();
+        if (juego.getMoverse() != null)
+            juego.getMoverse().stop();
         juego.getPersonajeEnemigo().setVisible(true);
         juego.getPersonajeImagen().setImage(comunicador.cambiarImagenGoku(EnumActividades.Atacar));
         juego.getPersonajeImagen().setLayoutX(500);
         juego.getPersonajeImagen().setLayoutY(286);
+        juego.moverPersonajesPeleaSocial(getJuego().getPersonajeImagen());
+        juego.moverPersonajesPeleaSocial(getJuego().getPersonajeEnemigo());
 //        System.out.println(((ControladorPelea) Jugador.getInstance().controladores.get(EnumActividades.Pelear)).getEnemigo().getApariencia().getImagenPorNivelNombre(0, "default"));
         InputStream stream = new FileInputStream("src/VISTA/Imagenes/Enemigo/enemigo1.png");
         Image image = new Image(stream);
@@ -52,6 +55,7 @@ public class NotificacionPelea implements Initializable, DragWindow {
         Node source = (Node) event.getSource();
         Stage stageActual = (Stage) source.getScene().getWindow();
         stageActual.close();
+        Jugador.getInstance().partida.getTimeChecker().notificacion = false;
     }
 
     @FXML
@@ -59,6 +63,7 @@ public class NotificacionPelea implements Initializable, DragWindow {
         Node source = (Node) event.getSource();
         Stage stageActual = (Stage) source.getScene().getWindow();
         stageActual.close();
+        Jugador.getInstance().partida.getTimeChecker().notificacion = false;
     }
 
     @Override

@@ -88,6 +88,9 @@ public class Notificacion implements Initializable, DragWindow {
         juego.getPersonajeImagen().setImage(comunicador.cambiarImagenGoku(EnumActividades.Normal));
         if (juego.getMoverse() != null)
             juego.getMoverse().stop();
+
+        juego.moverPersonajesPeleaSocial(juego.getPersonajeImagen());
+        juego.moverPersonajesPeleaSocial(juego.personajeAmigo);
         juego.cambiarHumor(Jugador.getInstance().etiquetaEstadoActual.name());
         juego.getPersonajeAmigo().setVisible(true);
         Jugador.getInstance().partida.getTimeChecker().cantVisitas++;
@@ -95,6 +98,7 @@ public class Notificacion implements Initializable, DragWindow {
         Node source = (Node) event.getSource();
         Stage stageActual = (Stage) source.getScene().getWindow();
         stageActual.close();
+        Jugador.getInstance().partida.getTimeChecker().notificacion = false;
     }
 
     @FXML
@@ -102,6 +106,7 @@ public class Notificacion implements Initializable, DragWindow {
         Node source = (Node) event.getSource();
         Stage stageActual = (Stage) source.getScene().getWindow();
         stageActual.close();
+        Jugador.getInstance().partida.getTimeChecker().notificacion = false;
     }
 
     @Override

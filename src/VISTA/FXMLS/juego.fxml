@@ -18,6 +18,11 @@
    <children>
       <Pane fx:id="cargarJuego" prefHeight="706.0" prefWidth="1191.0" style="-fx-background-color: transparent;">
          <children>
+            <ImageView fitHeight="706.0" fitWidth="1191.0" opacity="0.61" pickOnBounds="true">
+               <image>
+                  <Image url="@../Imagenes/Otros/fondoInicio.jpg" />
+               </image>
+            </ImageView>
             <ImageView fitHeight="708.0" fitWidth="1196.0" layoutX="219.0" layoutY="-1.0" opacity="0.79" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Imagenes/Otros/fondoInicio.png" />
@@ -200,7 +205,7 @@
                      </effect>
                   </Button>
                   <ImageView fx:id="imagenDeportePeleas" fitHeight="69.0" fitWidth="88.0" layoutX="918.0" layoutY="195.0" pickOnBounds="true" />
-                  <Button blendMode="MULTIPLY" layoutX="179.0" layoutY="354.0" mnemonicParsing="false" onAction="#pelear" prefHeight="27.0" prefWidth="168.0" text="PELEAR" textAlignment="CENTER">
+                  <Button blendMode="MULTIPLY" layoutX="174.0" layoutY="246.0" mnemonicParsing="false" onAction="#pelear" prefHeight="27.0" prefWidth="168.0" text="PELEAR" textAlignment="CENTER">
                      <font>
                         <Font name="Cooper Black" size="19.0" />
                      </font>
@@ -251,8 +256,10 @@
                         </InnerShadow>
                      </effect>
                   </ComboBox>
-                  <ImageView fx:id="fotoHabilidad" fitHeight="101.0" fitWidth="125.0" layoutX="200.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="personajeEnemigo" fitHeight="129.0" fitWidth="152.0" layoutX="551.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                  <ImageView fx:id="personajeEnemigo" fitHeight="101.0" fitWidth="86.0" layoutX="660.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../Imagenes/Enemigo/enemigo1.png" />
+                     </image></ImageView>
                   <Button layoutX="340.0" layoutY="180.0" mnemonicParsing="false" onAction="#agregarCombo" style="-fx-background-color: transparent;" text="+" textFill="WHITE">
                      <font>
                         <Font name="Cooper Black" size="18.0" />
@@ -307,30 +314,7 @@
                         </InnerShadow>
                      </effect>
                   </Button>
-                  <Button blendMode="MULTIPLY" layoutX="498.0" layoutY="521.0" mnemonicParsing="false" onAction="#curar" prefHeight="35.0" prefWidth="184.0" text="CURAR" textAlignment="CENTER" textFill="#1d76a9">
-                     <font>
-                        <Font name="Cooper Black" size="15.0" />
-                     </font>
-                     <effect>
-                        <InnerShadow height="60.77" radius="29.885" width="60.77">
-                           <color>
-                              <Color red="0.1712280660867691" green="0.5400818586349487" blue="0.6421052813529968" />
-                           </color>
-                           <input>
-                              <Lighting diffuseConstant="2.0" specularConstant="1.11" specularExponent="40.0" surfaceScale="5.26">
-                                 <bumpInput>
-                                    <Shadow height="10.5" radius="2.125" width="0.0">
-                                       <color>
-                                          <Color red="1.0" green="1.0" blue="1.0" />
-                                       </color>
-                                    </Shadow>
-                                 </bumpInput>
-                              </Lighting>
-                           </input>
-                        </InnerShadow>
-                     </effect>
-                  </Button>
-                  <Button blendMode="MULTIPLY" layoutX="777.0" layoutY="521.0" mnemonicParsing="false" onAction="#crearMedicina" prefHeight="35.0" prefWidth="184.0" text="CREAR MEDICINA" textAlignment="CENTER" textFill="#1d76a9">
+                  <Button blendMode="MULTIPLY" layoutX="814.0" layoutY="521.0" mnemonicParsing="false" onAction="#curar" prefHeight="35.0" prefWidth="184.0" text="CURAR" textAlignment="CENTER" textFill="#1d76a9">
                      <font>
                         <Font name="Cooper Black" size="15.0" />
                      </font>

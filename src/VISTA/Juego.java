@@ -276,7 +276,28 @@ public class Juego implements Initializable, Serializable {
         }
     }
 
+    public void moverPersonajesPeleaSocial(ImageView personaje){
+        Timeline mover = new Timeline(new KeyFrame(Duration.millis(20), new EventHandler<ActionEvent>() {
+            int pos = 2;
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                personaje.setLayoutX(personaje.getLayoutX() + pos);
+                int bordeMax = 500;
+                int bordeMin = 700;
+
+                boolean bordeDerecho = personaje.getLayoutX() == bordeMax;
+                boolean bordeIzquierdo = personaje.getLayoutX() == bordeMin;
+
+                if (bordeIzquierdo || bordeDerecho)
+                    pos *= -1;
+            }
+        }));
+        mover.setCycleCount(Animation.INDEFINITE);
+        mover.play();
+    }
+
     private void moverPersonaje(Velocidad vel, int edificio){
+        if (moverse != null) moverse.stop();
         int velocidad = 0;
         switch (vel){
             case NORMAL:
@@ -509,6 +530,8 @@ public class Juego implements Initializable, Serializable {
         personajeImagen.setLayoutX(380);
         personajeImagen.setImage(comunicador.cambiarImagenGoku(EnumActividades.Comer));
         moverse.stop();
+        Comida comida = fxmlLoader.getController();
+        comida.setJuego(this);
     }
 
     @FXML
@@ -520,6 +543,8 @@ public class Juego implements Initializable, Serializable {
         stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();
+        Medicinas meds = fxmlLoader.getController();
+        meds.setJuego(this);
     }
 
     @FXML
