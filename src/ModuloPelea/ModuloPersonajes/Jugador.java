@@ -68,9 +68,14 @@ public class Jugador extends Personaje implements Serializable {
     }
 
     //Metodos de pelea.
-    public void agregarHabilidad(Arma habilidad){//Usaddo por ejercicio para dar nuevas habilidades al personaje.
+    public void agregarHabilidad(Arma habilidad){//Usado por ejercicio para dar nuevas habilidades al personaje.
         //Usa el metodo de agregar arma
-        armas.addArma(habilidad);
+        System.out.println("NOMBRE"+habilidad.getNombre() +"HOLA");
+        System.out.println(armas.getArma(habilidad.getNombre())+"AQUI!");
+        if(armas.getArma(habilidad.getNombre()) == null){
+            System.out.println("aqui");
+            armas.addArma(habilidad);
+        }
     }
 
     public Arma getHabilidad(String nombreHabilidad){
@@ -117,10 +122,11 @@ public class Jugador extends Personaje implements Serializable {
     }
     
     public void ejercitarse(EnumDeportes deporteActual){
+        System.out.println(deporteActual + " ACTUAL ANTES");
         this.deporteActual = deporteActual;
-        estadoActual = controladores.get(EnumActividades.Ejercitar);
-        etiquetaEstadoActual = EnumActividades.Ejercitar;
-        estadoActual.satisfacer();
+        this.estadoActual = this.controladores.get(EnumActividades.Deporte);
+        this.etiquetaEstadoActual = EnumActividades.Deporte;
+        this.estadoActual.satisfacer();
     }
     
     public void social(){

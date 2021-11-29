@@ -19,6 +19,7 @@ public class ControladorDeporte implements IControlerStrategy{
 
 
     public void satisfacer(){
+        System.out.println(Jugador.getInstance().deporteActual + " DEPORTE ACTUAL");
         deportes.get(Jugador.getInstance().deporteActual).satisfacer();
     }
 

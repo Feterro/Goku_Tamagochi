@@ -17,10 +17,10 @@ public class SportMaker {
     public static void saveDeportes(){
         ArrayList<Deporte> deportes = new ArrayList<>();
         ArrayList<Arma> armas = new ArrayList<Arma>(); armas.add(HabilidadFactory.getInstance().getHabilidad("Patada Alta"));
-        ArrayList<Arma> armas2 = new ArrayList<Arma>(); armas.add(HabilidadFactory.getInstance().getHabilidad("Karate"));
+        ArrayList<Arma> armas2 = new ArrayList<Arma>(); armas2.add(HabilidadFactory.getInstance().getHabilidad("Kame hame ha"));
 
-        deportes.add(new Futbol(15,EnumDeportes.FUTBOL,armas));
-        deportes.add(new Karate(10,EnumDeportes.KARATE,armas2));
+        deportes.add(new Futbol(15, EnumDeportes.FUTBOL, armas, "src/VISTA/Imagenes/Deportes/soccer.png"));
+        deportes.add(new Karate(10, EnumDeportes.KARATE, armas2, "src/VISTA/Imagenes/Deportes/boxeo.png"));
         ProcesadorSerializable.fileWriter(deportes,PATH);
     }
 

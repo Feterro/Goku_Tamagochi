@@ -14,6 +14,10 @@ public class SportFactory {
         llenarHashDeportes();
     }
 
+    public HashMap<EnumDeportes, Deporte> getDeportes() {
+        return deportes;
+    }
+
     public static SportFactory getInstance() {
         if(SportFactory.instance != null){
             return SportFactory.instance;

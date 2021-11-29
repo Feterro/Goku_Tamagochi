@@ -13,14 +13,15 @@ public abstract class Deporte implements Serializable, IControlerStrategy {
     protected  EnumDeportes tipoDeporte;
     protected ArrayList<Arma> armas;
     private static final long serialVersionUID = 4366L;
-
+    private String imagen;
 
     public Deporte() {}
 
-    public Deporte(int aumentaProbLesion,EnumDeportes tipoDeporte,ArrayList<Arma> armas) {
+    public Deporte(int aumentaProbLesion,EnumDeportes tipoDeporte,ArrayList<Arma> armas, String imagen) {
         this.aumentaProbLesion = aumentaProbLesion;
         this.tipoDeporte = tipoDeporte;
         this.armas = armas;
+        this.imagen = imagen;
     }
 
     public int getAumentaProbLesion() {
@@ -29,6 +30,14 @@ public abstract class Deporte implements Serializable, IControlerStrategy {
 
     public void setAumentaProbLesion(int aumentaProbLesion) {
         this.aumentaProbLesion = aumentaProbLesion;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public void curar(){

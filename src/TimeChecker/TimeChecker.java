@@ -1,16 +1,8 @@
 package TimeChecker;
 
-import Consumibles.Bodega;
 import ModuloPelea.ModuloPersonajes.Jugador;
 import VISTA.Ambiente;
-import VISTA.Juego;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;

@@ -24,22 +24,23 @@ public class Comunicador {
     public Image cambiarImagenGoku(EnumActividades actividad) throws FileNotFoundException {
         InputStream stream;
         switch (actividad){
-            case Comer: //*
+            case Comer:
                 stream = new FileInputStream(Jugador.getInstance().getApariencia().getImagenPorNivelNombre(Jugador.getInstance().getNivel(), EnumActividades.Comer.name()));
                 break;
-            case Mimir: //*
+            case Mimir:
                 stream = new FileInputStream(Jugador.getInstance().getApariencia().getImagenPorNivelNombre(Jugador.getInstance().getNivel(), EnumActividades.Mimir.name()));
                 break;
-            case Ejercitar: //*
+            case Ejercitar:
+            case Deporte:
                 stream = new FileInputStream(Jugador.getInstance().getApariencia().getImagenPorNivelNombre(Jugador.getInstance().getNivel(), EnumActividades.Ejercitar.name()));
                 break;
-            case Enfermo: //*
+            case Enfermo:
                 stream = new FileInputStream(Jugador.getInstance().getApariencia().getImagenPorNivelNombre(Jugador.getInstance().getNivel(), EnumActividades.Enfermo.name()));
                 break;
-            case Caminando: //*
+            case Caminando:
                 stream = new FileInputStream(Jugador.getInstance().getApariencia().getImagenPorNivelNombre(Jugador.getInstance().getNivel(), EnumActividades.Caminando.name()));
                 break;
-            case Atacar: //*
+            case Atacar:
                 stream = new FileInputStream(Jugador.getInstance().getApariencia().getImagenPorNivelNombre(Jugador.getInstance().getNivel(), EnumActividades.Atacar.name()));
                 break;
             case Normal:

@@ -9,9 +9,8 @@ public class Futbol extends Deporte {
 
     private static final long serialVersionUID = 4367L;
 
-
-    public Futbol(int aumentaProbLesion, EnumDeportes tipoDeporte, ArrayList<Arma> armas) {
-        super(aumentaProbLesion, tipoDeporte,armas);
+    public Futbol(int aumentaProbLesion, EnumDeportes tipoDeporte, ArrayList<Arma> armas, String imagen) {
+        super(aumentaProbLesion, tipoDeporte,armas, imagen);
     }
 
     @Override
@@ -20,5 +19,7 @@ public class Futbol extends Deporte {
         Jugador.getInstance().getControladorSalud().modSaludSocial(10);
         Jugador.getInstance().getControladorSalud().modSatisfaccionHambre(-20);
         Jugador.getInstance().getControladorSalud().modSaludFisica(-15);
+        Jugador.getInstance().agregarHabilidad(armas.get(0));
+
     }
 }

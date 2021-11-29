@@ -1,6 +1,8 @@
 package VISTA;
 
 import Consumibles.Bodega;
+import Deportes.EnumDeportes;
+import Deportes.SportFactory;
 import LibreriaPersonajes.Apariencia.LvlImages;
 import LibreriaPersonajes.TDA.Personaje;
 import ModuloPelea.ModuloPersonajes.EnemigoFactory;
@@ -15,17 +17,18 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -44,9 +47,18 @@ public class Juego implements Initializable, Serializable {
 
     private ArrayList<Pane> areas = new ArrayList<>();
     private Timeline moverse;
-    private Jugador goku = Jugador.getInstance();
+//    private Jugador Jugador.getInstance() = Jugador.getInstance();
     private int edadGoku = 1;
     private Comunicador comunicador = Comunicador.getInstance();
+
+    @FXML
+    private Pane cargarJuego;
+
+    @FXML
+    private Pane otro;
+
+    @FXML
+    private TextField fechaJuego;
 
     @FXML
     private ImageView ambiente;
@@ -118,7 +130,7 @@ public class Juego implements Initializable, Serializable {
     private Text nombreDeportePis;
 
     @FXML
-    private ComboBox<Deporte> deportesPisicina;
+    private ComboBox<EnumDeportes> deportesPisicina;
 
     @FXML
     private ImageView imagenDeporteCancha;
@@ -127,7 +139,7 @@ public class Juego implements Initializable, Serializable {
     private Text nombreDeporteCancha;
 
     @FXML
-    private ComboBox<Deporte> deportesCancha;
+    private ComboBox<EnumDeportes> deportesCancha;
 
     @FXML
     private ImageView imagenDeporteGym;
@@ -136,7 +148,7 @@ public class Juego implements Initializable, Serializable {
     private Text nombreDeporteGym;
 
     @FXML
-    private ComboBox<Deporte> deportesGym;
+    private ComboBox<EnumDeportes> deportesGym;
 
     @FXML
     private ImageView imagenDeportePeleas;
@@ -145,10 +157,13 @@ public class Juego implements Initializable, Serializable {
     private Text nombreDeportePeleas;
 
     @FXML
-    private ComboBox<Deporte> deportesPeleas;
+    private ComboBox<EnumDeportes> deportesPeleas;
 
     @FXML
     private Button estadisticasB;
+
+    @FXML
+    private ComboBox<String> ataques;
 
     public Pane getCuarto() {
         return cuarto;
@@ -196,7 +211,7 @@ public class Juego implements Initializable, Serializable {
     }
 
     public void ponerVisible(Pane pane, boolean dormir) throws FileNotFoundException {
-        humor.setText(goku.etiquetaEstadoActual.name());
+        humor.setText(Jugador.getInstance().etiquetaEstadoActual.name());
         if (pane.equals(mapa)){
             moverse.stop();
             personajeImagen.setVisible(false);
@@ -204,9 +219,12 @@ public class Juego implements Initializable, Serializable {
             estados.setVisible(false);
             estadisticasB.setVisible(false);
         }else{
+            ObservableList<String> fxCollections = FXCollections.observableArrayList();
+            fxCollections.addAll(Jugador.getInstance().getArmas().getArmas().keySet());
+            ataques.setItems(fxCollections);
             estadisticasB.setVisible(true);
-            System.out.println(goku.getApariencia().getImagenPorNivelNombre(10, EnumActividades.Comer.name()));
-            InputStream stream = new FileInputStream(goku.getApariencia().getImagenPorNivelNombre(goku.getNivel(), EnumActividades.Caminando.name()));
+            System.out.println(Jugador.getInstance().getApariencia().getImagenPorNivelNombre(10, EnumActividades.Comer.name()));
+            InputStream stream = new FileInputStream(Jugador.getInstance().getApariencia().getImagenPorNivelNombre(Jugador.getInstance().getNivel(), EnumActividades.Caminando.name()));
             Image image = new Image(stream);
             personajeImagen.setImage(image);
             estados.setVisible(true);
@@ -313,11 +331,12 @@ public class Juego implements Initializable, Serializable {
         tercerNivel.addApariencia(EnumActividades.Ejercitar.name(), "src/VISTA/Imagenes/Personaje/ejercicio_nivel3.png");
         tercerNivel.addApariencia(EnumActividades.Normal.name(), "src/VISTA/Imagenes/Personaje/estarQuietoEnfermo_nivel3.png");
 
-        goku = new Jugador(new Personaje.BuilderPersonaje().setNombre("Goku")
+        Jugador jugador = new Jugador(new Personaje.BuilderPersonaje().setNombre("Goku")
                 .addApariencia(0, primerNivel)
                 .addApariencia(10, segundoNivel)
                 .addApariencia(30, tercerNivel)
-                .setVida(500).addArma(HabilidadFactory.getInstance().getHabilidad("Karate")).build()); //agregarHabilidades
+                .setVida(500).build());
+        Jugador.setJugador(jugador);
     }
 
     public void cambiarHoraYdias(String horaS, String dia){
@@ -351,7 +370,7 @@ public class Juego implements Initializable, Serializable {
 
     @FXML
     public void cambiarMood(MouseEvent event){
-        cambiarHumor(String.valueOf(goku.etiquetaEstadoActual));
+        cambiarHumor(String.valueOf(Jugador.getInstance().etiquetaEstadoActual));
     }
 
     @FXML
@@ -462,55 +481,69 @@ public class Juego implements Initializable, Serializable {
 
     @FXML
     public void hacerDeportePis(ActionEvent event) throws FileNotFoundException {
-        Deporte deporte = deportesPisicina.getSelectionModel().getSelectedItem();
+        EnumDeportes deporte = deportesPisicina.getSelectionModel().getSelectedItem();
         if (deporte != null){
-//            String path = ""; //ruta imagen
-//            InputStream stream = new FileInputStream(path);
-//            Image image = new Image(stream);
-//            imagenDeportePis.setImage(image);
-            //jugar
+            String path = SportFactory.getInstance().getDeporte(deporte).getImagen();
+            InputStream stream = new FileInputStream(path);
+            Image image = new Image(stream);
+            imagenDeportePis.setImage(image);
             nombreDeportePis.setText(deporte.name());
+            Jugador.getInstance().ejercitarse(deporte);
+            personajeImagen.setImage(comunicador.cambiarImagenGoku(Jugador.getInstance().etiquetaEstadoActual));
+            cambiarHumor(Jugador.getInstance().etiquetaEstadoActual.name());
+            moverse.stop();
+            moverPersonaje(Velocidad.RAPIDO, 1);
         }
-
     }
 
     @FXML
     public void hacerDeporteCancha(ActionEvent event) throws FileNotFoundException {
-        Deporte deporte = deportesCancha.getSelectionModel().getSelectedItem();
+        EnumDeportes deporte = deportesCancha.getSelectionModel().getSelectedItem();
         if (deporte != null){
-//            String path = ""; //ruta imagen
-//            InputStream stream = new FileInputStream(path);
-//            Image image = new Image(stream);
-//            imagenDeporteCancha.setImage(image);
-            //jugar
+            String path = SportFactory.getInstance().getDeporte(deporte).getImagen();
+            InputStream stream = new FileInputStream(path);
+            Image image = new Image(stream);
+            imagenDeporteCancha.setImage(image);
             nombreDeporteCancha.setText(deporte.name());
+            Jugador.getInstance().ejercitarse(deporte);
+            personajeImagen.setImage(comunicador.cambiarImagenGoku(Jugador.getInstance().etiquetaEstadoActual));
+            cambiarHumor(Jugador.getInstance().etiquetaEstadoActual.name());
+            moverse.stop();
+            moverPersonaje(Velocidad.RAPIDO, 1);
         }
-
     }
 
     @FXML
     public void hacerDeporteGym(ActionEvent event) throws FileNotFoundException {
-        Deporte deporte = deportesGym.getSelectionModel().getSelectedItem();
+        EnumDeportes deporte = deportesGym.getSelectionModel().getSelectedItem();
         if (deporte != null){
-//            String path = ""; //ruta imagen
-//            InputStream stream = new FileInputStream(path);
-//            Image image = new Image(stream);
-//            imagenDeporteGym.setImage(image);
-            //jugar
+            String path = SportFactory.getInstance().getDeporte(deporte).getImagen();
+            InputStream stream = new FileInputStream(path);
+            Image image = new Image(stream);
+            imagenDeporteGym.setImage(image);
             nombreDeporteGym.setText(deporte.name());
+            Jugador.getInstance().ejercitarse(deporte);
+            personajeImagen.setImage(comunicador.cambiarImagenGoku(Jugador.getInstance().etiquetaEstadoActual));
+            cambiarHumor(Jugador.getInstance().etiquetaEstadoActual.name());
+            moverse.stop();
+            moverPersonaje(Velocidad.RAPIDO, 2);
         }
     }
 
     @FXML
     public void hacerDeportePeleas(ActionEvent event) throws FileNotFoundException {
-        Deporte deporte = deportesPeleas.getSelectionModel().getSelectedItem();
+        EnumDeportes deporte = deportesPeleas.getSelectionModel().getSelectedItem();
         if (deporte != null){
-//            String path = ""; //ruta imagen
-//            InputStream stream = new FileInputStream(path);
-//            Image image = new Image(stream);
-//            imagenDeportePeleas.setImage(image);
-            //jugar
+            String path = SportFactory.getInstance().getDeporte(deporte).getImagen();
+            InputStream stream = new FileInputStream(path);
+            Image image = new Image(stream);
+            imagenDeportePeleas.setImage(image);
             nombreDeportePeleas.setText(deporte.name());
+            Jugador.getInstance().ejercitarse(deporte);
+            personajeImagen.setImage(comunicador.cambiarImagenGoku(Jugador.getInstance().etiquetaEstadoActual));
+            cambiarHumor(Jugador.getInstance().etiquetaEstadoActual.name());
+            moverse.stop();
+            moverPersonaje(Velocidad.RAPIDO, 3);
         }
     }
 
@@ -522,20 +555,20 @@ public class Juego implements Initializable, Serializable {
     @FXML
     public void dormir(ActionEvent event) throws FileNotFoundException {
         moverse.stop();
-        goku.verificarMimir(true);
+        Jugador.getInstance().verificarMimir(true);
         ponerVisible(cuarto, true);
         personajeImagen.setLayoutX(680);
         personajeImagen.setLayoutY(400);
         personajeImagen.setImage(comunicador.cambiarImagenGoku(EnumActividades.Mimir));
-        cambiarHumor(goku.etiquetaEstadoActual.name());
+        cambiarHumor(Jugador.getInstance().etiquetaEstadoActual.name());
     }
 
     @FXML
     public void irBano(ActionEvent event) throws FileNotFoundException {
         personajeImagen.setLayoutX(280);
         personajeImagen.setLayoutY(400);
-        goku.bano(); //preguntar después si hay que hacer algo más
-        humor.setText(goku.etiquetaEstadoActual.name());
+        Jugador.getInstance().bano(); //preguntar después si hay que hacer algo más
+        humor.setText(Jugador.getInstance().etiquetaEstadoActual.name());
         moverse.stop();
         comunicador.cambiarImagenGoku(EnumActividades.Bano);
     }
@@ -576,18 +609,18 @@ public class Juego implements Initializable, Serializable {
     public void cambiarEdad(ActionEvent event) throws FileNotFoundException {
         if (edadGoku == 3){
             edadGoku = 1;
-            goku.setNivel(0);
-            edad.setText(String.valueOf(goku.getNivel()));
+            Jugador.getInstance().setNivel(0);
+            edad.setText(String.valueOf(Jugador.getInstance().getNivel()));
             personajeImagen.setImage(comunicador.cambiarImagenGoku(EnumActividades.Caminando));
         }
         else {
             edadGoku = edadGoku + 1;
             if (edadGoku == 2){
-                goku.setNivel(10);
+                Jugador.getInstance().setNivel(10);
             }else{
-                goku.setNivel(30);
+                Jugador.getInstance().setNivel(30);
             }
-            edad.setText(String.valueOf(goku.getNivel()));
+            edad.setText(String.valueOf(Jugador.getInstance().getNivel()));
             personajeImagen.setImage(comunicador.cambiarImagenGoku(EnumActividades.Caminando));
         }
     }
@@ -603,30 +636,46 @@ public class Juego implements Initializable, Serializable {
         stage.show();
     }
 
+    @FXML
+    public void jugar(ActionEvent event) throws FileNotFoundException {
+        if (!fechaJuego.getText().isEmpty()) {
+            cargarJuego.setVisible(false);
+            otro.setVisible(true);
+            inicializarPersonaje();
+            Partida.getPartida().setJuego(this);
+            Partida.getPartida().setTimeChecker(1000);
+            Partida.getPartida().getTimeChecker().setReloj(3, 3, 6, 6);
+//            Jugador.getInstance().escogerReinicio(fechaJuego.getText());
+            Timer timer = new Timer();
+            timer.schedule(Partida.getPartida().getTimeChecker().iniciarTiempo(), 0, Partida.getPartida().getTimeChecker().getSegundo());
+            edad.setText(String.valueOf(Jugador.getInstance().getNivel()));
+            personajeImagen.setVisible(false);
+            personajeImagen.setLayoutY(235);
+            personajeImagen.setLayoutY(458);
+            try {
+                personajeImagen.setImage(comunicador.cambiarImagenGoku(EnumActividades.Caminando));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            meterALista();
+            notificaciones.getItems().add("");
+            try {
+                cambiarAmbiente(Ambiente.MANANA);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            ObservableList<EnumDeportes> deportes = FXCollections.observableArrayList();
+            deportes.addAll(SportFactory.getInstance().getDeportes().keySet());
+            deportesPisicina.setItems(deportes);
+            deportesPeleas.setItems(deportes);
+            deportesCancha.setItems(deportes);
+            deportesGym.setItems(deportes);
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Partida.getPartida().setJuego(this);
-        Partida.getPartida().setTimeChecker(1000);
-        Partida.getPartida().getTimeChecker().setReloj(3, 3, 6, 6);
-        Timer timer = new Timer();
-        timer.schedule(Partida.getPartida().getTimeChecker().iniciarTiempo(), 0, Partida.getPartida().getTimeChecker().getSegundo());
-        inicializarPersonaje();
-        edad.setText(String.valueOf(goku.getNivel()));
-        deportesPisicina.setItems(FXCollections.observableArrayList(Deporte.values()));
-        deportesCancha.setItems(FXCollections.observableArrayList(Deporte.values()));
-        personajeImagen.setVisible(false);
-        try {
-            personajeImagen.setImage(comunicador.cambiarImagenGoku(EnumActividades.Caminando));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        meterALista();
-        notificaciones.getItems().add("");
-        try {
-            cambiarAmbiente(Ambiente.MANANA);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+
     }
 
 }
