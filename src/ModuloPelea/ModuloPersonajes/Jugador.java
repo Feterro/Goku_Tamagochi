@@ -16,6 +16,7 @@ import javafx.application.Platform;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -38,6 +39,7 @@ public class Jugador extends Personaje implements Serializable {
     private static Jugador jugador;
     public Consumible consumible;
     public Partida partida;
+    public ArrayList<Arma> combo = new ArrayList<>();
 
     public Jugador (Personaje personaje){
         super(personaje);
@@ -65,9 +67,16 @@ public class Jugador extends Personaje implements Serializable {
         controladores.put(EnumActividades.Bano, new ControladorBano());
         controladores.put(EnumActividades.Cura, new ControladorCura());
         controladores.put(EnumActividades.Deporte, new ControladorDeporte());
+        controladores.put(EnumActividades.Pelear, new ControladorPelea());
+
+    }
+
+    public void addToCombo(Arma habilidad){
+        this.combo.add(habilidad);
     }
 
     //Metodos de pelea.
+
     public void agregarHabilidad(Arma habilidad){//Usado por ejercicio para dar nuevas habilidades al personaje.
         //Usa el metodo de agregar arma
         System.out.println("NOMBRE"+habilidad.getNombre() +"HOLA");
@@ -77,12 +86,12 @@ public class Jugador extends Personaje implements Serializable {
             armas.addArma(habilidad);
         }
     }
-
     public Arma getHabilidad(String nombreHabilidad){
         return armas.getArma(nombreHabilidad);
     }
 
     //Intenta robar una habilidad
+
     public void robarHabilidad(Enemigo enemigo){
         for(Arma miHabilidad:armas.getArmas().values()){
             for(Arma habilidad:enemigo.getHabilidades()){
@@ -93,9 +102,21 @@ public class Jugador extends Personaje implements Serializable {
             }
         }
     }
-
     public static void setJugador(Jugador jugador) {
         Jugador.jugador = jugador;
+    }
+
+    public void doCombo(Enemigo enemigo){
+        ArrayList<Personaje> objetivos = new ArrayList<>();
+        objetivos.add(enemigo);
+        this.atacar(objetivos,combo);
+        this.combo = new ArrayList<>();
+    }
+
+    public void pelear() {
+        estadoActual = controladores.get(EnumActividades.Pelear);
+        etiquetaEstadoActual = EnumActividades.Pelear;
+        estadoActual.satisfacer();
     }
 
     public void comer(EnumAlimento comida) throws IOException {

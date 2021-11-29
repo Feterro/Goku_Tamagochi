@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane fx:id="contSoc" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="213.0" prefWidth="442.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VISTA.Controladores.Notificacion">
+   <children>
+      <ImageView fitHeight="213.0" fitWidth="449.0" opacity="0.88" pickOnBounds="true">
+         <image>
+            <Image url="@../Imagenes/Otros/fondoInventario.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="213.0" fitWidth="301.0" layoutX="74.0" opacity="0.59" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/Enemigo/socializarFondo.png" />
+         </image>
+      </ImageView>
+      <Text fill="#fcfcfc" layoutX="20.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="¡TIENES UN AMIGO QUE QUIERE VISITARTE!" wrappingWidth="408.3704833984375">
+         <font>
+            <Font name="Eras Demi ITC" size="19.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="84.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="¿Deseas ver a tu amigo, Manchas?">
+         <font>
+            <Font name="Eras Demi ITC" size="17.0" />
+         </font>
+      </Text>
+      <Button blendMode="MULTIPLY" layoutX="38.0" layoutY="143.0" mnemonicParsing="false" onAction="#aceptar" prefHeight="34.0" prefWidth="162.0" text="ACEPTAR">
+         <effect>
+            <InnerShadow height="53.75" radius="26.96" width="56.09">
+               <color>
+                  <Color red="0.15469785034656525" green="0.3709421753883362" blue="0.6736842393875122" />
+               </color>
+            </InnerShadow>
+         </effect>
+         <font>
+            <Font name="Cooper Black" size="18.0" />
+         </font>
+      </Button>
+      <Button blendMode="MULTIPLY" layoutX="266.0" layoutY="143.0" mnemonicParsing="false" onAction="#rechazar" text="RECHAZAR">
+         <effect>
+            <InnerShadow height="53.75" radius="26.96" width="56.09">
+               <color>
+                  <Color red="0.15469785034656525" green="0.3709421753883362" blue="0.6736842393875122" />
+               </color>
+            </InnerShadow>
+         </effect>
+         <font>
+            <Font name="Cooper Black" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

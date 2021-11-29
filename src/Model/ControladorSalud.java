@@ -27,19 +27,19 @@ public class ControladorSalud implements Serializable {
 
     public void verificar(){
         if(satisfaccionHambre < 0 || satisfaccionHambre >100 ){
-            this.probabilidadEnfermedad += 20;
+            modProbabilidadEnfermedad(this.probabilidadEnfermedad+20);
         }
         if(satisfaccionBano < 0){
-            this.probabilidadEnfermedad += 20;
+            modProbabilidadEnfermedad(this.probabilidadEnfermedad+20);
         }
         if(saludSocial < 0 || saludSocial > 100){
-            this.probabilidadEnfermedad += 20;
+            modProbabilidadEnfermedad(this.probabilidadEnfermedad+20);
         }
         if(saludFisica < 0) {
-            this.probabilidadEnfermedad += 20;
+            modProbabilidadEnfermedad(this.probabilidadEnfermedad+20);
         }
         if(satisfaccionSuenno < 0) {
-            this.probabilidadEnfermedad += 20;
+            modProbabilidadEnfermedad(this.probabilidadEnfermedad+20);
         }
         int rand_enfermedad = ThreadLocalRandom.current().nextInt(0, 100);
         if (rand_enfermedad < this.probabilidadEnfermedad){

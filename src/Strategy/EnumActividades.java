@@ -11,5 +11,6 @@ public enum EnumActividades {
     Normal,
     Atacar,
     Caminando,
-    Enfermo
+    Enfermo,
+    Pelear
 }

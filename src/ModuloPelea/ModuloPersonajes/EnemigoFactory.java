@@ -1,6 +1,7 @@
 package ModuloPelea.ModuloPersonajes;
 
 import LibreriaPersonajes.Apariencia.LvlImages;
+import LibreriaPersonajes.TDA.Arma;
 import LibreriaPersonajes.TDA.Personaje;
 import ModuloPelea.CreadorDeEnemigos.EnemyMaker;
 import ModuloPelea.CreadorDeHabilidades.AbilityMaker;
@@ -26,7 +27,9 @@ public class EnemigoFactory {
 
         //Asignacion de las armas aleatorias al enemigo
         for(int i = 0; i < 3;i++){
-            enemy.getArmas().addArma(HabilidadFactory.getInstance().getRandomHabilidad());
+            Arma arma = HabilidadFactory.getInstance().getRandomHabilidad();
+            System.out.println(arma);
+            enemy.getArmas().addArma(arma);
         }
         return (Enemigo)enemy;
     }

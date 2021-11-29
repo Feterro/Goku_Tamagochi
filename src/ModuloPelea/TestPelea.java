@@ -1,13 +1,9 @@
 package ModuloPelea;
 
-import LibreriaPersonajes.TDA.Arma;
 import LibreriaPersonajes.TDA.Personaje;
-import Model.ControladorSalud;
 import ModuloPelea.ModuloPersonajes.EnemigoFactory;
 import ModuloPelea.ModuloPersonajes.HabilidadFactory;
 import ModuloPelea.ModuloPersonajes.Jugador;
-import ModuloPelea.ModuloPersonajes.Pelea;
-import Strategy.*;
 
 public class TestPelea {
     public static void main(String[] args) throws Exception {

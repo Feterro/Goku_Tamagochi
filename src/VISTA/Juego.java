@@ -5,14 +5,12 @@ import Deportes.EnumDeportes;
 import Deportes.SportFactory;
 import LibreriaPersonajes.Apariencia.LvlImages;
 import LibreriaPersonajes.TDA.Personaje;
+import ModuloPelea.ModuloPersonajes.ControladorPelea;
 import ModuloPelea.ModuloPersonajes.EnemigoFactory;
 import ModuloPelea.ModuloPersonajes.HabilidadFactory;
 import ModuloPelea.ModuloPersonajes.Jugador;
 import Strategy.EnumActividades;
-import VISTA.Controladores.Comunicador;
-import VISTA.Controladores.Deporte;
-import VISTA.Controladores.Notificacion;
-import VISTA.Controladores.Velocidad;
+import VISTA.Controladores.*;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -109,7 +107,7 @@ public class Juego implements Initializable, Serializable {
     private Pane mapa;
 
     @FXML
-    private ListView<String> notificaciones;
+    public ListView<String> notificaciones;
 
     @FXML
     private Text numeroDias;
@@ -165,12 +163,26 @@ public class Juego implements Initializable, Serializable {
     @FXML
     private ComboBox<String> ataques;
 
+    @FXML
+    private ImageView personajeEnemigo;
+
+    @FXML
+    public ImageView personajeAmigo;
+
     public Pane getCuarto() {
         return cuarto;
     }
 
+    public Pane getPeleas() {
+        return peleas;
+    }
+
     public ImageView getPersonajeImagen() {
         return personajeImagen;
+    }
+
+    public ImageView getPersonajeEnemigo() {
+        return personajeEnemigo;
     }
 
     public Timeline getMoverse() {
@@ -183,6 +195,10 @@ public class Juego implements Initializable, Serializable {
 
     public Text getEdad() {
         return edad;
+    }
+
+    public Pane getJardin() {
+        return jardin;
     }
 
     public void cambiarAmbiente(Ambiente ambiente) throws FileNotFoundException {
@@ -211,6 +227,10 @@ public class Juego implements Initializable, Serializable {
     }
 
     public void ponerVisible(Pane pane, boolean dormir) throws FileNotFoundException {
+        Jugador.getInstance().partida.getTimeChecker().estaPeleando = false;
+        Jugador.getInstance().partida.getTimeChecker().visitando = false;
+        personajeAmigo.setVisible(false);
+        personajeEnemigo.setVisible(false);
         humor.setText(Jugador.getInstance().etiquetaEstadoActual.name());
         if (pane.equals(mapa)){
             moverse.stop();
@@ -223,7 +243,6 @@ public class Juego implements Initializable, Serializable {
             fxCollections.addAll(Jugador.getInstance().getArmas().getArmas().keySet());
             ataques.setItems(fxCollections);
             estadisticasB.setVisible(true);
-            System.out.println(Jugador.getInstance().getApariencia().getImagenPorNivelNombre(10, EnumActividades.Comer.name()));
             InputStream stream = new FileInputStream(Jugador.getInstance().getApariencia().getImagenPorNivelNombre(Jugador.getInstance().getNivel(), EnumActividades.Caminando.name()));
             Image image = new Image(stream);
             personajeImagen.setImage(image);
@@ -311,7 +330,7 @@ public class Juego implements Initializable, Serializable {
         primerNivel.addApariencia(EnumActividades.Comer.name(), "src/VISTA/Imagenes/Personaje/comiendo_nivel1.png");
         primerNivel.addApariencia(EnumActividades.Mimir.name(), "src/VISTA/Imagenes/Personaje/dormir_nivel1.png");
         primerNivel.addApariencia(EnumActividades.Ejercitar.name(), "src/VISTA/Imagenes/Personaje/ejercicio_nivel1.png");
-        primerNivel.addApariencia(EnumActividades.Normal.name(), "src/VISTA/Imagenes/Personaje/estarQuietoEnfermo_nivel1.png");
+        primerNivel.addApariencia(EnumActividades.Normal.name(), "src/VISTA/Imagenes/Personaje/estarQuieto_nivel1 .png");
 
         LvlImages segundoNivel = new LvlImages();
         segundoNivel.addApariencia(EnumActividades.Atacar.name(), "src/VISTA/Imagenes/Personaje/ataque_nivel2.png");
@@ -320,7 +339,7 @@ public class Juego implements Initializable, Serializable {
         segundoNivel.addApariencia(EnumActividades.Comer.name(), "src/VISTA/Imagenes/Personaje/comiendo_nivel2.png");
         segundoNivel.addApariencia(EnumActividades.Mimir.name(), "src/VISTA/Imagenes/Personaje/dormir_nivel2.png");
         segundoNivel.addApariencia(EnumActividades.Ejercitar.name(), "src/VISTA/Imagenes/Personaje/ejercicio_nivel2.png");
-        segundoNivel.addApariencia(EnumActividades.Normal.name(), "src/VISTA/Imagenes/Personaje/estarQuietoEnfermo_nivel2.png");
+        segundoNivel.addApariencia(EnumActividades.Normal.name(), "src/VISTA/Imagenes/Personaje/estarQuieto_nivel2.png");
 
         LvlImages tercerNivel = new LvlImages();
         tercerNivel.addApariencia(EnumActividades.Atacar.name(), "src/VISTA/Imagenes/Personaje/ataque_nivel3.png");
@@ -329,7 +348,7 @@ public class Juego implements Initializable, Serializable {
         tercerNivel.addApariencia(EnumActividades.Comer.name(), "src/VISTA/Imagenes/Personaje/comiendo_nivel3.png");
         tercerNivel.addApariencia(EnumActividades.Mimir.name(), "src/VISTA/Imagenes/Personaje/dormir_nivel3.png");
         tercerNivel.addApariencia(EnumActividades.Ejercitar.name(), "src/VISTA/Imagenes/Personaje/ejercicio_nivel3.png");
-        tercerNivel.addApariencia(EnumActividades.Normal.name(), "src/VISTA/Imagenes/Personaje/estarQuietoEnfermo_nivel3.png");
+        tercerNivel.addApariencia(EnumActividades.Normal.name(), "src/VISTA/Imagenes/Personaje/estarQuieto_nivel3.png");
 
         Jugador jugador = new Jugador(new Personaje.BuilderPersonaje().setNombre("Goku")
                 .addApariencia(0, primerNivel)
@@ -358,6 +377,30 @@ public class Juego implements Initializable, Serializable {
 
     public void abrirNotificacionMorir() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLS/notificacionMorir.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
+        Notificacion not = fxmlLoader.getController();
+        not.setJuego(this);
+    }
+
+    public void notificacionPelea() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLS/notificacionPelea.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
+        NotificacionPelea not = fxmlLoader.getController();
+        not.setJuego(this);
+    }
+
+    public void notificacionSocializar() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLS/notificacionSocializar.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.TRANSPARENT);
@@ -548,8 +591,18 @@ public class Juego implements Initializable, Serializable {
     }
 
     @FXML
-    public void pelear(ActionEvent event) {
-
+    public void pelear(ActionEvent event) throws FileNotFoundException {
+        if (Jugador.getInstance().combo.size() > 0) {
+            if (((ControladorPelea) Jugador.getInstance().controladores.get(EnumActividades.Pelear)).getEnemigo() != null) {
+                Jugador.getInstance().pelear();
+                comunicador.cambiarImagenGoku(Jugador.getInstance().etiquetaEstadoActual);
+                humor.setText(Jugador.getInstance().etiquetaEstadoActual.name());
+            }else{
+                notificaciones.getItems().add("No hay enemigos para pelear");
+            }
+        }else{
+            notificaciones.getItems().add("Escoja habilidades para atacar");
+        }
     }
     
     @FXML
@@ -569,6 +622,7 @@ public class Juego implements Initializable, Serializable {
         personajeImagen.setLayoutY(400);
         Jugador.getInstance().bano(); //preguntar después si hay que hacer algo más
         humor.setText(Jugador.getInstance().etiquetaEstadoActual.name());
+        personajeImagen.setImage(comunicador.cambiarImagenGoku(Jugador.getInstance().etiquetaEstadoActual));
         moverse.stop();
         comunicador.cambiarImagenGoku(EnumActividades.Bano);
     }
@@ -643,9 +697,13 @@ public class Juego implements Initializable, Serializable {
             otro.setVisible(true);
             inicializarPersonaje();
             Partida.getPartida().setJuego(this);
-            Partida.getPartida().setTimeChecker(1000);
+            Partida.getPartida().setTimeChecker(2000);
             Partida.getPartida().getTimeChecker().setReloj(3, 3, 6, 6);
-//            Jugador.getInstance().escogerReinicio(fechaJuego.getText());
+            try {
+                Jugador.getInstance().escogerReinicio(fechaJuego.getText());
+            }catch (NullPointerException | FileNotFoundException ignored){
+            }
+
             Timer timer = new Timer();
             timer.schedule(Partida.getPartida().getTimeChecker().iniciarTiempo(), 0, Partida.getPartida().getTimeChecker().getSegundo());
             edad.setText(String.valueOf(Jugador.getInstance().getNivel()));
@@ -673,9 +731,22 @@ public class Juego implements Initializable, Serializable {
         }
     }
 
+    @FXML
+    public void agregarCombo(ActionEvent event){
+        if (!ataques.getSelectionModel().getSelectedItem().isEmpty())
+            Jugador.getInstance().addToCombo(Jugador.getInstance().getArmas().getArma(ataques.getSelectionModel().getSelectedItem()));
+        else{
+            notificaciones.getItems().add("Escoja una habilidad");
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
+
+    public ImageView getPersonajeAmigo() {
+        return personajeAmigo;
+    }
 }

@@ -1,17 +1,8 @@
 package ModuloPelea.ModuloPersonajes;
 
-import Deportes.Deporte;
-import Deportes.EnumDeportes;
-import Deportes.SportMaker;
 import LibreriaPersonajes.TDA.Arma;
 import ModuloPelea.CreadorDeHabilidades.AbilityMaker;
-
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
-
 
 public class HabilidadFactory {
     private static HabilidadFactory instance;
@@ -44,8 +35,10 @@ public class HabilidadFactory {
     }
 
     public Arma getRandomHabilidad() {
-        Random R = new Random();
-        return habilidades.get(R.nextInt(habilidades.size()));
+        System.out.println(habilidades);
+        int R =(int) (Math.random()*habilidades.size());
+        System.out.println(R + "numero");
+        return habilidades.get(habilidades.keySet().toArray()[R]);
     }
 
 }

@@ -34,6 +34,9 @@ public class Notificacion implements Initializable, DragWindow {
     private Pane contMorir;
 
     @FXML
+    private Pane contSoc;
+
+    @FXML
     private TextField fechaTF;
 
     @FXML
@@ -76,12 +79,39 @@ public class Notificacion implements Initializable, DragWindow {
         stageActual.close();
     }
 
+    @FXML
+    public void aceptar(ActionEvent event) throws FileNotFoundException {
+        Jugador.getInstance().social();
+        juego.ponerVisible(juego.getJardin(), true);
+        juego.getPersonajeImagen().setLayoutX(500);
+        juego.getPersonajeImagen().setLayoutY(400);
+        juego.getPersonajeImagen().setImage(comunicador.cambiarImagenGoku(EnumActividades.Normal));
+        if (juego.getMoverse() != null)
+            juego.getMoverse().stop();
+        juego.cambiarHumor(Jugador.getInstance().etiquetaEstadoActual.name());
+        juego.getPersonajeAmigo().setVisible(true);
+        Jugador.getInstance().partida.getTimeChecker().cantVisitas++;
+        Jugador.getInstance().partida.getTimeChecker().visitando = true;
+        Node source = (Node) event.getSource();
+        Stage stageActual = (Stage) source.getScene().getWindow();
+        stageActual.close();
+    }
+
+    @FXML
+    public void rechazar(ActionEvent event){
+        Node source = (Node) event.getSource();
+        Stage stageActual = (Stage) source.getScene().getWindow();
+        stageActual.close();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (cont != null)
             onDraggedScene(cont);
         if (contMorir != null)
             onDraggedScene(contMorir);
+        if (contSoc != null)
+            onDraggedScene(contSoc);
     }
 
 }
