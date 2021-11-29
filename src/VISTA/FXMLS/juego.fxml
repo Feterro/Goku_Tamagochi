@@ -314,7 +314,30 @@
                         </InnerShadow>
                      </effect>
                   </Button>
-                  <Button blendMode="MULTIPLY" layoutX="814.0" layoutY="521.0" mnemonicParsing="false" onAction="#curar" prefHeight="35.0" prefWidth="184.0" text="CURAR" textAlignment="CENTER" textFill="#1d76a9">
+                  <Button blendMode="MULTIPLY" layoutX="814.0" layoutY="521.0" mnemonicParsing="false" onAction="#crearConsumible" prefHeight="35.0" prefWidth="184.0" text="AGREGAR AL INVENTARIO" textAlignment="CENTER" textFill="#1d76a9">
+                     <font>
+                        <Font name="Cooper Black" size="11.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow height="60.77" radius="29.885" width="60.77">
+                           <color>
+                              <Color red="0.1712280660867691" green="0.5400818586349487" blue="0.6421052813529968" />
+                           </color>
+                           <input>
+                              <Lighting diffuseConstant="2.0" specularConstant="1.11" specularExponent="40.0" surfaceScale="5.26">
+                                 <bumpInput>
+                                    <Shadow height="10.5" radius="2.125" width="0.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Shadow>
+                                 </bumpInput>
+                              </Lighting>
+                           </input>
+                        </InnerShadow>
+                     </effect>
+                  </Button>
+                  <Button blendMode="MULTIPLY" layoutX="502.0" layoutY="521.0" mnemonicParsing="false" onAction="#curar" prefHeight="35.0" prefWidth="184.0" text="CURAR" textAlignment="CENTER" textFill="#1d76a9">
                      <font>
                         <Font name="Cooper Black" size="15.0" />
                      </font>

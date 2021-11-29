@@ -705,8 +705,8 @@ public class Juego implements Initializable, Serializable {
     }
 
     @FXML
-    public void crearMedicina(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLS/CreadorMedicinas.fxml"));
+    public void crearConsumible(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLS/CreadorConsuminles.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.TRANSPARENT);
